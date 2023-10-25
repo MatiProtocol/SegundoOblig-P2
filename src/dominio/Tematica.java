@@ -41,8 +41,10 @@ public class Tematica extends javax.swing.JFrame {
         lblRegistro.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblRegistro.setText("Registro de temática");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Nombre:");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Descripción");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

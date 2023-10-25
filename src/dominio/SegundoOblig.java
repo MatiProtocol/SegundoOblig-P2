@@ -16,6 +16,7 @@ public class SegundoOblig {
     public static void main (String[] args) {
        Tematica v = new Tematica();
         v.setVisible(true);
+        //te eta poltando maal
     }
     
 }
