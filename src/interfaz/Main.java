@@ -4,10 +4,15 @@
  */
 package interfaz;
 
+import dominio.Tematica;
+
 /**
  *
  * @author matib
  */
 public class Main {
-    int alaa = 54;
+    public static void main (String[] args) {
+        Tematica v = new Tematica();
+        v.setVisible(true);
+    }
 }
