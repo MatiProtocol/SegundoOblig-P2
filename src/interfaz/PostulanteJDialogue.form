@@ -38,12 +38,12 @@
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCedula" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="lblDir" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTelf" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblMail" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblLinkedin" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="rbtnRemoto" min="-2" max="-2" attributes="0"/>
@@ -147,7 +147,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="C&#xe9;dula"/>
+        <Property name="text" type="java.lang.String" value="C&#xe9;dula:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblDir">
@@ -163,7 +163,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
+        <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMail">

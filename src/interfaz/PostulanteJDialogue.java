@@ -1,21 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package interfaz;
 
 import dominio.Postulante;
 import javax.swing.*;
 
-/**
- *
- * @author Valentino
- */
+
 public class PostulanteJDialogue extends javax.swing.JDialog {
 
-    /**
-     * Creates new form PostulanteJDialogue
-     */
+
     Postulante modelo = new Postulante();
 
     public PostulanteJDialogue (java.awt.Frame parent, boolean modal) {
@@ -62,13 +53,13 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         lblNombre.setText("Nombre:");
 
         lblCedula.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblCedula.setText("Cédula");
+        lblCedula.setText("Cédula:");
 
         lblDir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDir.setText("Dirección:");
 
         lblTelf.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblTelf.setText("Teléfono");
+        lblTelf.setText("Teléfono:");
 
         lblMail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMail.setText("Mail:");
@@ -147,12 +138,12 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre)
-                            .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDir)
                             .addComponent(lblTelf)
                             .addComponent(lblMail)
                             .addComponent(lblLinkedin)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(lblCedula))
                         .addGap(90, 90, 90)
                         .addComponent(rbtnRemoto)
                         .addGap(32, 32, 32)
@@ -257,13 +248,14 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         modelo.setDireccion(direccion);
         modelo.setMail(mail);
         modelo.setLinkedIn(linkedin);
-
-
+        
+        
+//        ExperienciaJDialogue ventanita = new ExperienciaJDialogue(true, rootPaneCheckingEnabled);
+//        ventanita.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
+    
     public static void main (String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
