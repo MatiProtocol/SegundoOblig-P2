@@ -252,9 +252,8 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         modelo.setMail(mail);
         modelo.setLinkedIn(linkedin);
         
-        
-//        ExperienciaJDialogue ventanita = new ExperienciaJDialogue(true, rootPaneCheckingEnabled);
-//        ventanita.setVisible(true);
+        ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true);
+        ventanita.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
