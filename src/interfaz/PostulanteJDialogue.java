@@ -1,6 +1,7 @@
 package interfaz;
 
 import dominio.Postulante;
+import dominio.Verficador;
 import javax.swing.*;
 
 
@@ -73,12 +74,14 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
+        txtCedula.setInputVerifier(new Verficador());
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
 
+        txtTelefono.setInputVerifier(new Verficador());
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
