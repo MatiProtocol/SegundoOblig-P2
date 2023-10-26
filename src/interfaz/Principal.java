@@ -45,6 +45,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnPostularme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPostularme.setText("Postularme");
+        btnPostularme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostularmeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,6 +86,11 @@ public class Principal extends javax.swing.JFrame {
         TematicaJDialogue ventanita = new TematicaJDialogue(this, true);
         ventanita.setVisible(true);
     }//GEN-LAST:event_btnTematicaActionPerformed
+
+    private void btnPostularmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostularmeActionPerformed
+        PostulanteJDialogue vent = new PostulanteJDialogue(this, true);
+        vent.setVisible(true);
+    }//GEN-LAST:event_btnPostularmeActionPerformed
 
 
     

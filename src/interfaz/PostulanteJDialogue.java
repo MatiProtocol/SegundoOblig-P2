@@ -4,6 +4,9 @@
  */
 package interfaz;
 
+import dominio.Postulante;
+import javax.swing.*;
+
 /**
  *
  * @author Valentino
@@ -13,7 +16,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     /**
      * Creates new form PostulanteJDialogue
      */
-    public PostulanteJDialogue(java.awt.Frame parent, boolean modal) {
+    Postulante modelo = new Postulante();
+
+    public PostulanteJDialogue (java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -27,54 +32,239 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGupo = new javax.swing.ButtonGroup();
+        lblAltaPost = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
+        lblDir = new javax.swing.JLabel();
+        lblTelf = new javax.swing.JLabel();
+        lblMail = new javax.swing.JLabel();
+        lblLinkedin = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtMail = new javax.swing.JTextField();
+        txtLinkedin = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        rbtnRemoto = new javax.swing.JRadioButton();
+        rbtnPresencial = new javax.swing.JRadioButton();
+        rbtnMixto = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Alta Postulante");
+        lblAltaPost.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblAltaPost.setText("Alta Postulante");
 
-        jLabel2.setText("Nombre:");
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNombre.setText("Nombre:");
 
-        jLabel3.setText("Cedula");
+        lblCedula.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCedula.setText("Cédula");
+
+        lblDir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDir.setText("Dirección:");
+
+        lblTelf.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTelf.setText("Teléfono");
+
+        lblMail.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblMail.setText("Mail:");
+
+        lblLinkedin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblLinkedin.setText("Linkedin:");
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
+
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
+
+        txtLinkedin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLinkedinActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setText("Formato:");
+
+        btnGupo.add(rbtnRemoto);
+        rbtnRemoto.setText("Remoto");
+        rbtnRemoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnRemotoActionPerformed(evt);
+            }
+        });
+
+        btnGupo.add(rbtnPresencial);
+        rbtnPresencial.setText("Presencial");
+
+        btnGupo.add(rbtnMixto);
+        rbtnMixto.setText("Mixto");
+
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Siguiente");
+        jButton2.setMaximumSize(new java.awt.Dimension(80, 27));
+        jButton2.setMinimumSize(new java.awt.Dimension(80, 27));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAltaPost)
+                .addGap(212, 212, 212))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addContainerGap(167, Short.MAX_VALUE))
+                            .addComponent(lblNombre)
+                            .addComponent(lblCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDir)
+                            .addComponent(lblTelf)
+                            .addComponent(lblMail)
+                            .addComponent(lblLinkedin)
+                            .addComponent(jLabel1))
+                        .addGap(90, 90, 90)
+                        .addComponent(rbtnRemoto)
+                        .addGap(32, 32, 32)
+                        .addComponent(rbtnPresencial)
+                        .addGap(32, 32, 32)
+                        .addComponent(rbtnMixto))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                .addComponent(txtCedula)
+                                .addComponent(txtDireccion)
+                                .addComponent(txtTelefono)
+                                .addComponent(txtMail)
+                                .addComponent(txtLinkedin)))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel3)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(lblAltaPost)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDir)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTelf)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMail)
+                    .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLinkedin)
+                    .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(rbtnRemoto)
+                    .addComponent(rbtnPresencial)
+                    .addComponent(rbtnMixto))
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void txtLinkedinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLinkedinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLinkedinActionPerformed
+
+    private void rbtnRemotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRemotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnRemotoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String nombre = txtNombre.getText();
+        String cedula = txtCedula.getText();
+        String direccion = txtDireccion.getText();
+        String mail = txtMail.getText();
+        String linkedin = txtLinkedin.getText();
+        String modalidad = radioBotonSeleccionado();
+        System.out.println(modalidad);
+
+        modelo.setNombre(nombre);
+        modelo.setCedula(cedula);
+        modelo.setDireccion(direccion);
+        modelo.setMail(mail);
+        modelo.setLinkedIn(linkedin);
+
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main (String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -100,11 +290,11 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run () {
                 PostulanteJDialogue dialog = new PostulanteJDialogue(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
+                    public void windowClosing (java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
@@ -114,8 +304,40 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGupo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblAltaPost;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblDir;
+    private javax.swing.JLabel lblLinkedin;
+    private javax.swing.JLabel lblMail;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTelf;
+    private javax.swing.JRadioButton rbtnMixto;
+    private javax.swing.JRadioButton rbtnPresencial;
+    private javax.swing.JRadioButton rbtnRemoto;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtLinkedin;
+    private javax.swing.JTextField txtMail;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    public String radioBotonSeleccionado (){
+        String retorno;
+        if (rbtnRemoto.isSelected()) {
+            retorno = rbtnRemoto.getName();
+        } else {
+            if (rbtnPresencial.isSelected()) {
+                retorno = rbtnPresencial.getName();
+            } else {
+                retorno = rbtnMixto.getName();
+            }
+        }
+        return retorno;
+    }
+
 }
