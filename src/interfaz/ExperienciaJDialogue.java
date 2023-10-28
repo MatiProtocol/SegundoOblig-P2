@@ -176,7 +176,6 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private void comboxTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxTemaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboxTemaActionPerformed
-
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

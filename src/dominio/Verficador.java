@@ -12,54 +12,57 @@ import javax.swing.JOptionPane;
 
 import javax.swing.JTextField;
 
-
-
-
-
 public class Verficador extends InputVerifier {
 
+    @Override
 
+    public boolean verify (JComponent editor) {
+        // suponemos que JComponent será un JTextField
 
-	@Override
+        if (editor instanceof JTextField) {
 
-	public boolean verify(JComponent editor) {
-                // suponemos que JComponent será un JTextField
+            String texto = ((JTextField) editor).getText();
 
-		if (editor instanceof JTextField)
+            try {
+                // Si se puede convertir en entero, está bien
 
-		{
+                Integer.parseInt(texto);
 
-			String texto = ((JTextField)editor).getText();
+                return true;
 
-			try
+            } catch (Exception e) {
+                // Si no se ha podido convertir a entero, mostramos
+                // una ventana de error y devolvemos false
 
-			{
-                                // Si se puede convertir en entero, está bien
+                JOptionPane.showMessageDialog(editor, "No es un número");
 
-				Integer.parseInt(texto);
+                return false;
 
-				return true;
+            }
 
-			}
+        }
 
-			catch (Exception e)
+        return true;
 
-			{
-                                // Si no se ha podido convertir a entero, mostramos
-                                // una ventana de error y devolvemos false
+    }
 
-				JOptionPane.showMessageDialog(editor, "No es un número");
+    public boolean verifyMail (JComponent editor) {
+        // suponemos que JComponent será un JTextField
+        boolean retorno = false;
+        if (editor instanceof JTextField) {
+            String texto = ((JTextField) editor).getText();
 
-				return false;
+            if (texto.contains("@gmail.com")) {
+                retorno = true;
+            } else {
+                JOptionPane.showMessageDialog(editor, "No es un gmail válido");
+                retorno = false;
+            }
 
-			}
-
-		}
-
-		return true;
-
-	}
-
-
+            // Si no se ha podido convertir a entero, mostramos
+            // una ventana de error y devolvemos false
+        }
+        return retorno;
+    }
 
 }

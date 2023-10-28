@@ -2,11 +2,11 @@ package interfaz;
 
 import dominio.Postulante;
 import dominio.Verficador;
+import java.awt.*;
+import javax.print.attribute.AttributeSetUtilities;
 import javax.swing.*;
 
-
 public class PostulanteJDialogue extends javax.swing.JDialog {
-
 
     Postulante modelo = new Postulante();
 
@@ -38,12 +38,12 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         txtTelefono = new javax.swing.JTextField();
         txtMail = new javax.swing.JTextField();
         txtLinkedin = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblFormato = new javax.swing.JLabel();
         rbtnRemoto = new javax.swing.JRadioButton();
         rbtnPresencial = new javax.swing.JRadioButton();
         rbtnMixto = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnSig = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,37 +68,88 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         lblLinkedin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLinkedin.setText("Linkedin:");
 
+        txtNombre.setNextFocusableComponent(txtCedula);
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
 
+        txtCedula.setForeground(new java.awt.Color(204, 204, 204));
+        txtCedula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtCedula.setCaretColor(new java.awt.Color(153, 153, 153));
         txtCedula.setInputVerifier(new Verficador());
+        txtCedula.setNextFocusableComponent(txtDireccion);
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
             }
         });
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyTyped(evt);
+            }
+        });
+
+        txtDireccion.setNextFocusableComponent(txtTelefono);
 
         txtTelefono.setInputVerifier(new Verficador());
+        txtTelefono.setNextFocusableComponent(txtMail);
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
             }
         });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
+        txtMail.setNextFocusableComponent(txtLinkedin);
+        txtMail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMailFocusLost(evt);
+            }
+        });
+        txtMail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                none(evt);
+            }
+        });
+        txtMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMailActionPerformed(evt);
+            }
+        });
+        txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nose(evt);
+            }
+        });
+
+        txtLinkedin.setNextFocusableComponent(rbtnRemoto);
         txtLinkedin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLinkedinActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Formato:");
+        lblFormato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFormato.setText("Formato:");
 
         btnGupo.add(rbtnRemoto);
+        rbtnRemoto.setSelected(true);
         rbtnRemoto.setText("Remoto");
+        rbtnRemoto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        rbtnRemoto.setNextFocusableComponent(btnCancelar);
+        rbtnRemoto.setRequestFocusEnabled(false);
         rbtnRemoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnRemotoActionPerformed(evt);
@@ -107,23 +158,30 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
 
         btnGupo.add(rbtnPresencial);
         rbtnPresencial.setText("Presencial");
+        rbtnPresencial.setNextFocusableComponent(btnCancelar);
+        rbtnPresencial.setRequestFocusEnabled(false);
 
         btnGupo.add(rbtnMixto);
         rbtnMixto.setText("Mixto");
+        rbtnMixto.setFocusTraversalPolicyProvider(true);
+        rbtnMixto.setNextFocusableComponent(btnCancelar);
+        rbtnMixto.setRequestFocusEnabled(false);
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setNextFocusableComponent(btnSig);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Siguiente");
-        jButton2.setMaximumSize(new java.awt.Dimension(80, 27));
-        jButton2.setMinimumSize(new java.awt.Dimension(80, 27));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSig.setText("Siguiente");
+        btnSig.setMaximumSize(new java.awt.Dimension(80, 27));
+        btnSig.setMinimumSize(new java.awt.Dimension(80, 27));
+        btnSig.setNextFocusableComponent(txtNombre);
+        btnSig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSigActionPerformed(evt);
             }
         });
 
@@ -132,7 +190,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(217, 217, 217)
                 .addComponent(lblAltaPost)
                 .addGap(212, 212, 212))
             .addGroup(layout.createSequentialGroup()
@@ -145,7 +203,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                             .addComponent(lblTelf)
                             .addComponent(lblMail)
                             .addComponent(lblLinkedin)
-                            .addComponent(jLabel1)
+                            .addComponent(lblFormato)
                             .addComponent(lblCedula))
                         .addGap(90, 90, 90)
                         .addComponent(rbtnRemoto)
@@ -155,18 +213,19 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                         .addComponent(rbtnMixto))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                                .addComponent(txtCedula)
-                                .addComponent(txtDireccion)
-                                .addComponent(txtTelefono)
-                                .addComponent(txtMail)
-                                .addComponent(txtLinkedin)))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addComponent(txtCedula)
+                            .addComponent(txtDireccion)
+                            .addComponent(txtTelefono)
+                            .addComponent(txtMail)
+                            .addComponent(txtLinkedin)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnSig, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)))))
+                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +239,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDir)
@@ -199,14 +258,14 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                     .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblFormato)
                     .addComponent(rbtnRemoto)
                     .addComponent(rbtnPresencial)
                     .addComponent(rbtnMixto))
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSig, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
 
@@ -233,31 +292,102 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnRemotoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nombre = txtNombre.getText();
-        String cedula = txtCedula.getText();
-        String direccion = txtDireccion.getText();
-        String mail = txtMail.getText();
-        String linkedin = txtLinkedin.getText();
-        String modalidad = radioBotonSeleccionado();
-        System.out.println(modalidad);
+    private void btnSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigActionPerformed
+        if (!(esMail(txtMail.getText()))) {
+            //JOptionPane.showMessageDialog(this, "No es un mail válido");
+            txtMail.requestFocusInWindow();
+        } else {
+            String nombre = txtNombre.getText();
+            String cedula = txtCedula.getText();
+            String direccion = txtDireccion.getText();
+            String mail = txtMail.getText();
+            String linkedin = txtLinkedin.getText();
+            String modalidad = radioBotonSeleccionado();
+            System.out.println(modalidad);
 
-        modelo.setNombre(nombre);
-        modelo.setCedula(cedula);
-        modelo.setDireccion(direccion);
-        modelo.setMail(mail);
-        modelo.setLinkedIn(linkedin);
-        
-        ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true);
-        ventanita.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+            modelo.setNombre(nombre);
+            modelo.setCedula(cedula);
+            modelo.setDireccion(direccion);
+            modelo.setMail(mail);
+            modelo.setLinkedIn(linkedin);
 
-    
-    
+            ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true);
+            ventanita.setVisible(true);
+        }
+    }//GEN-LAST:event_btnSigActionPerformed
+
+    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
+        if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() < 7) {
+            txtCedula.setForeground(new Color(250, 0, 0));
+        } else {
+            txtCedula.setForeground(new Color(0, 0, 0));
+        }
+        //System.out.println("soy ese");
+    }//GEN-LAST:event_txtCedulaKeyTyped
+
+    private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
+
+    }//GEN-LAST:event_txtCedulaKeyPressed
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        if (!(esNumero(txtTelefono.getText()))) {
+            txtTelefono.setForeground(new Color(250, 0, 0));
+        } else {
+            txtTelefono.setForeground(new Color(0, 0, 0));
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyPressed
+
+    }//GEN-LAST:event_txtTelefonoKeyPressed
+
+    private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMailActionPerformed
+
+    private void nose(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nose
+        /*if(!(txtMail.getText().contains("@gmail.com"))){
+            JOptionPane.showMessageDialog(this, "No es un mail válido");
+        }*/
+    }//GEN-LAST:event_nose
+
+    private void none(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_none
+
+    }//GEN-LAST:event_none
+
+    private void txtMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusLost
+        if (!(esMail(txtMail.getText()))) {
+            JOptionPane.showMessageDialog(this, "No es un mail válido");
+            txtMail.requestFocusInWindow();
+        }
+
+    }//GEN-LAST:event_txtMailFocusLost
+    public static boolean esMail (String unN) {
+        boolean retorno = false;
+        if (unN.contains("@gmail.com")) {
+            retorno = true;
+        }
+        return retorno;
+    }
+
+    public static boolean esNumero (String unS) {
+        boolean esN = true;
+
+        for (int i = 0; i < unS.length() && esN; i++) {
+            char aux = unS.charAt(i);
+
+            if (!Character.isDigit(aux)) {
+                esN = false;
+            }
+        }
+
+        return esN && (unS.length() > 0);
+    }
+
     public static void main (String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -298,13 +428,13 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup btnGupo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnSig;
     private javax.swing.JLabel lblAltaPost;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblDir;
+    private javax.swing.JLabel lblFormato;
     private javax.swing.JLabel lblLinkedin;
     private javax.swing.JLabel lblMail;
     private javax.swing.JLabel lblNombre;
@@ -320,7 +450,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public String radioBotonSeleccionado (){
+    public String radioBotonSeleccionado () {
         String retorno;
         if (rbtnRemoto.isSelected()) {
             retorno = rbtnRemoto.getName();

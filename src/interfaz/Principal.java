@@ -23,6 +23,7 @@ public class Principal extends javax.swing.JFrame {
         btnPostularme = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Programa para la gestión de postulantes");
 
         lblGestion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblGestion.setText("Gestión de Personal");
