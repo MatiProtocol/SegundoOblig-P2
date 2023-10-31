@@ -63,6 +63,15 @@ public class Postulante {
 
     public Postulante () {
     }
+
+    public Postulante(String nombre, String cedula, String direccion, String telefono, String mail, String linkedIn) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.mail = mail;
+        this.linkedIn = linkedIn;
+    }
     
     
 }

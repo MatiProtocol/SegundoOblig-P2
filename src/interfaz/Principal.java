@@ -1,11 +1,16 @@
 
 package interfaz;
 
+import dominio.*;
+
 
 public class Principal extends javax.swing.JFrame {
 
-
-    public Principal() {
+    private Sistema modelo; 
+    
+    public Principal(Sistema sistema) {
+        this.setResizable(false);
+        this.modelo = sistema;
         initComponents();
     }
 
@@ -21,6 +26,7 @@ public class Principal extends javax.swing.JFrame {
         lblGestion = new javax.swing.JLabel();
         btnTematica = new javax.swing.JButton();
         btnPostularme = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Programa para la gestión de postulantes");
@@ -44,6 +50,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -57,7 +70,10 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(btnTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(btnPostularme, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnPostularme, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(jButton1)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -65,7 +81,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblGestion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPostularme, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -76,14 +94,25 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTematicaActionPerformed
-        TematicaJDialogue ventanita = new TematicaJDialogue(this, true);
+        TematicaJDialogue ventanita = new TematicaJDialogue(this, true, modelo);
         ventanita.setVisible(true);
+        Tematica modeloFin = new Tematica();
+        modeloFin = ventanita.devolverTem();
+        modelo.addTematicas(modeloFin);
     }//GEN-LAST:event_btnTematicaActionPerformed
 
     private void btnPostularmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostularmeActionPerformed
         PostulanteJDialogue vent = new PostulanteJDialogue(this, true);
         vent.setVisible(true);
+        Postulante modeloFin = new Postulante();
+        modeloFin = vent.devolverPost();
+        modelo.addPostulantes(modeloFin);
     }//GEN-LAST:event_btnPostularmeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println(modelo.getTematicas().get(0));
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     
@@ -91,6 +120,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPostularme;
     private javax.swing.JButton btnTematica;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblGestion;
     // End of variables declaration//GEN-END:variables
 }

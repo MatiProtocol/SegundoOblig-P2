@@ -1,6 +1,7 @@
 package interfaz;
 
 import dominio.Postulante;
+import dominio.*;
 import dominio.Verficador;
 import java.awt.*;
 import javax.print.attribute.AttributeSetUtilities;
@@ -9,10 +10,11 @@ import javax.swing.*;
 public class PostulanteJDialogue extends javax.swing.JDialog {
 
     Postulante modelo = new Postulante();
-
-    public PostulanteJDialogue (java.awt.Frame parent, boolean modal) {
+    //Sistema sist = new Sistema();
+    public PostulanteJDialogue(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setResizable(false);
     }
 
     /**
@@ -135,6 +137,11 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         });
 
         txtLinkedin.setNextFocusableComponent(rbtnRemoto);
+        txtLinkedin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLinkedinFocusLost(evt);
+            }
+        });
         txtLinkedin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLinkedinActionPerformed(evt);
@@ -297,29 +304,49 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigActionPerformed
-        if (!(esMail(txtMail.getText()))) {
+        if (!(esMail(txtMail.getText())) || !(txtLinkedin.getText().contains("https://linkedin.com/in/")) ) {
             //JOptionPane.showMessageDialog(this, "No es un mail válido");
             txtMail.requestFocusInWindow();
+            txtLinkedin.requestFocusInWindow();
+            
         } else {
             String nombre = txtNombre.getText();
             String cedula = txtCedula.getText();
             String direccion = txtDireccion.getText();
             String mail = txtMail.getText();
             String linkedin = txtLinkedin.getText();
-            String modalidad = radioBotonSeleccionado();
+            
+               
+            
+            modelo.setLinkedIn(linkedin);
+            
+
+            String modalidad;
+            if (rbtnMixto.isSelected()) {
+                modalidad = rbtnMixto.getText();
+            } else {
+                if (rbtnPresencial.isSelected()) {
+                    modalidad = rbtnPresencial.getText();
+                } else {
+                    modalidad = rbtnRemoto.getText();
+                }
+            }
             System.out.println(modalidad);
 
             modelo.setNombre(nombre);
             modelo.setCedula(cedula);
             modelo.setDireccion(direccion);
             modelo.setMail(mail);
-            modelo.setLinkedIn(linkedin);
+            
 
-            ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true);
+            ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true, modelo);
             ventanita.setVisible(true);
-        }
+            modelo = ventanita.darP();
+            //sist.addPostulantes(modelo);
+            
+        }   
     }//GEN-LAST:event_btnSigActionPerformed
-
+    
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() < 7) {
             txtCedula.setForeground(new Color(250, 0, 0));
@@ -366,7 +393,14 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_txtMailFocusLost
-    public static boolean esMail (String unN) {
+
+    private void txtLinkedinFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLinkedinFocusLost
+        if (!(txtLinkedin.getText().contains("https://linkedin.com/in/"))) {
+            JOptionPane.showMessageDialog(this, "No es un Linkedin válido");
+            txtLinkedin.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtLinkedinFocusLost
+    public static boolean esMail(String unN) {
         boolean retorno = false;
         if (unN.contains("@gmail.com")) {
             retorno = true;
@@ -374,7 +408,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         return retorno;
     }
 
-    public static boolean esNumero (String unS) {
+    public static boolean esNumero(String unS) {
         boolean esN = true;
 
         for (int i = 0; i < unS.length() && esN; i++) {
@@ -388,44 +422,6 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         return esN && (unS.length() > 0);
     }
 
-    public static void main (String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PostulanteJDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PostulanteJDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PostulanteJDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PostulanteJDialogue.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run () {
-                PostulanteJDialogue dialog = new PostulanteJDialogue(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing (java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -450,7 +446,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public String radioBotonSeleccionado () {
+    public String radioBotonSeleccionado() {
         String retorno;
         if (rbtnRemoto.isSelected()) {
             retorno = rbtnRemoto.getName();
@@ -462,6 +458,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         }
         return retorno;
+    }
+    public Postulante devolverPost (){
+        return this.modelo;
     }
 
 }
