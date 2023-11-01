@@ -32,7 +32,9 @@ public class Sistema {
         this.tematicas.add(tematica);
     }
     
-    
+    public int getSizeTematicas() {
+        return tematicas.size();
+    }
     
     
 }

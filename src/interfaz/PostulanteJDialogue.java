@@ -10,11 +10,13 @@ import javax.swing.*;
 public class PostulanteJDialogue extends javax.swing.JDialog {
 
     Postulante modelo = new Postulante();
-    //Sistema sist = new Sistema();
-    public PostulanteJDialogue(java.awt.Frame parent, boolean modal) {
+    private Sistema sistema;
+
+    public PostulanteJDialogue (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
         initComponents();
         this.setResizable(false);
+        this.sistema = sistema;
     }
 
     /**
@@ -46,6 +48,12 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         rbtnMixto = new javax.swing.JRadioButton();
         btnCancelar = new javax.swing.JButton();
         btnSig = new javax.swing.JButton();
+        lblCedulaAdvertencia = new javax.swing.JLabel();
+        lblNombreAdvertencia = new javax.swing.JLabel();
+        lblDirecAdvertencia = new javax.swing.JLabel();
+        lblTelefAdvertencia = new javax.swing.JLabel();
+        lblMailAdvertencia = new javax.swing.JLabel();
+        lblLinkedAdvertencia = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,18 +78,30 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         lblLinkedin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLinkedin.setText("Linkedin:");
 
+        txtNombre.setText("a");
+        txtNombre.setToolTipText("Ingrese su nombre.");
         txtNombre.setNextFocusableComponent(txtCedula);
+        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreFocusLost(evt);
+            }
+        });
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
 
-        txtCedula.setForeground(new java.awt.Color(204, 204, 204));
         txtCedula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtCedula.setText("12345678");
+        txtCedula.setToolTipText("Ingresar cédula sin puntos ni guión.");
         txtCedula.setCaretColor(new java.awt.Color(153, 153, 153));
-        txtCedula.setInputVerifier(new Verficador());
         txtCedula.setNextFocusableComponent(txtDireccion);
+        txtCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaFocusLost(evt);
+            }
+        });
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
@@ -96,10 +116,28 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
+        txtDireccion.setText("a");
+        txtDireccion.setToolTipText("Ingrese su dirección.");
         txtDireccion.setNextFocusableComponent(txtTelefono);
+        txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDireccionFocusLost(evt);
+            }
+        });
+        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDireccionActionPerformed(evt);
+            }
+        });
 
-        txtTelefono.setInputVerifier(new Verficador());
+        txtTelefono.setText("1");
+        txtTelefono.setToolTipText("Ingrese su teléfono.");
         txtTelefono.setNextFocusableComponent(txtMail);
+        txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTelefonoFocusLost(evt);
+            }
+        });
         txtTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTelefonoActionPerformed(evt);
@@ -114,6 +152,8 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
+        txtMail.setText("@gmail.com");
+        txtMail.setToolTipText("Ingrese un mail válido.");
         txtMail.setNextFocusableComponent(txtLinkedin);
         txtMail.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -131,11 +171,16 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
         txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMailKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 nose(evt);
             }
         });
 
+        txtLinkedin.setText("https://linkedin.com/in/");
+        txtLinkedin.setToolTipText("Ingrese un LinkedIn válido.");
         txtLinkedin.setNextFocusableComponent(rbtnRemoto);
         txtLinkedin.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -147,6 +192,11 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                 txtLinkedinActionPerformed(evt);
             }
         });
+        txtLinkedin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLinkedinKeyPressed(evt);
+            }
+        });
 
         lblFormato.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblFormato.setText("Formato:");
@@ -154,6 +204,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         btnGupo.add(rbtnRemoto);
         rbtnRemoto.setSelected(true);
         rbtnRemoto.setText("Remoto");
+        rbtnRemoto.setToolTipText("Seleccionar si su formato de trabajo es remoto.");
         rbtnRemoto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rbtnRemoto.setNextFocusableComponent(btnCancelar);
         rbtnRemoto.setRequestFocusEnabled(false);
@@ -165,11 +216,13 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
 
         btnGupo.add(rbtnPresencial);
         rbtnPresencial.setText("Presencial");
+        rbtnPresencial.setToolTipText("Seleccionar si su formato de trabajo es presencial.");
         rbtnPresencial.setNextFocusableComponent(btnCancelar);
         rbtnPresencial.setRequestFocusEnabled(false);
 
         btnGupo.add(rbtnMixto);
         rbtnMixto.setText("Mixto");
+        rbtnMixto.setToolTipText("Seleccionar si su formato de trabajo es mixto.");
         rbtnMixto.setFocusTraversalPolicyProvider(true);
         rbtnMixto.setNextFocusableComponent(btnCancelar);
         rbtnMixto.setRequestFocusEnabled(false);
@@ -192,6 +245,18 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
+        lblCedulaAdvertencia.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
+        lblNombreAdvertencia.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
+        lblDirecAdvertencia.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
+        lblTelefAdvertencia.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
+        lblMailAdvertencia.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
+        lblLinkedAdvertencia.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,34 +270,43 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre)
-                            .addComponent(lblDir)
-                            .addComponent(lblTelf)
-                            .addComponent(lblMail)
-                            .addComponent(lblLinkedin)
-                            .addComponent(lblFormato)
-                            .addComponent(lblCedula))
-                        .addGap(90, 90, 90)
-                        .addComponent(rbtnRemoto)
-                        .addGap(32, 32, 32)
-                        .addComponent(rbtnPresencial)
-                        .addGap(32, 32, 32)
-                        .addComponent(rbtnMixto))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDir)
+                                    .addComponent(lblTelf)
+                                    .addComponent(lblMail)
+                                    .addComponent(lblLinkedin)
+                                    .addComponent(lblFormato)
+                                    .addComponent(lblCedula))
+                                .addGap(90, 90, 90)
+                                .addComponent(rbtnRemoto)
+                                .addGap(32, 32, 32)
+                                .addComponent(rbtnPresencial)
+                                .addGap(32, 32, 32)
+                                .addComponent(rbtnMixto))
+                            .addComponent(lblNombre)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addComponent(txtCedula)
-                            .addComponent(txtDireccion)
-                            .addComponent(txtTelefono)
-                            .addComponent(txtMail)
-                            .addComponent(txtLinkedin)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnSig, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)))))
-                .addGap(69, 69, 69))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                                .addComponent(txtCedula)
+                                .addComponent(txtDireccion)
+                                .addComponent(txtTelefono)
+                                .addComponent(txtMail)
+                                .addComponent(txtLinkedin)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(btnSig, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28))
+                                .addComponent(lblCedulaAdvertencia))
+                            .addComponent(lblNombreAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDirecAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTelefAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMailAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLinkedAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,27 +317,39 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(4, 4, 4)
+                .addComponent(lblNombreAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
                     .addComponent(txtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(3, 3, 3)
+                .addComponent(lblCedulaAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDir)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(4, 4, 4)
+                .addComponent(lblDirecAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelf)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(3, 3, 3)
+                .addComponent(lblTelefAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMail)
                     .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(3, 3, 3)
+                .addComponent(lblMailAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLinkedin)
                     .addComponent(txtLinkedin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLinkedAdvertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFormato)
                     .addComponent(rbtnRemoto)
@@ -304,22 +390,18 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigActionPerformed
-        if (!(esMail(txtMail.getText())) || !(txtLinkedin.getText().contains("https://linkedin.com/in/")) ) {
+        //if (!(esMail(txtMail.getText())) || !(txtLinkedin.getText().contains("https://linkedin.com/in/")) ) {
+        if (chequeoGeneral()) {
             //JOptionPane.showMessageDialog(this, "No es un mail válido");
-            txtMail.requestFocusInWindow();
-            txtLinkedin.requestFocusInWindow();
-            
-        } else {
+            //txtMail.requestFocusInWindow();
+            //txtLinkedin.requestFocusInWindow();
             String nombre = txtNombre.getText();
             String cedula = txtCedula.getText();
             String direccion = txtDireccion.getText();
             String mail = txtMail.getText();
             String linkedin = txtLinkedin.getText();
-            
-               
-            
+
             modelo.setLinkedIn(linkedin);
-            
 
             String modalidad;
             if (rbtnMixto.isSelected()) {
@@ -337,34 +419,44 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             modelo.setCedula(cedula);
             modelo.setDireccion(direccion);
             modelo.setMail(mail);
-            
 
-            ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true, modelo);
+            ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true, modelo, sistema);
             ventanita.setVisible(true);
             modelo = ventanita.darP();
-            //sist.addPostulantes(modelo);
-            
-        }   
+            sistema.addPostulantes(modelo);
+        } else{
+            JOptionPane.showMessageDialog(this,"Los datos no son correctos.");
+        }
     }//GEN-LAST:event_btnSigActionPerformed
-    
+
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() < 7) {
+        /*if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() < 7) {
             txtCedula.setForeground(new Color(250, 0, 0));
         } else {
             txtCedula.setForeground(new Color(0, 0, 0));
-        }
+        }*/
         //System.out.println("soy ese");
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
-
+        if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() < 6) {
+            lblCedulaAdvertencia.setText("La cédula es incorrecta.");
+        } else {
+            lblCedulaAdvertencia.setText("");
+        }
     }//GEN-LAST:event_txtCedulaKeyPressed
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        if (!(esNumero(txtTelefono.getText()))) {
-            txtTelefono.setForeground(new Color(250, 0, 0));
+        /*if (!(esNumero(txtTelefono.getText()))) {
+            //txtTelefono.setForeground(new Color(250, 0, 0));
+
         } else {
-            txtTelefono.setForeground(new Color(0, 0, 0));
+            //txtTelefono.setForeground(new Color(0, 0, 0));
+        }*/
+        if (!(esNumero(txtTelefono.getText()))) {
+            lblTelefAdvertencia.setText("El teléfono no es correcto.");
+        } else {
+            lblTelefAdvertencia.setText("");
         }
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
@@ -387,40 +479,76 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_none
 
     private void txtMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusLost
-        if (!(esMail(txtMail.getText()))) {
-            JOptionPane.showMessageDialog(this, "No es un mail válido");
-            txtMail.requestFocusInWindow();
+        if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {
+            //JOptionPane.showMessageDialog(this, "No es un mail válido.");
+            lblMailAdvertencia.setText("El mail es incorrecto.");
+            //txtMail.requestFocusInWindow();
+        } else {
+            lblMailAdvertencia.setText("");
         }
 
     }//GEN-LAST:event_txtMailFocusLost
 
     private void txtLinkedinFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLinkedinFocusLost
         if (!(txtLinkedin.getText().contains("https://linkedin.com/in/"))) {
-            JOptionPane.showMessageDialog(this, "No es un Linkedin válido");
-            txtLinkedin.requestFocusInWindow();
+            lblLinkedAdvertencia.setText("El LinkedIn es incorrecto.");
+        } else {
+            lblLinkedAdvertencia.setText("");
         }
     }//GEN-LAST:event_txtLinkedinFocusLost
-    public static boolean esMail(String unN) {
-        boolean retorno = false;
-        if (unN.contains("@gmail.com")) {
-            retorno = true;
+
+    private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
+        if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() != 8) {
+            lblCedulaAdvertencia.setText("La cédula es incorrecta.");
+        } else {
+            lblCedulaAdvertencia.setText("");
         }
-        return retorno;
-    }
+    }//GEN-LAST:event_txtCedulaFocusLost
 
-    public static boolean esNumero(String unS) {
-        boolean esN = true;
-
-        for (int i = 0; i < unS.length() && esN; i++) {
-            char aux = unS.charAt(i);
-
-            if (!Character.isDigit(aux)) {
-                esN = false;
-            }
+    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
+        if (txtNombre.getText().length() == 0) {
+            lblNombreAdvertencia.setText("El nómbre está vacío.");
+        } else {
+            lblNombreAdvertencia.setText("");
         }
+    }//GEN-LAST:event_txtNombreFocusLost
 
-        return esN && (unS.length() > 0);
-    }
+    private void txtDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDireccionFocusLost
+        if (txtDireccion.getText().length() == 0) {
+            lblDirecAdvertencia.setText("La dirección está vacío.");
+        } else {
+            lblDirecAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtDireccionFocusLost
+
+    private void txtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTelefonoFocusLost
+        if (txtTelefono.getText().length() == 0 || !(esNumero(txtTelefono.getText()))) {
+            lblTelefAdvertencia.setText("El teléfono no es correcto.");
+        } else {
+            lblTelefAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtTelefonoFocusLost
+
+    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionActionPerformed
+
+    private void txtMailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyPressed
+        if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {     
+            lblMailAdvertencia.setText("El mail es incorrecto.");
+        } else {
+            lblMailAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtMailKeyPressed
+
+    private void txtLinkedinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLinkedinKeyPressed
+        if (!(txtLinkedin.getText().contains("https://linkedin.com/in/"))) {
+           
+            lblLinkedAdvertencia.setText("El LinkedIn es incorrecto.");
+        } else {
+            lblLinkedAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtLinkedinKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -429,11 +557,17 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     private javax.swing.JButton btnSig;
     private javax.swing.JLabel lblAltaPost;
     private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblCedulaAdvertencia;
     private javax.swing.JLabel lblDir;
+    private javax.swing.JLabel lblDirecAdvertencia;
     private javax.swing.JLabel lblFormato;
+    private javax.swing.JLabel lblLinkedAdvertencia;
     private javax.swing.JLabel lblLinkedin;
     private javax.swing.JLabel lblMail;
+    private javax.swing.JLabel lblMailAdvertencia;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreAdvertencia;
+    private javax.swing.JLabel lblTelefAdvertencia;
     private javax.swing.JLabel lblTelf;
     private javax.swing.JRadioButton rbtnMixto;
     private javax.swing.JRadioButton rbtnPresencial;
@@ -446,7 +580,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public String radioBotonSeleccionado() {
+    public String radioBotonSeleccionado () {
         String retorno;
         if (rbtnRemoto.isSelected()) {
             retorno = rbtnRemoto.getName();
@@ -459,8 +593,59 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         }
         return retorno;
     }
-    public Postulante devolverPost (){
+
+    public Postulante devolverPost () {
         return this.modelo;
     }
 
+    public boolean chequeoGeneral () {
+        boolean verificado = true;
+        if (txtNombre.getText().length() == 0) {
+            verificado = false;
+        } else {
+            if ((!(esNumero(txtCedula.getText()))) || txtCedula.getText().length() != 8) {
+                verificado = false;
+            } else {
+                if (txtDireccion.getText().length() == 0) {
+                    verificado = false;
+                } else {
+                    if (txtTelefono.getText().length() == 0 || !(esNumero(txtTelefono.getText()))) {
+                        verificado = false;
+                    } else {
+                        if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {
+                            verificado = false;
+                        } else {
+                            if (!(txtLinkedin.getText().contains("https://linkedin.com/in/"))) {
+                                verificado = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return verificado;
+    }
+
+    public static boolean esMail (String unN) {
+        boolean retorno = false;
+        if (unN.contains("@gmail.com")) {
+            retorno = true;
+        }
+        return retorno;
+    }
+
+    public static boolean esNumero (String unS) {
+        boolean esN = true;
+
+        for (int i = 0; i < unS.length() && esN; i++) {
+            char aux = unS.charAt(i);
+
+            if (!Character.isDigit(aux)) {
+                esN = false;
+            }
+        }
+
+        return esN && (unS.length() > 0);
+    }
 }

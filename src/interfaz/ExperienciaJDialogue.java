@@ -1,17 +1,24 @@
 
 package interfaz;
 
-import dominio.Postulante;
+import dominio.*;
 
 
 public class ExperienciaJDialogue extends javax.swing.JDialog {
     private Postulante modelo;
-
-    public ExperienciaJDialogue(java.awt.Frame parent, boolean modal, Postulante modelo) {
+    private Sistema sistem;
+    public ExperienciaJDialogue(java.awt.Frame parent, boolean modal, Postulante modelo, Sistema sistema) {
         super(parent, modal);
         initComponents();
         this.modelo = modelo;
         this.setResizable(false);
+        this.sistem = sistema;
+        comboxTema.removeAllItems();
+        for(int i = 0 ; i < sistem.getSizeTematicas()-1; i++){
+            
+            comboxTema.addItem(sistem.getTematicas().get(i).getNombre());
+            System.out.println("alaaa");
+        }
     }
 
     /**
@@ -45,7 +52,6 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         lblNivel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblNivel.setText("Nivel:");
 
-        comboxTema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboxTema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboxTemaActionPerformed(evt);
@@ -83,11 +89,6 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
             }
         });
 
-        lstTema.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(lstTema);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,21 +121,19 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(43, 43, 43)
                                 .addComponent(jScrollPane2)))
-                        .addGap(0, 72, Short.MAX_VALUE))
+                        .addGap(0, 36, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTema, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(spinnerNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(btnAgreagar)
-                                .addGap(99, 99, 99))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(comboxTema, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAgreagar))
+                            .addComponent(comboxTema, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

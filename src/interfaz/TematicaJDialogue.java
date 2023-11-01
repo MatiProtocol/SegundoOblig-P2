@@ -1,23 +1,20 @@
 package interfaz;
 
 import dominio.*;
+import javax.swing.JOptionPane;
 //import dominio.Tematica;
-
 
 public class TematicaJDialogue extends javax.swing.JDialog {
 
-    private Tematica tematica; 
-    
-            
-            
-    public TematicaJDialogue(java.awt.Frame parent, boolean modal, Sistema sistema) {
+    private Tematica tematica;
+
+    public TematicaJDialogue (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
         initComponents();
         this.setResizable(false);
-        tematica = new Tematica();
+        
         modelo = sistema;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -126,17 +123,20 @@ public class TematicaJDialogue extends javax.swing.JDialog {
     private void btnRegistrarmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarmeActionPerformed
         String nombre = txtNombre.getText();
         String descripcion = txtAreaDescripcion.getText();
-        
-        this.tematica.setNombre(nombre);
-        this.tematica.setDescripcion(descripcion);
-        modelo.addTematicas(tematica);
-        //txtNombre.setText("");
-        //txtAreaDescripcion.setText("");
-        this.dispose();
+        if (nombre.isBlank() || descripcion.isBlank()) {
+            JOptionPane.showMessageDialog(this, "no tiene nomber");
+        } else {
+            this.tematica = new Tematica();
+            this.tematica.setNombre(nombre);
+            this.tematica.setDescripcion(descripcion);
+            System.out.println(modelo.getTematicas().size() + " antes");
+            modelo.addTematicas(tematica);
+            //txtNombre.setText("");
+            //txtAreaDescripcion.setText("");
+            System.out.println(modelo.getTematicas().size());
+            this.dispose();
+        }
     }//GEN-LAST:event_btnRegistrarmeActionPerformed
-
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -149,10 +149,9 @@ public class TematicaJDialogue extends javax.swing.JDialog {
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
     private Sistema modelo;
-    
-    public Tematica devolverTem(){
+
+    public Tematica devolverTem () {
         return this.tematica;
     }
-
 
 }

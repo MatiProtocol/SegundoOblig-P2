@@ -33,7 +33,7 @@ public class Verficador extends InputVerifier {
 
                 JOptionPane.showMessageDialog(editor, "No es un número");
 
-                return false;
+                //return false;
 
             }
 
