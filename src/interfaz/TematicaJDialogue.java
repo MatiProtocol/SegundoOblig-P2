@@ -129,11 +129,7 @@ public class TematicaJDialogue extends javax.swing.JDialog {
             this.tematica = new Tematica();
             this.tematica.setNombre(nombre);
             this.tematica.setDescripcion(descripcion);
-            System.out.println(modelo.getTematicas().size() + " antes");
             modelo.addTematicas(tematica);
-            //txtNombre.setText("");
-            //txtAreaDescripcion.setText("");
-            System.out.println(modelo.getTematicas().size());
             this.dispose();
         }
     }//GEN-LAST:event_btnRegistrarmeActionPerformed

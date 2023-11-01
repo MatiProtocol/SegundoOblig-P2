@@ -14,10 +14,10 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         this.setResizable(false);
         this.sistem = sistema;
         comboxTema.removeAllItems();
-        for(int i = 0 ; i < sistem.getSizeTematicas()-1; i++){
+        
+        for(int i = 0 ; i < sistem.getSizeTematicas(); i++){
             
             comboxTema.addItem(sistem.getTematicas().get(i).getNombre());
-            System.out.println("alaaa");
         }
     }
 

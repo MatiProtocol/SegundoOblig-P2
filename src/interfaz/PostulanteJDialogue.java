@@ -413,7 +413,6 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                     modalidad = rbtnRemoto.getText();
                 }
             }
-            System.out.println(modalidad);
 
             modelo.setNombre(nombre);
             modelo.setCedula(cedula);
@@ -430,12 +429,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSigActionPerformed
 
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-        /*if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() < 7) {
-            txtCedula.setForeground(new Color(250, 0, 0));
-        } else {
-            txtCedula.setForeground(new Color(0, 0, 0));
-        }*/
-        //System.out.println("soy ese");
+
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
