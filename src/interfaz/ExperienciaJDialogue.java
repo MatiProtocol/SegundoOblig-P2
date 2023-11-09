@@ -9,7 +9,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private Postulante modeloPost;
     private Sistema sistem;
 
-    public ExperienciaJDialogue (java.awt.Frame parent, boolean modal, Postulante modeloPost, Sistema sistema) {
+    public ExperienciaJDialogue(java.awt.Frame parent, boolean modal, Postulante modeloPost, Sistema sistema) {
         super(parent, modal);
         initComponents();
         this.modeloPost = modeloPost;
@@ -70,6 +70,11 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         lblXP.setText("Experiencia:");
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,9 +125,9 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                                     .addComponent(lblExperiencia))
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
+                                .addGap(10, 10, 10)
                                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
+                                .addGap(48, 48, 48)
                                 .addComponent(jScrollPane2)))
                         .addGap(0, 36, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -158,12 +163,12 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblXP)
-                        .addGap(30, 30, 30)
+                        .addGap(32, 32, 32)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(119, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -178,10 +183,11 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        String tema = comboxTema.getName();
-        int nivel = spinnerNivel.getComponentCount();
-
-        System.out.println(tema + nivel);
+        //if(lstTema.get)
+        System.out.println(modeloPost.getConocimiento());
+        System.out.println(modeloPost.getNiveles());
+        
+        this.setVisible(false);
 
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -191,20 +197,31 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_comboxTemaActionPerformed
 
     private void btnAgreagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreagarActionPerformed
-        Tematica seleccionComBox = (Tematica) comboxTema.getSelectedItem();
-        int nivel = (int) spinnerNivel.getValue();
-        modeloPost.addConocimiento(seleccionComBox);
-        modeloPost.addNivel(nivel);
-        
-        ArrayList<Tematica> temas = modeloPost.getConocimiento();
-        ArrayList<Integer> niveles = modeloPost.getNiveles();
-        
-        String[] experiencias = new String[temas.size()];
-        for(int i = 0; i < experiencias.length ; i++ ){
-            experiencias[i] ="" + temas.get(i).getNombre() + niveles.get(i);
+        //System.out.println(comboxTema.getSelectedItem());
+        if (comboxTema.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "No hay un temas slecionado.");
+        }else
+        {
+            Tematica seleccionComBox = (Tematica) comboxTema.getSelectedItem();
+            if (modeloPost.getConocimiento().contains(seleccionComBox)) {
+                JOptionPane.showMessageDialog(this, "Conocimiento agregado anteriormente.");
+            } else {
+
+                int nivel = (int) spinnerNivel.getValue();
+                modeloPost.addConocimiento(seleccionComBox);
+                modeloPost.addNivel(nivel);
+
+                ArrayList<Tematica> temas = modeloPost.getConocimiento();
+                ArrayList<Integer> niveles = modeloPost.getNiveles();
+
+                String[] experiencias = new String[temas.size()];
+                for (int i = 0; i < experiencias.length; i++) {
+                    experiencias[i] = "" + temas.get(i).getNombre() + " (" + niveles.get(i) + ")";
+                }
+
+                lstTema.setListData(experiencias);
+            }
         }
-        
-        lstTema.setListData(experiencias);
         //this.modeloPost.addNivel(nivel);
         //this.modeloPost.addConocimiento(seleccionComBox);
 
@@ -213,6 +230,41 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         }*/
 
     }//GEN-LAST:event_btnAgreagarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+//        String temaSelect = lstTema.getSelectedValue();
+//        String nomTemaSel = temaSelect.substring(0, temaSelect.lastIndexOf(" "));
+        if (!lstTema.isSelectionEmpty()) {
+            String temaSelect = lstTema.getSelectedValue();
+            String nomTemaSel = temaSelect.substring(0, temaSelect.lastIndexOf(" "));
+            System.out.println("tema a borrar " + nomTemaSel);
+            ArrayList<Tematica> listaCono = modeloPost.getConocimiento();
+            boolean bandeira = false;
+            for (int i = 0; i < listaCono.size() && !bandeira; i++) {
+                if (listaCono.get(i).getNombre().equals(nomTemaSel)) {
+                    listaCono.remove(listaCono.get(i));
+                    System.out.println("bom dia del bandeira");
+                    bandeira = true;
+                }
+            }
+
+            //int nivel = (int) spinnerNivel.getValue();
+            //ArrayList<Tematica> temas = modeloPost.getConocimiento();
+            ArrayList<Integer> niveles = modeloPost.getNiveles();
+
+            String[] experiencias = new String[listaCono.size()];
+            System.out.println(listaCono);
+            for (int i = 0; i < experiencias.length; i++) {
+                experiencias[i] = "" + listaCono.get(i).getNombre() + " (" + niveles.get(i) + ")";
+            }
+
+            lstTema.setListData(experiencias);
+        } else {
+            JOptionPane.showMessageDialog(this, "No seleccionó ningún conocimiento.");
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -231,16 +283,16 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
 
-    public Postulante darP () {
+    public Postulante darP() {
         return this.modeloPost;
     }
 
-    public void ordenarComBox () {
+    public void ordenarComBox() {
         DefaultComboBoxModel<Tematica> modelo = new DefaultComboBoxModel<>();
         for (Tematica t : sistem.getTematicas()) {
             modelo.addElement(t);
         }
         comboxTema.setModel(modelo);
-        
+
     }
 }

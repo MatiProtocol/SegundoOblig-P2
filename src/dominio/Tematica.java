@@ -36,4 +36,9 @@ public class Tematica {
         return this.nombre;
     }
     
+    @Override
+    public boolean equals(Object o){
+        Tematica t = (Tematica) o;
+        return this.getNombre().equals(t.getNombre());
+    }
 }

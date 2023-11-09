@@ -51,6 +51,9 @@ public class TematicaJDialogue extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNombreKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
         });
 
         txtAreaDescripcion.setColumns(20);
@@ -77,8 +80,10 @@ public class TematicaJDialogue extends javax.swing.JDialog {
         });
 
         jLblAdvertenciaNomb.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLblAdvertenciaNomb.setText("Se deben ingresar al menos 1 caracter.");
 
         jLblAdvertenciaDesc.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jLblAdvertenciaDesc.setText("Se deben ingresar al menos 5 caractéres.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,7 +149,7 @@ public class TematicaJDialogue extends javax.swing.JDialog {
     private void btnRegistrarmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarmeActionPerformed
         String nombre = txtNombre.getText();
         String descripcion = txtAreaDescripcion.getText();
-        boolean check = (nombre.isBlank() || descripcion.isBlank()) || (nombre.length() <= 3 || descripcion.length() <= 9);
+        boolean check = (nombre.isBlank() || descripcion.isBlank()) || (nombre.length() <= 1 || descripcion.length() <= 4);
         if (check) {
             JOptionPane.showMessageDialog(this, "Datos ingresados incorrectos.");
         } else {
@@ -157,20 +162,28 @@ public class TematicaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegistrarmeActionPerformed
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        if(txtNombre.getText().length() <= 3){
-            jLblAdvertenciaNomb.setText("Se deben ingresar al menos 4 caractéres.");
+        if(txtNombre.getText().isBlank()){
+            jLblAdvertenciaNomb.setText("Se deben ingresar al menos 1 caractér.");
         }else{
             jLblAdvertenciaNomb.setText("");
         }
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void txtAreaDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaDescripcionKeyReleased
-        if(txtAreaDescripcion.getText().length() <= 9){
-            jLblAdvertenciaDesc.setText("Se deben ingresar al menos 10 caractéres.");
+        if(txtAreaDescripcion.getText().length() <= 4){
+            jLblAdvertenciaDesc.setText("Se deben ingresar al menos 5 caractéres.");
         }else{
             jLblAdvertenciaDesc.setText("");
         }
     }//GEN-LAST:event_txtAreaDescripcionKeyReleased
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        /*if(txtNombre.getText().isBlank()){
+            jLblAdvertenciaNomb.setText("Se deben ingresar al menos 1 caractér.");
+        }else{
+            jLblAdvertenciaNomb.setText("");
+        }*/
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

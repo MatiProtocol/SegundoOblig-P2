@@ -4,6 +4,7 @@ import dominio.Postulante;
 import dominio.*;
 import dominio.Verficador;
 import java.awt.*;
+import java.util.*;
 import javax.print.attribute.AttributeSetUtilities;
 import javax.swing.*;
 
@@ -419,6 +420,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             modelo.setCedula(cedula);
             modelo.setDireccion(direccion);
             modelo.setMail(mail);
+            modelo.setConocimientos(new ArrayList<>());
+            modelo.setNivel(new  ArrayList<>());
+            
 
             ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true, modelo, sistema);
             ventanita.setVisible(true);
