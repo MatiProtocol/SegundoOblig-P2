@@ -1,18 +1,17 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package interfaz;
-
 import dominio.*;
 
 
-public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
+public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
     private Sistema modelo;
-    private Postulante post;
-
-
-    public RegistroEvaluadorJDialog(java.awt.Frame parent, boolean modal, Sistema unS) {
+    public HistorialPostulanteJDialog(java.awt.Frame parent, boolean modal,Sistema sistema) {
         super(parent, modal);
-        modelo = unS;
+        modelo=sistema;
         initComponents();
     }
 

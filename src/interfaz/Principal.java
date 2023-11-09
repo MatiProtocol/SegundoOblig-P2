@@ -1,12 +1,10 @@
-
 package interfaz;
 
 import dominio.*;
 
-
 public class Principal extends javax.swing.JFrame {
-
-    private Sistema modelo; 
+    
+    private Sistema modelo;    
     
     public Principal(Sistema sistema) {
         this.setResizable(false);
@@ -26,8 +24,22 @@ public class Principal extends javax.swing.JFrame {
         lblGestion = new javax.swing.JLabel();
         btnTematica = new javax.swing.JButton();
         btnPostularme = new javax.swing.JButton();
+        btnBajaPost = new javax.swing.JButton();
+        btnRegistrarEval = new javax.swing.JButton();
+        btnIngresarEntr = new javax.swing.JButton();
+        btnRegistrarPuesto = new javax.swing.JButton();
+        btnConsultaPuesto = new javax.swing.JButton();
+        btnHistoriaPost = new javax.swing.JButton();
+        btnEstadisticaTemas = new javax.swing.JButton();
+        lblPost = new javax.swing.JLabel();
+        lblPuestoTraba = new javax.swing.JLabel();
+        lblTematica = new javax.swing.JLabel();
+        lblEvaluador = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        btnVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Programa para la gestión de postulantes");
 
         lblGestion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -42,10 +54,94 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnPostularme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnPostularme.setText("Postularme");
+        btnPostularme.setText("Dar de Alta un Postulante");
+        btnPostularme.setMaximumSize(new java.awt.Dimension(142, 27));
+        btnPostularme.setMinimumSize(new java.awt.Dimension(142, 27));
         btnPostularme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPostularmeActionPerformed(evt);
+            }
+        });
+
+        btnBajaPost.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBajaPost.setText("Dar de Baja un Postulante");
+        btnBajaPost.setMaximumSize(new java.awt.Dimension(142, 27));
+        btnBajaPost.setMinimumSize(new java.awt.Dimension(142, 27));
+        btnBajaPost.setPreferredSize(new java.awt.Dimension(99, 27));
+        btnBajaPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBajaPostActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarEval.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrarEval.setText("Registrar Evaluador");
+        btnRegistrarEval.setMinimumSize(new java.awt.Dimension(123, 27));
+        btnRegistrarEval.setPreferredSize(new java.awt.Dimension(123, 27));
+        btnRegistrarEval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarEvalActionPerformed(evt);
+            }
+        });
+
+        btnIngresarEntr.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnIngresarEntr.setText("Ingresar una Entrevista");
+        btnIngresarEntr.setMaximumSize(new java.awt.Dimension(148, 27));
+        btnIngresarEntr.setMinimumSize(new java.awt.Dimension(148, 27));
+        btnIngresarEntr.setPreferredSize(new java.awt.Dimension(148, 27));
+        btnIngresarEntr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarEntrActionPerformed(evt);
+            }
+        });
+
+        btnRegistrarPuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnRegistrarPuesto.setText("Registrar Puesto");
+        btnRegistrarPuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPuestoActionPerformed(evt);
+            }
+        });
+
+        btnConsultaPuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnConsultaPuesto.setText("Consultar por Puesto");
+        btnConsultaPuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaPuestoActionPerformed(evt);
+            }
+        });
+
+        btnHistoriaPost.setText("Ver el Historial de Postulantes");
+        btnHistoriaPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoriaPostActionPerformed(evt);
+            }
+        });
+
+        btnEstadisticaTemas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEstadisticaTemas.setText("Estadísticas por Tematica");
+        btnEstadisticaTemas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstadisticaTemasActionPerformed(evt);
+            }
+        });
+
+        lblPost.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPost.setText("Postulantes");
+
+        lblPuestoTraba.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblPuestoTraba.setText("Puesto de Trabajo");
+
+        lblTematica.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTematica.setText("Tematica");
+
+        lblEvaluador.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblEvaluador.setText("Evaluador");
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -53,28 +149,98 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolver)
+                .addGap(82, 82, 82))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(lblGestion))
+                        .addGap(175, 175, 175)
+                        .addComponent(lblGestion)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnIngresarEntr, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHistoriaPost)
+                .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(btnTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnPostularme, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPost)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnPostularme, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBajaPost, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnConsultaPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRegistrarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblPuestoTraba))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnEstadisticaTemas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblTematica)
+                                .addGap(149, 149, 149))
+                            .addComponent(lblEvaluador)
+                            .addComponent(btnRegistrarEval, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblGestion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPostularme, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102))
+                    .addComponent(lblPost)
+                    .addComponent(lblTematica))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPostularme, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                    .addComponent(btnTematica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBajaPost, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEstadisticaTemas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnConsultaPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblEvaluador)
+                            .addComponent(lblPuestoTraba))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRegistrarEval, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRegistrarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(btnIngresarEntr, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btnHistoriaPost, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(35, 35, 35)
+                .addComponent(btnVolver)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -94,12 +260,69 @@ public class Principal extends javax.swing.JFrame {
 //        modeloFin = vent.devolverPost();
     }//GEN-LAST:event_btnPostularmeActionPerformed
 
+    private void btnBajaPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaPostActionPerformed
+        BajaPostulanteJDialog ventan = new BajaPostulanteJDialog(this, true, modelo);
+        ventan.setVisible(true);
+    }//GEN-LAST:event_btnBajaPostActionPerformed
 
-    
+    private void btnRegistrarEvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEvalActionPerformed
+        RegistroEvaluadorJDialog ventan = new RegistroEvaluadorJDialog(this, true, modelo);
+        ventan.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarEvalActionPerformed
+
+    private void btnIngresarEntrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarEntrActionPerformed
+        IngresoEntrevistaJDialog vent = new IngresoEntrevistaJDialog(this, true, modelo);
+        vent.setVisible(true);
+    }//GEN-LAST:event_btnIngresarEntrActionPerformed
+
+    private void btnEstadisticaTemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticaTemasActionPerformed
+        ConsultaTematicaJDialog venteno = new ConsultaTematicaJDialog(this, true, modelo);
+        venteno.setVisible(true);
+    }//GEN-LAST:event_btnEstadisticaTemasActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        
+        Inicio ventan = new Inicio(modelo);
+        ventan.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnConsultaPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaPuestoActionPerformed
+        ConsultaPuestoJDialog venta = new ConsultaPuestoJDialog(this, true,modelo);
+        venta.setVisible(true);
+        
+    }//GEN-LAST:event_btnConsultaPuestoActionPerformed
+
+    private void btnRegistrarPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPuestoActionPerformed
+        RegistroPuestoJDialog vent = new RegistroPuestoJDialog(this,true , modelo);
+        vent.setVisible(true);
+        
+    }//GEN-LAST:event_btnRegistrarPuestoActionPerformed
+
+    private void btnHistoriaPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoriaPostActionPerformed
+        HistorialPostulanteJDialog vento = new HistorialPostulanteJDialog(this, true,modelo);
+        vento.setVisible(true);
+    }//GEN-LAST:event_btnHistoriaPostActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBajaPost;
+    private javax.swing.JButton btnConsultaPuesto;
+    private javax.swing.JButton btnEstadisticaTemas;
+    private javax.swing.JButton btnHistoriaPost;
+    private javax.swing.JButton btnIngresarEntr;
     private javax.swing.JButton btnPostularme;
+    private javax.swing.JButton btnRegistrarEval;
+    private javax.swing.JButton btnRegistrarPuesto;
     private javax.swing.JButton btnTematica;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblEvaluador;
     private javax.swing.JLabel lblGestion;
+    private javax.swing.JLabel lblPost;
+    private javax.swing.JLabel lblPuestoTraba;
+    private javax.swing.JLabel lblTematica;
     // End of variables declaration//GEN-END:variables
 }

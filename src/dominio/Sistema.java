@@ -7,7 +7,8 @@ import java.util.*;
  * @author alumnoFI
  */
 public class Sistema {
-
+    
+    private ArrayList<Evaluador> evaluador;
     private ArrayList<Postulante> postulantes;
     private ArrayList<Tematica> tematicas;
     
