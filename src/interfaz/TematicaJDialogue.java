@@ -28,6 +28,8 @@ public class TematicaJDialogue extends javax.swing.JDialog {
         txtAreaDescripcion = new javax.swing.JTextArea();
         btnCancelar = new javax.swing.JButton();
         btnRegistrarme = new javax.swing.JButton();
+        jLblAdvertenciaNomb = new javax.swing.JLabel();
+        jLblAdvertenciaDesc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -45,9 +47,19 @@ public class TematicaJDialogue extends javax.swing.JDialog {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
 
         txtAreaDescripcion.setColumns(20);
         txtAreaDescripcion.setRows(5);
+        txtAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAreaDescripcionKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtAreaDescripcion);
 
         btnCancelar.setText("Cancelar");
@@ -64,6 +76,10 @@ public class TematicaJDialogue extends javax.swing.JDialog {
             }
         });
 
+        jLblAdvertenciaNomb.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
+        jLblAdvertenciaDesc.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,19 +91,21 @@ public class TematicaJDialogue extends javax.swing.JDialog {
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegistrarme))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDescripcion))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNombre)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(jLblAdvertenciaNomb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLblAdvertenciaDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
                 .addGap(110, 110, 110)
                 .addComponent(lblRegistro)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,11 +116,15 @@ public class TematicaJDialogue extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLblAdvertenciaNomb, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescripcion)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLblAdvertenciaDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnRegistrarme))
@@ -123,8 +145,9 @@ public class TematicaJDialogue extends javax.swing.JDialog {
     private void btnRegistrarmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarmeActionPerformed
         String nombre = txtNombre.getText();
         String descripcion = txtAreaDescripcion.getText();
-        if (nombre.isBlank() || descripcion.isBlank()) {
-            JOptionPane.showMessageDialog(this, "no tiene nomber");
+        boolean check = (nombre.isBlank() || descripcion.isBlank()) || (nombre.length() <= 3 || descripcion.length() <= 9);
+        if (check) {
+            JOptionPane.showMessageDialog(this, "Datos ingresados incorrectos.");
         } else {
             this.tematica = new Tematica();
             this.tematica.setNombre(nombre);
@@ -134,9 +157,27 @@ public class TematicaJDialogue extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnRegistrarmeActionPerformed
 
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        if(txtNombre.getText().length() <= 3){
+            jLblAdvertenciaNomb.setText("Se deben ingresar al menos 4 caractéres.");
+        }else{
+            jLblAdvertenciaNomb.setText("");
+        }
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtAreaDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaDescripcionKeyReleased
+        if(txtAreaDescripcion.getText().length() <= 9){
+            jLblAdvertenciaDesc.setText("Se deben ingresar al menos 10 caractéres.");
+        }else{
+            jLblAdvertenciaDesc.setText("");
+        }
+    }//GEN-LAST:event_txtAreaDescripcionKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnRegistrarme;
+    private javax.swing.JLabel jLblAdvertenciaDesc;
+    private javax.swing.JLabel jLblAdvertenciaNomb;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblNombre;

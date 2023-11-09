@@ -3,6 +3,7 @@ package dominio;
 import java.util.*;
 
 public class Postulante {
+
     private String nombre;
     private String cedula;
     private String direccion;
@@ -10,7 +11,7 @@ public class Postulante {
     private String mail;
     private String linkedIn;
     private String tipoTrabajo;
-    private ArrayList<String> conocimientos;
+    private ArrayList<Tematica> conocimientos;
     private ArrayList<Integer> nivel;
 
     public String getNombre () {
@@ -64,14 +65,31 @@ public class Postulante {
     public Postulante () {
     }
 
-    public Postulante(String nombre, String cedula, String direccion, String telefono, String mail, String linkedIn) {
+    public Postulante (String nombre, String cedula, String direccion, String telefono, String mail, String linkedIn) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.direccion = direccion;
         this.telefono = telefono;
         this.mail = mail;
         this.linkedIn = linkedIn;
+        this.conocimientos = new ArrayList<>();
+        this.nivel = new ArrayList<>();
     }
-    
-    
+
+    public void addConocimiento (Tematica unaT) {
+        this.conocimientos.add(unaT);
+    }
+
+    public void addNivel (int unN) {
+        this.nivel.add(unN);
+    }
+
+    public ArrayList<Tematica> getConocimiento () {
+        return this.conocimientos;
+    }
+
+    public ArrayList<Integer> getNiveles () {
+        return this.nivel;
+    }
+
 }

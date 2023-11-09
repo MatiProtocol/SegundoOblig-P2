@@ -31,5 +31,9 @@ public class Tematica {
         //ventana
     }
 
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
     
 }

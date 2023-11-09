@@ -91,6 +91,11 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+        });
 
         txtCedula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtCedula.setText("12345678");
@@ -108,11 +113,8 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCedulaKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyReleased(evt);
             }
         });
 
@@ -127,6 +129,11 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDireccionActionPerformed(evt);
+            }
+        });
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyReleased(evt);
             }
         });
 
@@ -144,11 +151,8 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTelefonoKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTelefonoKeyTyped(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyReleased(evt);
             }
         });
 
@@ -171,11 +175,8 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
         txtMail.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtMailKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nose(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMailKeyReleased(evt);
             }
         });
 
@@ -193,8 +194,8 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
         txtLinkedin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtLinkedinKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLinkedinKeyReleased(evt);
             }
         });
 
@@ -428,45 +429,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSigActionPerformed
 
-    private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
-
-    }//GEN-LAST:event_txtCedulaKeyTyped
-
-    private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
-        if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() < 6) {
-            lblCedulaAdvertencia.setText("La cédula es incorrecta.");
-        } else {
-            lblCedulaAdvertencia.setText("");
-        }
-    }//GEN-LAST:event_txtCedulaKeyPressed
-
-    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        /*if (!(esNumero(txtTelefono.getText()))) {
-            //txtTelefono.setForeground(new Color(250, 0, 0));
-
-        } else {
-            //txtTelefono.setForeground(new Color(0, 0, 0));
-        }*/
-        if (!(esNumero(txtTelefono.getText()))) {
-            lblTelefAdvertencia.setText("El teléfono no es correcto.");
-        } else {
-            lblTelefAdvertencia.setText("");
-        }
-    }//GEN-LAST:event_txtTelefonoKeyTyped
-
-    private void txtTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyPressed
-
-    }//GEN-LAST:event_txtTelefonoKeyPressed
-
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMailActionPerformed
-
-    private void nose(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nose
-        /*if(!(txtMail.getText().contains("@gmail.com"))){
-            JOptionPane.showMessageDialog(this, "No es un mail válido");
-        }*/
-    }//GEN-LAST:event_nose
 
     private void none(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_none
 
@@ -527,22 +492,55 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionActionPerformed
 
-    private void txtMailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyPressed
-        if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {     
+    private void txtCedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyReleased
+        if (!(esNumero(txtCedula.getText())) || txtCedula.getText().length() != 8) {
+            lblCedulaAdvertencia.setText("La cédula es incorrecta.");
+        } else {
+            lblCedulaAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtCedulaKeyReleased
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        if (txtNombre.getText().length() == 0) {
+            lblNombreAdvertencia.setText("El nómbre está vacío.");
+        } else {
+            lblNombreAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyReleased
+        if (txtDireccion.getText().length() == 0) {
+            lblDirecAdvertencia.setText("La dirección está vacío.");
+        } else {
+            lblDirecAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtDireccionKeyReleased
+
+    private void txtTelefonoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyReleased
+        if (txtTelefono.getText().length() == 0 || !(esNumero(txtTelefono.getText()))) {
+            lblTelefAdvertencia.setText("El teléfono no es correcto.");
+        } else {
+            lblTelefAdvertencia.setText("");
+        }
+    }//GEN-LAST:event_txtTelefonoKeyReleased
+
+    private void txtMailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyReleased
+        if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {
+            //JOptionPane.showMessageDialog(this, "No es un mail válido.");
             lblMailAdvertencia.setText("El mail es incorrecto.");
+            //txtMail.requestFocusInWindow();
         } else {
             lblMailAdvertencia.setText("");
         }
-    }//GEN-LAST:event_txtMailKeyPressed
+    }//GEN-LAST:event_txtMailKeyReleased
 
-    private void txtLinkedinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLinkedinKeyPressed
+    private void txtLinkedinKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLinkedinKeyReleased
         if (!(txtLinkedin.getText().contains("https://linkedin.com/in/"))) {
-           
             lblLinkedAdvertencia.setText("El LinkedIn es incorrecto.");
         } else {
             lblLinkedAdvertencia.setText("");
         }
-    }//GEN-LAST:event_txtLinkedinKeyPressed
+    }//GEN-LAST:event_txtLinkedinKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

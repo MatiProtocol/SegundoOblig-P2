@@ -1,24 +1,27 @@
-
 package interfaz;
 
 import dominio.*;
-
+import java.util.*;
+import javax.swing.*;
 
 public class ExperienciaJDialogue extends javax.swing.JDialog {
-    private Postulante modelo;
+
+    private Postulante modeloPost;
     private Sistema sistem;
-    public ExperienciaJDialogue(java.awt.Frame parent, boolean modal, Postulante modelo, Sistema sistema) {
+
+    public ExperienciaJDialogue (java.awt.Frame parent, boolean modal, Postulante modeloPost, Sistema sistema) {
         super(parent, modal);
         initComponents();
-        this.modelo = modelo;
+        this.modeloPost = modeloPost;
         this.setResizable(false);
         this.sistem = sistema;
-        comboxTema.removeAllItems();
-        
-        for(int i = 0 ; i < sistem.getSizeTematicas(); i++){
-            
-            comboxTema.addItem(sistem.getTematicas().get(i).getNombre());
-        }
+//        comboxTema.removeAllItems();
+//        
+//        for(int i = 0 ; i < sistem.getSizeTematicas(); i++){
+//            
+//            comboxTema.addItem(sistem.getTematicas().get(i).getNombre());
+//        }
+        ordenarComBox();
     }
 
     /**
@@ -32,7 +35,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
 
         lblTema = new javax.swing.JLabel();
         lblNivel = new javax.swing.JLabel();
-        comboxTema = new javax.swing.JComboBox<>();
+        comboxTema = new javax.swing.JComboBox();
         lblExperiencia = new javax.swing.JLabel();
         spinnerNivel = new javax.swing.JSpinner();
         jSeparator1 = new javax.swing.JSeparator();
@@ -177,10 +180,10 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String tema = comboxTema.getName();
         int nivel = spinnerNivel.getComponentCount();
-        
+
         System.out.println(tema + nivel);
-        
-        
+
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void comboxTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboxTemaActionPerformed
@@ -188,17 +191,36 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_comboxTemaActionPerformed
 
     private void btnAgreagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreagarActionPerformed
-        // TODO add your handling code here:
+        Tematica seleccionComBox = (Tematica) comboxTema.getSelectedItem();
+        int nivel = (int) spinnerNivel.getValue();
+        modeloPost.addConocimiento(seleccionComBox);
+        modeloPost.addNivel(nivel);
+        
+        ArrayList<Tematica> temas = modeloPost.getConocimiento();
+        ArrayList<Integer> niveles = modeloPost.getNiveles();
+        
+        String[] experiencias = new String[temas.size()];
+        for(int i = 0; i < experiencias.length ; i++ ){
+            experiencias[i] ="" + temas.get(i).getNombre() + niveles.get(i);
+        }
+        
+        lstTema.setListData(experiencias);
+        //this.modeloPost.addNivel(nivel);
+        //this.modeloPost.addConocimiento(seleccionComBox);
+
+        /*for(int i = 0 ; i < sistem.getSizePostulantes(); i++){
+            jScrollPane2.add(seleccionComBox);
+        }*/
+
     }//GEN-LAST:event_btnAgreagarActionPerformed
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgreagar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegistrar;
-    private javax.swing.JComboBox<String> comboxTema;
+    private javax.swing.JComboBox comboxTema;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblExperiencia;
@@ -208,9 +230,17 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private javax.swing.JList<String> lstTema;
     private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
-        
-    public Postulante darP(){
-        return this.modelo;
+
+    public Postulante darP () {
+        return this.modeloPost;
     }
 
+    public void ordenarComBox () {
+        DefaultComboBoxModel<Tematica> modelo = new DefaultComboBoxModel<>();
+        for (Tematica t : sistem.getTematicas()) {
+            modelo.addElement(t);
+        }
+        comboxTema.setModel(modelo);
+        
+    }
 }
