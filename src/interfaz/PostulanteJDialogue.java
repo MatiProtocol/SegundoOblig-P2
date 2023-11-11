@@ -424,12 +424,14 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true, modelo, sistema);
             ventanita.setVisible(true);
             
-            /*modelo.setNombre(nombre);
+            modelo.setNombre(nombre);
             modelo.setCedula(cedula);
             modelo.setDireccion(direccion);
             modelo.setMail(mail);
-            modelo = ventanita.darP();
-            sistema.addPostulantes(modelo);*/
+            //modelo = ventanita.darP();
+            System.out.println(modelo.getConocimiento() + " " + modelo.getNiveles());
+            sistema.addPostulantes(modelo);
+            
             this.setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Los datos no son correctos.");

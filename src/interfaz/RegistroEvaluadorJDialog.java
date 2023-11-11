@@ -153,26 +153,26 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        //this.eval = new Evaluador();
-        System.out.println(chequeo());
-        /*if (!chequeo()) {
+        this.eval = new Evaluador();
+        //System.out.println(chequeo());
+        if (!chequeo()) {
             JOptionPane.showMessageDialog(this, "No fue posible crear al evaluador. Revisar datos ingresados.");
         } else {
-            
-            String nomb = jLabelNom.getText();
-            String cedula = jLabelCedula.getText();
-            String dirrec = jLabelDir.getText();
-            int ingreso = Integer.parseInt(jLabelIngreso.getText());
-            System.out.println(nomb + cedula + dirrec + ingreso);            
-            this.eval.setNombre(nomb);
-            this.eval.setCedula(cedula);
-            this.eval.setAnoIngreso(ingreso);
-            this.eval.setDireccion(dirrec);
-            
+
+            String nomb = jTextFieldNom.getText();
+            String cedula = jTextFieldCed.getText();
+            String dirrec = jTextFieldDir.getText();
+            int ingreso = Integer.parseInt(jTextFieldIngreso.getText());
+            System.out.println(nomb + " " + cedula + " " + dirrec + " " + ingreso);
+
+            eval.setNombre(nomb);
+            eval.setCedula(cedula);
+            eval.setAnoIngreso(ingreso);
+            eval.setDireccion(dirrec);
+
             sistema.addEvaluador(this.eval);
-            this.setVisible(false); 
+            this.setVisible(false);
         }
-         */
 
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
@@ -194,8 +194,39 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldNom;
     // End of variables declaration//GEN-END:variables
     public boolean chequeo () {
-        
-        boolean todo = (!(jTextFieldCed.getText().isBlank()) || !(jTextFieldDir.getText().isBlank()) || !(jTextFieldNom.getText().isBlank()));
+        boolean bien = true;
+        if (jTextFieldNom.getText().isBlank()) {
+            bien = false;
+        } else {
+            int cedula;
+            try {
+                cedula = Integer.parseInt(jTextFieldCed.getText());
+            } catch (NumberFormatException e) {
+                e.getMessage();
+                return false;
+            }
+            if (jTextFieldCed.getText().isBlank()) {
+                bien = false;
+            } else {
+                if (jTextFieldDir.getText().isBlank()) {
+                    bien = false;
+                } else {
+                    int ingreso = 0;
+                    try {
+                        ingreso = Integer.parseInt(jTextFieldIngreso.getText());
+                    } catch (NumberFormatException e) {
+                        e.getMessage();
+
+                    }
+                    if (jTextFieldIngreso.getText().isBlank() || ingreso > 2023 || ingreso < 1960) {
+                        bien = false;
+                    }
+                }
+            }
+        }
+        return bien;
+
+        /*boolean todo = (!(jTextFieldCed.getText().isBlank()) || !(jTextFieldDir.getText().isBlank()) || !(jTextFieldNom.getText().isBlank()));
         //boolean hecho = false;
 
         Integer anoIng = 0;
@@ -212,7 +243,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
             todo = false;
         //}
         System.out.println(todo);
-        return todo;
+        return todo;*/
     }
 
 }

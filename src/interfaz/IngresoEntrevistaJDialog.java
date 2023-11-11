@@ -2,6 +2,7 @@ package interfaz;
 
 import dominio.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,19 +21,28 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         super(parent, modal);
         sistema = unS;
         initComponents();
+        this.setResizable(false);
         ArrayList<Evaluador> evaluador = new ArrayList<>();
+        
         evaluador = sistema.getEvaluadores();
-        System.out.println(evaluador);
+        
+
         String[] evaluadores = new String[evaluador.size()];
         for (int i = 0; i < evaluadores.length; i++) {
             evaluadores[i] = "" + evaluador.get(i).getNombre();
         }
         jListEval.setListData(evaluadores);
 
-        ArrayList<Postulante> postulanets = sistema.getPostulantes();
-        String[] postulados = new String[postulanets.size()];
+        
+        ArrayList<Postulante> postulantes = new ArrayList<>();
+        
+        postulantes = sistema.getPostulantes();
+        
+        System.out.println(postulantes);
+        System.out.println(sistema.getPostulantes());
+        String[] postulados = new String[postulantes.size()];
         for (int i = 0; i < postulados.length; i++) {
-            postulados[i] = "" + postulanets.get(i).getNombre();
+            postulados[i] = "" + postulantes.get(i).getNombre();
         }
         jListPost.setListData(postulados);
 
@@ -61,6 +71,8 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         jTextAreaComent = new javax.swing.JTextArea();
         jLabelComent = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,12 +113,25 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         jLabelComent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelComent.setText("Comentario:");
 
+        jButton1.setText("Ingresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabelTitulo)
                 .addGap(144, 144, 144))
             .addGroup(layout.createSequentialGroup()
@@ -130,11 +155,16 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
                             .addComponent(jLabelPost)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabelComent)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3)
-                        .addGap(24, 24, 24))))
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(45, 45, 45))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,21 +198,64 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPuntaje)
                     .addComponent(jSpinnerPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelComent))
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(!chequeo()){
+            JOptionPane.showMessageDialog(this, "No se logró agregar entrevista.");
+        }else{
+            this.entrevista = new Entrevista();
+            
+            String nombreEval = jListEval.getSelectedValue();
+            Evaluador evalSelected;
+            boolean hecho = false;
+            for (int i = 0; i < sistema.getEvaluadores().size() && !hecho; i++) {
+                if(nombreEval.equals(sistema.getEvaluadores().get(i).getNombre())){
+                    evalSelected = sistema.getEvaluadores().get(i);
+                    entrevista.setEvaluador(evalSelected);
+                    hecho = true;
+                }
+                
+            }
+            
+            String nombrePost = jListPost.getSelectedValue();
+            Postulante postSelected;
+            hecho = false;
+            for (int i = 0; i < sistema.getSizePostulantes() && !hecho; i++) {
+                if(nombrePost.equals(sistema.getPostulantes().get(i).getNombre())){
+                    postSelected = sistema.getPostulantes().get(i);
+                    entrevista.setPostulante(postSelected);
+                    hecho = true;
+                }                
+            }
+            entrevista.setPuntaje((int)jSpinnerPuntaje.getValue());
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabelComent;
     private javax.swing.JLabel jLabelEvals;
     private javax.swing.JLabel jLabelPost;
@@ -198,4 +271,25 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
     private javax.swing.JSpinner jSpinnerPuntaje;
     private javax.swing.JTextArea jTextAreaComent;
     // End of variables declaration//GEN-END:variables
+    public boolean chequeo(){
+        boolean bien = true;
+        if(jTextAreaComent.getText().isBlank()){
+            bien = false;
+        }else{
+            if((int)jSpinnerPuntaje.getValue() > 100 ||(int)jSpinnerPuntaje.getValue() < 0){
+                bien = false;
+            }else{
+                if(jListEval.isSelectionEmpty()){
+                    bien = false;
+                }else{
+                    if(jListPost.isSelectionEmpty()){
+                        bien = false;
+                    }
+                }
+            }
+        }
+        return bien;
+    }
+
+
 }

@@ -192,7 +192,8 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         } else {
             System.out.println(modeloPost.getConocimiento());
             System.out.println(modeloPost.getNiveles());
-
+            
+            //modeloPost.addConocimiento(lstTema.getSelectedValue());
             this.setVisible(false);
         }
 
@@ -221,7 +222,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
 
                 String[] experiencias = new String[temas.size()];
                 for (int i = 0; i < experiencias.length; i++) {
-                    experiencias[i] = "" + temas.get(i).getNombre() + " (" + niveles.get(i) + ")";
+                    experiencias[i] = "" + temas.get(i) + " (" + niveles.get(i) + ")";
                 }
 
                 lstTema.setListData(experiencias);
@@ -245,18 +246,20 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
             String nomTemaSel = temaSelect.substring(0, temaSelect.lastIndexOf(" "));
             System.out.println("tema a borrar " + nomTemaSel);
             ArrayList<Tematica> listaCono = modeloPost.getConocimiento();
+            ArrayList<Integer> niveles = modeloPost.getNiveles();
             boolean bandeira = false;
             for (int i = 0; i < listaCono.size() && !bandeira; i++) {
                 if (listaCono.get(i).getNombre().equals(nomTemaSel)) {
                     listaCono.remove(listaCono.get(i));
-                    System.out.println("bom dia del bandeira");
+                    niveles.remove(niveles.get(i));
+                    System.out.println(modeloPost.getConocimiento());
                     bandeira = true;
                 }
             }
 
             //int nivel = (int) spinnerNivel.getValue();
             //ArrayList<Tematica> temas = modeloPost.getConocimiento();
-            ArrayList<Integer> niveles = modeloPost.getNiveles();
+            niveles = modeloPost.getNiveles();
 
             String[] experiencias = new String[listaCono.size()];
             System.out.println(listaCono);
@@ -288,7 +291,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
 
-    public Postulante darP () {
+    public Postulante darTemaNiv () {
         return this.modeloPost;
     }
 

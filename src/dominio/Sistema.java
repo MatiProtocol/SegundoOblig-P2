@@ -15,6 +15,7 @@ public class Sistema {
     public Sistema() {
         this.postulantes = new ArrayList<Postulante>();
         this.tematicas = new ArrayList<>();
+        this.evaluadores = new ArrayList<>();
     }
 
     public ArrayList<Postulante> getPostulantes() {

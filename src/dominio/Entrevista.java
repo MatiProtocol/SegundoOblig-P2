@@ -13,6 +13,15 @@ public class Entrevista {
     private Evaluador evaluador;
     private Postulante postulante;
     private String descripcion;
+    private int puntaje;
+
+    public int getPuntaje () {
+        return puntaje;
+    }
+
+    public void setPuntaje (int puntaje) {
+        this.puntaje = puntaje;
+    }
 
     public int getIndexEntrevista () {
         return indexEntrevista;
