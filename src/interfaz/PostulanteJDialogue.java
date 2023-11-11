@@ -416,18 +416,21 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                 }
             }
 
-            modelo.setNombre(nombre);
-            modelo.setCedula(cedula);
-            modelo.setDireccion(direccion);
-            modelo.setMail(mail);
+            
             modelo.setConocimientos(new ArrayList<>());
             modelo.setNivel(new  ArrayList<>());
             
 
             ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true, modelo, sistema);
             ventanita.setVisible(true);
+            
+            /*modelo.setNombre(nombre);
+            modelo.setCedula(cedula);
+            modelo.setDireccion(direccion);
+            modelo.setMail(mail);
             modelo = ventanita.darP();
-            sistema.addPostulantes(modelo);
+            sistema.addPostulantes(modelo);*/
+            this.setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Los datos no son correctos.");
         }

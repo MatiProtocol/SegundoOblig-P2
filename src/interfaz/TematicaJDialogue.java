@@ -149,7 +149,7 @@ public class TematicaJDialogue extends javax.swing.JDialog {
     private void btnRegistrarmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarmeActionPerformed
         String nombre = txtNombre.getText();
         String descripcion = txtAreaDescripcion.getText();
-        boolean check = (nombre.isBlank() || descripcion.isBlank()) || (nombre.length() <= 1 || descripcion.length() <= 4);
+        boolean check = (nombre.isBlank() || descripcion.isBlank()) || (nombre.length() < 1 || descripcion.length() <= 4);
         if (check) {
             JOptionPane.showMessageDialog(this, "Datos ingresados incorrectos.");
         } else {

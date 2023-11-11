@@ -1,18 +1,19 @@
-
 package interfaz;
 
 import dominio.*;
-
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
 
-    private Sistema modelo;
+    private Sistema sistema;
     private Postulante post;
+    private Evaluador eval;
 
-
-    public RegistroEvaluadorJDialog(java.awt.Frame parent, boolean modal, Sistema unS) {
+    public RegistroEvaluadorJDialog (java.awt.Frame parent, boolean modal, Sistema unS) {
         super(parent, modal);
-        modelo = unS;
+        this.setResizable(false);
+        sistema = unS;
         initComponents();
     }
 
@@ -25,24 +26,193 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelNom = new javax.swing.JLabel();
+        jLabelCedula = new javax.swing.JLabel();
+        jLabelDir = new javax.swing.JLabel();
+        jLabelIngreso = new javax.swing.JLabel();
+        jButtonCancel = new javax.swing.JButton();
+        jButtonRegistrar = new javax.swing.JButton();
+        jTextFieldNom = new javax.swing.JTextField();
+        jTextFieldCed = new javax.swing.JTextField();
+        jTextFieldDir = new javax.swing.JTextField();
+        jTextFieldIngreso = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelTitulo.setText("Registrar Evaluador");
+
+        jLabelNom.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelNom.setText("Nombre:");
+
+        jLabelCedula.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelCedula.setText("Cédula:");
+
+        jLabelDir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelDir.setText("Dirección:");
+
+        jLabelIngreso.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelIngreso.setText("Año de Ingreso:");
+
+        jButtonCancel.setText("Cancelar");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
+
+        jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCancel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelCedula)
+                        .addComponent(jLabelNom)
+                        .addComponent(jLabelDir)
+                        .addComponent(jLabelIngreso)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonRegistrar)
+                        .addGap(41, 41, 41))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDir)
+                            .addComponent(jTextFieldCed)
+                            .addComponent(jTextFieldNom)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jLabelTitulo)
+                        .addGap(0, 112, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTitulo)
+                .addGap(14, 14, 14)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNom)
+                    .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCedula)
+                    .addComponent(jTextFieldCed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDir)
+                    .addComponent(jTextFieldDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelIngreso)
+                    .addComponent(jTextFieldIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancel)
+                    .addComponent(jButtonRegistrar))
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+        //this.eval = new Evaluador();
+        System.out.println(chequeo());
+        /*if (!chequeo()) {
+            JOptionPane.showMessageDialog(this, "No fue posible crear al evaluador. Revisar datos ingresados.");
+        } else {
+            
+            String nomb = jLabelNom.getText();
+            String cedula = jLabelCedula.getText();
+            String dirrec = jLabelDir.getText();
+            int ingreso = Integer.parseInt(jLabelIngreso.getText());
+            System.out.println(nomb + cedula + dirrec + ingreso);            
+            this.eval.setNombre(nomb);
+            this.eval.setCedula(cedula);
+            this.eval.setAnoIngreso(ingreso);
+            this.eval.setDireccion(dirrec);
+            
+            sistema.addEvaluador(this.eval);
+            this.setVisible(false); 
+        }
+         */
+
+
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonRegistrar;
+    private javax.swing.JLabel jLabelCedula;
+    private javax.swing.JLabel jLabelDir;
+    private javax.swing.JLabel jLabelIngreso;
+    private javax.swing.JLabel jLabelNom;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTextFieldCed;
+    private javax.swing.JTextField jTextFieldDir;
+    private javax.swing.JTextField jTextFieldIngreso;
+    private javax.swing.JTextField jTextFieldNom;
     // End of variables declaration//GEN-END:variables
+    public boolean chequeo () {
+        
+        boolean todo = (!(jTextFieldCed.getText().isBlank()) || !(jTextFieldDir.getText().isBlank()) || !(jTextFieldNom.getText().isBlank()));
+        //boolean hecho = false;
+
+        Integer anoIng = 0;
+
+        try {
+            anoIng = Integer.valueOf(jLabelIngreso.getText());
+            //hecho = true;
+        } catch (NumberFormatException e) {
+            e.getMessage();
+            //JOptionPane.showMessageDialog(this, "El año ingresado es incorrecto.");
+        }
+
+        //if (anoIng > 2023 || anoIng <= 1965) {
+            todo = false;
+        //}
+        System.out.println(todo);
+        return todo;
+    }
+
 }

@@ -13,7 +13,16 @@ public class Postulante {
     private String tipoTrabajo;
     private ArrayList<Tematica> conocimientos;
     private ArrayList<Integer> nivel;
+    private ArrayList<Entrevista> entrevistas;
 
+    public ArrayList<Entrevista> getEntrevistas () {
+        return entrevistas;
+    }
+    
+    public void addEntrevista (Entrevista unaE){
+        this.entrevistas.add(unaE);
+    }
+    
     public String getNombre() {
         return nombre;
     }

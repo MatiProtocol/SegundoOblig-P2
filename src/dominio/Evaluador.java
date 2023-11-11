@@ -13,7 +13,7 @@ public class Evaluador {
     private String cedula;
     private String direccion;
     private int anoIngreso;
-
+    
     public String getNombre() {
         return nombre;
     }

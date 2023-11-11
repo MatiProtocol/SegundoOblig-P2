@@ -6,6 +6,7 @@ package interfaz;
 
 import dominio.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,21 +18,26 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
     private Sistema sistema;
     private Postulante post;
 
-    public BajaPostulanteJDialog(java.awt.Frame parent, boolean modal, Sistema unS) {
+    public BajaPostulanteJDialog (java.awt.Frame parent, boolean modal, Sistema unS) {
         super(parent, modal);
         sistema = unS;
         //this.modelo = modelo;
-
-        ArrayList<Tematica> temas = modelo.getConocimiento();
-        
-
-        String[] experiencias = new String[temas.size()];
-        for (int i = 0; i < experiencias.length; i++) {
-            experiencias[i] = "" + temas.get(i).getNombre();
+        this.sistema = unS;
+        this.setResizable(false);
+        initComponents();
+        ArrayList<Postulante> postul = sistema.getPostulantes();
+        ArrayList<String> cedulas = new ArrayList<>();
+        for (int i = 0; i < postul.size(); i++) {
+            cedulas.add(postul.get(i).getCedula());
         }
 
-        jListBaja.setListData(experiencias);
-        initComponents();
+        String[] postulantes = new String[postul.size()];
+        for (int i = 0; i < postulantes.length; i++) {
+            postulantes[i] = "Nombre: " + postul.get(i).getNombre() + ". Cédula: " + cedulas.get(i);
+        }
+
+        jListBaja.setListData(postulantes);
+
     }
 
     /**
@@ -44,28 +50,34 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         lblTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabelSubTitulo = new javax.swing.JLabel();
+        jBtbCancelar = new javax.swing.JButton();
+        jBtnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListBaja = new javax.swing.JList<>();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         lblTitulo.setText("Dar de baja ");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("En esta ventana podrá dar de baja a los postulantes anteriormente registrados.");
+        jLabelSubTitulo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelSubTitulo.setText("En esta ventana podrá dar de baja a los postulantes anteriormente registrados.");
 
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBtbCancelar.setText("Cancelar");
+        jBtbCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBtbCancelarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Eliminar");
+        jBtnEliminar.setText("Eliminar");
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
 
         jListBaja.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -86,17 +98,21 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelSubTitulo)
                         .addContainerGap(62, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jBtbCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(jBtnEliminar)
                         .addGap(75, 75, 75))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,33 +120,70 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(lblTitulo)
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addComponent(jLabelSubTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jBtbCancelar)
+                    .addComponent(jBtnEliminar))
                 .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jBtbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtbCancelarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jBtbCancelarActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        if (!jListBaja.isSelectionEmpty()) {
+            String postSelect = jListBaja.getSelectedValue();
+            String nomPostSel = postSelect.substring(8, postSelect.indexOf("."));
+            System.out.println("postulante a borrar " + nomPostSel);
+            ArrayList<Postulante> listaPostul = sistema.getPostulantes();     //nomPostSel.getConocimiento();
+            boolean bandeira = false;
+            for (int i = 0; i < listaPostul.size() && !bandeira; i++) {
+                if (listaPostul.get(i).getNombre().equals(nomPostSel)) {
+                    listaPostul.remove(listaPostul.get(i));
+                    System.out.println("bom dia del bandeira");
+                    bandeira = true;
+                }
+            }
+
+            //int nivel = (int) spinnerNivel.getValue();
+            //ArrayList<Tematica> temas = modeloPost.getConocimiento();
+            ArrayList<Postulante> postul = sistema.getPostulantes();
+            ArrayList<String> cedulas = new ArrayList<>();
+            for (int i = 0; i < postul.size(); i++) {
+                cedulas.add(postul.get(i).getCedula());
+            }
+
+            String[] postulantes = new String[postul.size()];
+            for (int i = 0; i < postulantes.length; i++) {
+                postulantes[i] = "Nombre: " + postul.get(i).getNombre() + ". Cédula: " + cedulas.get(i);
+            }
+
+            jListBaja.setListData(postulantes);
+        } else {
+            JOptionPane.showMessageDialog(this, "No seleccionó ningún postulante.");
+        }
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jBtbCancelar;
+    private javax.swing.JButton jBtnEliminar;
+    private javax.swing.JLabel jLabelSubTitulo;
     private javax.swing.JList<String> jListBaja;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

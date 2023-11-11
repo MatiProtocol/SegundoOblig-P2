@@ -1,21 +1,41 @@
-
 package interfaz;
 
 import dominio.*;
+import java.util.*;
 
 /**
  *
  * @author alumnoFI
  */
 public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
-private Sistema modelo;
+
+    private Sistema sistema;
+    private Entrevista entrevista;
+    private Postulante postlante;
+
     /**
      * Creates new form IngresoEntrevistaJDialog
      */
-    public IngresoEntrevistaJDialog(java.awt.Frame parent, boolean modal, Sistema unS) {
+    public IngresoEntrevistaJDialog (java.awt.Frame parent, boolean modal, Sistema unS) {
         super(parent, modal);
-        modelo = unS;
+        sistema = unS;
         initComponents();
+        ArrayList<Evaluador> evaluador = new ArrayList<>();
+        evaluador = sistema.getEvaluadores();
+        System.out.println(evaluador);
+        String[] evaluadores = new String[evaluador.size()];
+        for (int i = 0; i < evaluadores.length; i++) {
+            evaluadores[i] = "" + evaluador.get(i).getNombre();
+        }
+        jListEval.setListData(evaluadores);
+
+        ArrayList<Postulante> postulanets = sistema.getPostulantes();
+        String[] postulados = new String[postulanets.size()];
+        for (int i = 0; i < postulados.length; i++) {
+            postulados[i] = "" + postulanets.get(i).getNombre();
+        }
+        jListPost.setListData(postulados);
+
     }
 
     /**
@@ -27,17 +47,132 @@ private Sistema modelo;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListEval = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListPost = new javax.swing.JList<>();
+        jLabelEvals = new javax.swing.JLabel();
+        jLabelPost = new javax.swing.JLabel();
+        jLabelSubTit = new javax.swing.JLabel();
+        jLabelPuntaje = new javax.swing.JLabel();
+        jSpinnerPuntaje = new javax.swing.JSpinner();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextAreaComent = new javax.swing.JTextArea();
+        jLabelComent = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelTitulo.setText("Ingresar entrevista");
+
+        jListEval.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jListEval);
+
+        jListPost.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListPost);
+
+        jLabelEvals.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelEvals.setText("Evaluadores:");
+
+        jLabelPost.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelPost.setText("Postulantes:");
+
+        jLabelSubTit.setText("Seleccione al evaluador y al postulante, luego deje un puntaje y comentario.");
+
+        jLabelPuntaje.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelPuntaje.setText("Puntaje:");
+
+        jSpinnerPuntaje.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
+
+        jTextAreaComent.setColumns(20);
+        jTextAreaComent.setRows(5);
+        jScrollPane3.setViewportView(jTextAreaComent);
+
+        jLabelComent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabelComent.setText("Comentario:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo)
+                .addGap(144, 144, 144))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(98, 98, 98))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabelEvals)
+                                    .addGap(119, 119, 119)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelPuntaje)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinnerPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(98, 98, 98)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPost)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelComent)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3)
+                        .addGap(24, 24, 24))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelSubTit)
+                        .addGap(8, 8, 8)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTitulo)
+                .addGap(23, 23, 23)
+                .addComponent(jLabelSubTit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelPost)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabelEvals)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPuntaje)
+                    .addComponent(jSpinnerPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelComent))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -47,7 +182,20 @@ private Sistema modelo;
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabelComent;
+    private javax.swing.JLabel jLabelEvals;
+    private javax.swing.JLabel jLabelPost;
+    private javax.swing.JLabel jLabelPuntaje;
+    private javax.swing.JLabel jLabelSubTit;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JList<String> jListEval;
+    private javax.swing.JList<String> jListPost;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSpinner jSpinnerPuntaje;
+    private javax.swing.JTextArea jTextAreaComent;
     // End of variables declaration//GEN-END:variables
 }

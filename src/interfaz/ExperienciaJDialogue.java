@@ -9,7 +9,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private Postulante modeloPost;
     private Sistema sistem;
 
-    public ExperienciaJDialogue(java.awt.Frame parent, boolean modal, Postulante modeloPost, Sistema sistema) {
+    public ExperienciaJDialogue (java.awt.Frame parent, boolean modal, Postulante modeloPost, Sistema sistema) {
         super(parent, modal);
         initComponents();
         this.modeloPost = modeloPost;
@@ -179,16 +179,22 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        if (lstTema.getComponents().length == 1) {
+            sistem.getPostulantes().remove(modeloPost);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        //if(lstTema.get)
-        System.out.println(modeloPost.getConocimiento());
-        System.out.println(modeloPost.getNiveles());
-        
-        this.setVisible(false);
+        System.out.println(lstTema.getComponents().length);
+        if (lstTema.getLastVisibleIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "No hay atributos de experiencia añadidos.");
+        } else {
+            System.out.println(modeloPost.getConocimiento());
+            System.out.println(modeloPost.getNiveles());
 
+            this.setVisible(false);
+        }
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -199,9 +205,8 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private void btnAgreagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreagarActionPerformed
         //System.out.println(comboxTema.getSelectedItem());
         if (comboxTema.getSelectedIndex() == -1) {
-            JOptionPane.showMessageDialog(this, "No hay un temas slecionado.");
-        }else
-        {
+            JOptionPane.showMessageDialog(this, "No hay un tema slecionado.");
+        } else {
             Tematica seleccionComBox = (Tematica) comboxTema.getSelectedItem();
             if (modeloPost.getConocimiento().contains(seleccionComBox)) {
                 JOptionPane.showMessageDialog(this, "Conocimiento agregado anteriormente.");
@@ -283,11 +288,11 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     private javax.swing.JSpinner spinnerNivel;
     // End of variables declaration//GEN-END:variables
 
-    public Postulante darP() {
+    public Postulante darP () {
         return this.modeloPost;
     }
 
-    public void ordenarComBox() {
+    public void ordenarComBox () {
         DefaultComboBoxModel<Tematica> modelo = new DefaultComboBoxModel<>();
         for (Tematica t : sistem.getTematicas()) {
             modelo.addElement(t);
