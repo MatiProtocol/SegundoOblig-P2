@@ -109,4 +109,13 @@ public class Postulante {
         this.nivel = nivel;
     }
 
+    public String getTipoTrabajo() {
+        return tipoTrabajo;
+    }
+
+    public void setTipoTrabajo(String tipoTrabajo) {
+        this.tipoTrabajo = tipoTrabajo;
+    }
+    
+
 }

@@ -42,6 +42,7 @@ public class TematicaJDialogue extends javax.swing.JDialog {
         lblDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDescripcion.setText("Descripción:");
 
+        txtNombre.setText("tema1");
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -58,6 +59,7 @@ public class TematicaJDialogue extends javax.swing.JDialog {
 
         txtAreaDescripcion.setColumns(20);
         txtAreaDescripcion.setRows(5);
+        txtAreaDescripcion.setText("nosea aaaaaa");
         txtAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtAreaDescripcionKeyReleased(evt);

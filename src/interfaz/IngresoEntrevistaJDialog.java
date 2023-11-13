@@ -4,19 +4,14 @@ import dominio.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author alumnoFI
- */
+
 public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Entrevista entrevista;
     private Postulante postlante;
 
-    /**
-     * Creates new form IngresoEntrevistaJDialog
-     */
+
     public IngresoEntrevistaJDialog (java.awt.Frame parent, boolean modal, Sistema unS) {
         super(parent, modal);
         sistema = unS;
@@ -38,13 +33,12 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         
         postulantes = sistema.getPostulantes();
         
-        System.out.println(postulantes);
-        System.out.println(sistema.getPostulantes());
         String[] postulados = new String[postulantes.size()];
         for (int i = 0; i < postulados.length; i++) {
             postulados[i] = "" + postulantes.get(i).getNombre();
         }
         jListPost.setListData(postulados);
+        
 
     }
 
@@ -79,18 +73,8 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelTitulo.setText("Ingresar entrevista");
 
-        jListEval.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jListEval);
 
-        jListPost.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(jListPost);
 
         jLabelEvals.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -272,23 +256,23 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextAreaComent;
     // End of variables declaration//GEN-END:variables
     public boolean chequeo(){
-        boolean bien = true;
+        boolean flag = true;
         if(jTextAreaComent.getText().isBlank()){
-            bien = false;
+            flag = false;
         }else{
             if((int)jSpinnerPuntaje.getValue() > 100 ||(int)jSpinnerPuntaje.getValue() < 0){
-                bien = false;
+                flag = false;
             }else{
                 if(jListEval.isSelectionEmpty()){
-                    bien = false;
+                    flag = false;
                 }else{
                     if(jListPost.isSelectionEmpty()){
-                        bien = false;
+                        flag = false;
                     }
                 }
             }
         }
-        return bien;
+        return flag;
     }
 
 

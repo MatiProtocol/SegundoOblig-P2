@@ -209,7 +209,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
       <Properties>
-        <Property name="text" type="java.lang.String" value="a"/>
+        <Property name="text" type="java.lang.String" value="Leonel Pessi"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingrese su nombre."/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtCedula"/>
@@ -241,7 +241,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtDireccion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="a"/>
+        <Property name="text" type="java.lang.String" value="ViscaBarca"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingrese su direcci&#xf3;n."/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtTelefono"/>
@@ -255,7 +255,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtTelefono">
       <Properties>
-        <Property name="text" type="java.lang.String" value="1"/>
+        <Property name="text" type="java.lang.String" value="123123099"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingrese su tel&#xe9;fono."/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtMail"/>
@@ -269,7 +269,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtMail">
       <Properties>
-        <Property name="text" type="java.lang.String" value="@gmail.com"/>
+        <Property name="text" type="java.lang.String" value="leomessi1_verdadero@gmail.com"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingrese un mail v&#xe1;lido."/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtLinkedin"/>

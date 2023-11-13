@@ -79,7 +79,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
         lblLinkedin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLinkedin.setText("Linkedin:");
 
-        txtNombre.setText("a");
+        txtNombre.setText("Leonel Pessi");
         txtNombre.setToolTipText("Ingrese su nombre.");
         txtNombre.setNextFocusableComponent(txtCedula);
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -119,7 +119,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtDireccion.setText("a");
+        txtDireccion.setText("ViscaBarca");
         txtDireccion.setToolTipText("Ingrese su dirección.");
         txtDireccion.setNextFocusableComponent(txtTelefono);
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -138,7 +138,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtTelefono.setText("1");
+        txtTelefono.setText("123123099");
         txtTelefono.setToolTipText("Ingrese su teléfono.");
         txtTelefono.setNextFocusableComponent(txtMail);
         txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -157,7 +157,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtMail.setText("@gmail.com");
+        txtMail.setText("leomessi1_verdadero@gmail.com");
         txtMail.setToolTipText("Ingrese un mail válido.");
         txtMail.setNextFocusableComponent(txtLinkedin);
         txtMail.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -400,6 +400,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             String nombre = txtNombre.getText();
             String cedula = txtCedula.getText();
             String direccion = txtDireccion.getText();
+            String telefono = txtTelefono.getText();
             String mail = txtMail.getText();
             String linkedin = txtLinkedin.getText();
 
@@ -407,12 +408,12 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
 
             String modalidad;
             if (rbtnMixto.isSelected()) {
-                modalidad = rbtnMixto.getText();
+                modalidad = rbtnMixto.getName();
             } else {
                 if (rbtnPresencial.isSelected()) {
-                    modalidad = rbtnPresencial.getText();
+                    modalidad = rbtnPresencial.getName();
                 } else {
-                    modalidad = rbtnRemoto.getText();
+                    modalidad = rbtnRemoto.getName();
                 }
             }
 
@@ -427,9 +428,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             modelo.setNombre(nombre);
             modelo.setCedula(cedula);
             modelo.setDireccion(direccion);
+            modelo.setTelefono(telefono);
             modelo.setMail(mail);
-            //modelo = ventanita.darP();
-            System.out.println(modelo.getConocimiento() + " " + modelo.getNiveles());
+            modelo.setTipoTrabajo(modalidad);//
             sistema.addPostulantes(modelo);
             
             this.setVisible(false);
