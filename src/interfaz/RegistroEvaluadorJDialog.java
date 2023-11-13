@@ -26,7 +26,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelTitulo = new javax.swing.JLabel();
+        jLblTitulo = new javax.swing.JLabel();
         jLabelNom = new javax.swing.JLabel();
         jLabelCedula = new javax.swing.JLabel();
         jLabelDir = new javax.swing.JLabel();
@@ -42,8 +42,8 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelTitulo.setText("Registrar Evaluador");
+        jLblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLblTitulo.setText("Registrar Evaluador");
 
         jLabelNom.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelNom.setText("Nombre:");
@@ -103,7 +103,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addComponent(jLabelTitulo)
+                        .addComponent(jLblTitulo)
                         .addGap(0, 112, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -117,7 +117,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelTitulo)
+                .addComponent(jLblTitulo)
                 .addGap(14, 14, 14)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,7 +185,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabelDir;
     private javax.swing.JLabel jLabelIngreso;
     private javax.swing.JLabel jLabelNom;
-    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLblTitulo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextFieldCed;
