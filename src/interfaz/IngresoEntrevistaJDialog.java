@@ -10,8 +10,7 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
     private Sistema sistema;
     private Entrevista entrevista;
     private Postulante postlante;
-
-
+    
     public IngresoEntrevistaJDialog (java.awt.Frame parent, boolean modal, Sistema unS) {
         super(parent, modal);
         sistema = unS;
@@ -33,6 +32,7 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         
         postulantes = sistema.getPostulantes();
         
+
         String[] postulados = new String[postulantes.size()];
         for (int i = 0; i < postulados.length; i++) {
             postulados[i] = "" + postulantes.get(i).getNombre();
@@ -65,8 +65,8 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         jTextAreaComent = new javax.swing.JTextArea();
         jLabelComent = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbtnIngreso = new javax.swing.JButton();
+        jbtnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,17 +97,17 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         jLabelComent.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabelComent.setText("Comentario:");
 
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnIngreso.setText("Ingresar");
+        jbtnIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnIngresoActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancelar.setText("Cancelar");
+        jbtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnCancelarActionPerformed(evt);
             }
         });
 
@@ -145,9 +145,9 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
                         .addComponent(jScrollPane3)
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jbtnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(jbtnIngreso)
                         .addGap(45, 45, 45))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
@@ -188,19 +188,19 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
                     .addComponent(jLabelComent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jbtnIngreso)
+                    .addComponent(jbtnCancelar))
                 .addGap(25, 25, 25))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelarActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbtnCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresoActionPerformed
         if(!chequeo()){
             JOptionPane.showMessageDialog(this, "No se logró agregar entrevista.");
         }else{
@@ -229,17 +229,18 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
                 }                
             }
             entrevista.setPuntaje((int)jSpinnerPuntaje.getValue());
+            entrevista.setDescripcion(jTextAreaComent.getText());
+            
+            sistema.addEntrevista(entrevista);
             this.dispose();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbtnIngresoActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabelComent;
     private javax.swing.JLabel jLabelEvals;
     private javax.swing.JLabel jLabelPost;
@@ -254,6 +255,8 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinnerPuntaje;
     private javax.swing.JTextArea jTextAreaComent;
+    private javax.swing.JButton jbtnCancelar;
+    private javax.swing.JButton jbtnIngreso;
     // End of variables declaration//GEN-END:variables
     public boolean chequeo(){
         boolean flag = true;

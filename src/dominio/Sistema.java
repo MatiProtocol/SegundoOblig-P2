@@ -11,45 +11,60 @@ public class Sistema {
     private ArrayList<Evaluador> evaluadores;
     private ArrayList<Postulante> postulantes;
     private ArrayList<Tematica> tematicas;
+    private ArrayList<Entrevista> entrevistas;
 
-    public Sistema() {
+    public Sistema () {
         this.postulantes = new ArrayList<Postulante>();
         this.tematicas = new ArrayList<>();
         this.evaluadores = new ArrayList<>();
+        this.entrevistas = new ArrayList<>();
     }
 
-    public ArrayList<Postulante> getPostulantes() {
+    public ArrayList<Postulante> getPostulantes () {
         return postulantes;
     }
 
-    public void addPostulantes(Postulante postulantes) {
+    public void addPostulantes (Postulante postulantes) {
         this.postulantes.add(postulantes);
     }
 
-    public ArrayList<Tematica> getTematicas() {
+    public ArrayList<Tematica> getTematicas () {
         return tematicas;
     }
 
-    public void addTematicas(Tematica tematica) {
+    public void addTematicas (Tematica tematica) {
         this.tematicas.add(tematica);
     }
 
-    public int getSizeTematicas() {
-        return tematicas.size();
-    }
-
-    public int getSizePostulantes() {
-        return postulantes.size();
-    }
-
-    public ArrayList<Evaluador> getEvaluadores() {
+    public ArrayList<Evaluador> getEvaluadores () {
         return evaluadores;
     }
-    public int getSizeEvaluador() {
+
+    public void addEvaluador (Evaluador evaluador) {
+        this.evaluadores.add(evaluador);
+    }
+
+    public ArrayList<Entrevista> getEntrevistas () {
+        return this.entrevistas;
+    }
+
+    public void addEntrevista (Entrevista unaE) {
+        this.entrevistas.add(unaE);
+    }
+
+    public int getSizeEntrevistas () {
+        return entrevistas.size();
+    }
+
+    public int getSizeEvaluador () {
         return evaluadores.size();
     }
 
-    public void addEvaluador(Evaluador evaluador) {
-        this.evaluadores.add(evaluador);
+    public int getSizeTematicas () {
+        return tematicas.size();
+    }
+
+    public int getSizePostulantes () {
+        return postulantes.size();
     }
 }
