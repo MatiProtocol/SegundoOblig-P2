@@ -408,15 +408,15 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
 
             String modalidad;
             if (rbtnMixto.isSelected()) {
-                modalidad = rbtnMixto.getName();
+                modalidad = rbtnMixto.getText();
             } else {
                 if (rbtnPresencial.isSelected()) {
-                    modalidad = rbtnPresencial.getName();
+                    modalidad = rbtnPresencial.getText();
                 } else {
-                    modalidad = rbtnRemoto.getName();
+                    modalidad = rbtnRemoto.getText();
                 }
             }
-
+            
             
             modelo.setConocimientos(new ArrayList<>());
             modelo.setNivel(new  ArrayList<>());

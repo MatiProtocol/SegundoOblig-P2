@@ -1,12 +1,13 @@
 package interfaz;
 
 import dominio.*;
+import javax.swing.JOptionPane;
 
 public class Principal extends javax.swing.JFrame {
-    
-    private Sistema modelo;    
-    
-    public Principal(Sistema sistema) {
+
+    private Sistema modelo;
+
+    public Principal (Sistema sistema) {
         this.setResizable(false);
         this.modelo = sistema;
         initComponents();
@@ -21,6 +22,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         lblGestion = new javax.swing.JLabel();
         btnTematica = new javax.swing.JButton();
         btnPostularme = new javax.swing.JButton();
@@ -38,6 +40,8 @@ public class Principal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         btnVolver = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Programa para la gestión de postulantes");
@@ -254,8 +258,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTematicaActionPerformed
 
     private void btnPostularmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostularmeActionPerformed
-        PostulanteJDialogue vent = new PostulanteJDialogue(this, true, modelo);
-        vent.setVisible(true);
+        if (modelo.getTematicas().size() == 0) {
+            JOptionPane.showMessageDialog(this, "Primero debe ingresar una temática.");
+        } else {
+            PostulanteJDialogue vent = new PostulanteJDialogue(this, true, modelo);
+            vent.setVisible(true);
+        }
 //        Postulante modeloFin = new Postulante();
 //        modeloFin = vent.devolverPost();
     }//GEN-LAST:event_btnPostularmeActionPerformed
@@ -281,27 +289,27 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadisticaTemasActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        
+
         Inicio ventan = new Inicio(modelo);
         ventan.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnConsultaPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaPuestoActionPerformed
-        ConsultaPuestoJDialog venta = new ConsultaPuestoJDialog(this, true,modelo);
+        ConsultaPuestoJDialog venta = new ConsultaPuestoJDialog(this, true, modelo);
         venta.setVisible(true);
-        
+
     }//GEN-LAST:event_btnConsultaPuestoActionPerformed
 
     private void btnRegistrarPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPuestoActionPerformed
-        RegistroPuestoJDialog vent = new RegistroPuestoJDialog(this,true , modelo);
+        RegistroPuestoJDialog vent = new RegistroPuestoJDialog(this, true, modelo);
         vent.setVisible(true);
-        
+
     }//GEN-LAST:event_btnRegistrarPuestoActionPerformed
 
     private void btnHistoriaPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoriaPostActionPerformed
-        HistorialPostulanteJDialog vento = new HistorialPostulanteJDialog(this, true,modelo);
+        HistorialPostulanteJDialog vento = new HistorialPostulanteJDialog(this, true, modelo);
         vento.setVisible(true);
     }//GEN-LAST:event_btnHistoriaPostActionPerformed
 
@@ -317,6 +325,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarPuesto;
     private javax.swing.JButton btnTematica;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton jButton1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblEvaluador;

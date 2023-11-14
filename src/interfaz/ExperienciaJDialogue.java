@@ -186,12 +186,11 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        System.out.println(lstTema.getComponents().length);
+       
         if (lstTema.getLastVisibleIndex() == -1) {
             JOptionPane.showMessageDialog(this, "No hay atributos de experiencia añadidos.");
         } else {
-            System.out.println(modeloPost.getConocimiento());
-            System.out.println(modeloPost.getNiveles());
+           
             
             //modeloPost.addConocimiento(lstTema.getSelectedValue());
             this.setVisible(false);
@@ -244,7 +243,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         if (!lstTema.isSelectionEmpty()) {
             String temaSelect = lstTema.getSelectedValue();
             String nomTemaSel = temaSelect.substring(0, temaSelect.lastIndexOf(" "));
-            System.out.println("tema a borrar " + nomTemaSel);
+          
             ArrayList<Tematica> listaCono = modeloPost.getConocimiento();
             ArrayList<Integer> niveles = modeloPost.getNiveles();
             boolean bandeira = false;
@@ -252,7 +251,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                 if (listaCono.get(i).getNombre().equals(nomTemaSel)) {
                     listaCono.remove(listaCono.get(i));
                     niveles.remove(niveles.get(i));
-                    System.out.println(modeloPost.getConocimiento());
+                  
                     bandeira = true;
                 }
             }
@@ -262,7 +261,8 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
             niveles = modeloPost.getNiveles();
 
             String[] experiencias = new String[listaCono.size()];
-            System.out.println(listaCono);
+          
+            
             for (int i = 0; i < experiencias.length; i++) {
                 experiencias[i] = "" + listaCono.get(i).getNombre() + " (" + niveles.get(i) + ")";
             }

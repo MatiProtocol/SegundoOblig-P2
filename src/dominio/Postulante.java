@@ -2,7 +2,7 @@ package dominio;
 
 import java.util.*;
 
-public class Postulante {
+public class Postulante implements Comparable<Postulante> {
 
     private String nombre;
     private String cedula;
@@ -117,5 +117,10 @@ public class Postulante {
         this.tipoTrabajo = tipoTrabajo;
     }
     
+    @Override
+    public int compareTo(Postulante obj){
+        return (Integer.parseInt(this.getCedula())- Integer.parseInt(obj.getCedula()));
+        
+    }
 
 }

@@ -7,11 +7,12 @@ import java.util.*;
 import javax.swing.JOptionPane;
 
 public class RegistroPuestoJDialog extends javax.swing.JDialog {
-    
+
     private Sistema sistema;
     private Tematica temas;
     private Puesto puesto;
     private ArrayList<String> todosGral;
+
     public RegistroPuestoJDialog (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
         this.sistema = sistema;
@@ -19,17 +20,17 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
         /*lstTemaElegido.setSize(99, 150);
         lstTemasGral.setSize(99, 150);*/
         this.setResizable(false);
-        
+
         ArrayList<Tematica> tema = new ArrayList<>();
         tema = this.sistema.getTematicas();
-        
+
         String[] tematica = new String[tema.size()];
         for (int i = 0; i < tematica.length; i++) {
             tematica[i] = "" + tema.get(i).getNombre();
         }
         lstTemasGral.setListData(tematica);
         String[] sinElegidos = new String[0];
-        
+
         lstTemaElegido.setListData(sinElegidos);
         todosGral = new ArrayList<>();
     }
@@ -201,12 +202,12 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNombre)
                         .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTipo)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(rBtnRemoto)
                                 .addComponent(rBtnPresencial)
-                                .addComponent(rBtnMixto)))
+                                .addComponent(rBtnMixto))
+                            .addComponent(lblTipo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,26 +247,29 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
         if (indiceSel == -1) {
             lblAddAdvertencia.setText("Primero debe seleccionar un tema de la lista izquierda.");
         } else {
-            
-            ArrayList<String> todosGral = new ArrayList<>();
-            System.out.println(lstTemasGral.getLastVisibleIndex());
-            System.out.println(lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()));
-            /*for (int i = 0; i < lstTemasGral.getLastVisibleIndex()+1; i++) {
+            if (todosGral.contains((String) lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()))) {
+                lblAddAdvertencia.setText("Elemento seleccionado anteriormente.");
+            } else {
+                lblAddAdvertencia.setText("");
+                todosGral.add(lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()));
+                System.out.println(lstTemasGral.getLastVisibleIndex());
+                System.out.println(lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()));
+                /*for (int i = 0; i < lstTemasGral.getLastVisibleIndex()+1; i++) {
                 if(lstTemasGral.getModel().getElementAt(i).is)
                         todosGral.add(lstTemasGral.getModel().getElementAt(i));
                 
             }*/
-            
-            
-            String[] seleccionado = new String[todosGral.size()];
-            for (int i = 0; i < seleccionado.length; i++) {
-                seleccionado[i] = "" + todosGral.get(i);
-                
+
+                String[] seleccionado = new String[todosGral.size()];
+                for (int i = 0; i < seleccionado.length; i++) {
+                    seleccionado[i] = "" + todosGral.get(i);
+
+                }
+                System.out.println(seleccionado);
+
+                lstTemaElegido.setListData(seleccionado);
+                lstTemasGral.clearSelection();
             }
-            System.out.println(seleccionado);
-            
-            lstTemaElegido.setListData(seleccionado);
-            lstTemasGral.clearSelection();
         }
     }//GEN-LAST:event_btnAgregarTemaActionPerformed
 
@@ -283,9 +287,9 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
             //String[] temas = lstTemaElegido.getModel().get;
             ArrayList<Tematica> temas = new ArrayList<>();
             ArrayList<Tematica> todosTemas = sistema.getTematicas();
-            
+
             for (int i = 0; i < lstTemaElegido.getComponentCount(); i++) {
-                
+
                 String nombreLista = lstTemaElegido.getModel().getElementAt(i).toString();
                 for (Tematica tema : todosTemas) {
                     if (tema.getNombre().equals(nombreLista)) {
@@ -293,7 +297,7 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                         //System.out.println(tema.getNombre());
                     }
                 }
-                
+
             }
             this.puesto.setTemasRequeridos(temas);
             if (rBtnMixto.isSelected()) {
@@ -305,10 +309,10 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                     this.puesto.setTipo(rBtnMixto.getText());
                 }
             }
-            
+
             this.setVisible(false);
         }
-        
+
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -351,5 +355,5 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
         }
         return bien;
     }
-    
+
 }
