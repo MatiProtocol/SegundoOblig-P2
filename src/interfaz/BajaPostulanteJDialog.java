@@ -143,7 +143,7 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
         if (!jListBaja.isSelectionEmpty()) {
             String postSelect = jListBaja.getSelectedValue();
             String nomPostSel = postSelect.substring(8, postSelect.indexOf("."));
-            System.out.println("postulante a borrar " + nomPostSel);
+            
             ArrayList<Postulante> listaPostul = sistema.getPostulantes();     //nomPostSel.getConocimiento();
             boolean bandeira = false;
             for (int i = 0; i < listaPostul.size() && !bandeira; i++) {

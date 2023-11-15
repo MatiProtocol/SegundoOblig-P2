@@ -416,26 +416,27 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                     modalidad = rbtnRemoto.getText();
                 }
             }
-            
-            
+
             modelo.setConocimientos(new ArrayList<>());
-            modelo.setNivel(new  ArrayList<>());
-            
+            modelo.setNivel(new ArrayList<>());
 
             ExperienciaJDialogue ventanita = new ExperienciaJDialogue(new JFrame(), true, modelo, sistema);
             ventanita.setVisible(true);
-            
-            modelo.setNombre(nombre);
-            modelo.setCedula(cedula);
-            modelo.setDireccion(direccion);
-            modelo.setTelefono(telefono);
-            modelo.setMail(mail);
-            modelo.setTipoTrabajo(modalidad);//
-            sistema.addPostulantes(modelo);
-           
-            this.setVisible(false);
-        } else{
-            JOptionPane.showMessageDialog(this,"Los datos no son correctos.");
+            if (modelo.getConocimiento().size() == 0) {
+                this.setVisible(false);
+            } else {
+                modelo.setNombre(nombre);
+                modelo.setCedula(cedula);
+                modelo.setDireccion(direccion);
+                modelo.setTelefono(telefono);
+                modelo.setMail(mail);
+                modelo.setTipoTrabajo(modalidad);//
+                sistema.addPostulantes(modelo);
+
+                this.setVisible(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Los datos no son correctos.");
         }
     }//GEN-LAST:event_btnSigActionPerformed
 
@@ -625,7 +626,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
                 }
             }
         }
-        
+
         return verificado;
     }
 
