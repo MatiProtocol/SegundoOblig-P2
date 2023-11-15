@@ -4,22 +4,20 @@ import dominio.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-
 public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
 
     private Sistema sistema;
     private Entrevista entrevista;
-    private Postulante postlante;
-    
+    private Postulante postulante;
+
     public IngresoEntrevistaJDialog (java.awt.Frame parent, boolean modal, Sistema unS) {
         super(parent, modal);
         sistema = unS;
         initComponents();
         this.setResizable(false);
         ArrayList<Evaluador> evaluador = new ArrayList<>();
-        
+
         evaluador = sistema.getEvaluadores();
-        
 
         String[] evaluadores = new String[evaluador.size()];
         for (int i = 0; i < evaluadores.length; i++) {
@@ -27,18 +25,15 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         }
         jListEval.setListData(evaluadores);
 
-        
         ArrayList<Postulante> postulantes = new ArrayList<>();
-        
+
         postulantes = sistema.getPostulantes();
-        
 
         String[] postulados = new String[postulantes.size()];
         for (int i = 0; i < postulados.length; i++) {
             postulados[i] = "" + postulantes.get(i).getNombre();
         }
         jListPost.setListData(postulados);
-        
 
     }
 
@@ -201,37 +196,38 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtnCancelarActionPerformed
 
     private void jbtnIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIngresoActionPerformed
-        if(!chequeo()){
+        if (!chequeo()) {
             JOptionPane.showMessageDialog(this, "No se logró agregar entrevista.");
-        }else{
+        } else {
             this.entrevista = new Entrevista();
+            
             
             String nombreEval = jListEval.getSelectedValue();
             Evaluador evalSelected;
             boolean hecho = false;
             for (int i = 0; i < sistema.getEvaluadores().size() && !hecho; i++) {
-                if(nombreEval.equals(sistema.getEvaluadores().get(i).getNombre())){
+                if (nombreEval.equals(sistema.getEvaluadores().get(i).getNombre())) {
                     evalSelected = sistema.getEvaluadores().get(i);
                     entrevista.setEvaluador(evalSelected);
                     hecho = true;
                 }
-                
+
             }
             
             String nombrePost = jListPost.getSelectedValue();
-            Postulante postSelected;
+            Postulante postSelected = new Postulante();
             hecho = false;
             for (int i = 0; i < sistema.getSizePostulantes() && !hecho; i++) {
-                if(nombrePost.equals(sistema.getPostulantes().get(i).getNombre())){
+                if (nombrePost.equals(sistema.getPostulantes().get(i).getNombre())) {
                     postSelected = sistema.getPostulantes().get(i);
                     entrevista.setPostulante(postSelected);
                     hecho = true;
-                }                
+                }
             }
-            entrevista.setPuntaje((int)jSpinnerPuntaje.getValue());
+            entrevista.setPuntaje((int) jSpinnerPuntaje.getValue());
             entrevista.setDescripcion(jTextAreaComent.getText());
-            
             sistema.addEntrevista(entrevista);
+            postSelected.addEntrevista(entrevista);
             this.dispose();
         }
     }//GEN-LAST:event_jbtnIngresoActionPerformed
@@ -258,18 +254,18 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
     private javax.swing.JButton jbtnCancelar;
     private javax.swing.JButton jbtnIngreso;
     // End of variables declaration//GEN-END:variables
-    public boolean chequeo(){
+    public boolean chequeo () {
         boolean flag = true;
-        if(jTextAreaComent.getText().isBlank()){
+        if (jTextAreaComent.getText().isBlank()) {
             flag = false;
-        }else{
-            if((int)jSpinnerPuntaje.getValue() > 100 ||(int)jSpinnerPuntaje.getValue() < 0){
+        } else {
+            if ((int) jSpinnerPuntaje.getValue() > 100 || (int) jSpinnerPuntaje.getValue() < 0) {
                 flag = false;
-            }else{
-                if(jListEval.isSelectionEmpty()){
+            } else {
+                if (jListEval.isSelectionEmpty()) {
                     flag = false;
-                }else{
-                    if(jListPost.isSelectionEmpty()){
+                } else {
+                    if (jListPost.isSelectionEmpty()) {
                         flag = false;
                     }
                 }
@@ -277,6 +273,5 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         }
         return flag;
     }
-
 
 }

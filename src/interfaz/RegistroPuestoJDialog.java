@@ -309,7 +309,8 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                     this.puesto.setTipo(rBtnMixto.getText());
                 }
             }
-
+            
+            sistema.addPuesto(puesto);
             this.setVisible(false);
         }
 

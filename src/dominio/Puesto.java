@@ -52,4 +52,6 @@ public class Puesto {
     public void addTemaRequerido (Tematica unT) {
         this.temasRequeridos.add(unT);
     }
+    
+  
 }
