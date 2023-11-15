@@ -201,7 +201,8 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                     }
                 }
             //}
-            System.out.println(modeloPost.getConocimiento());
+            
+            
 
             this.setVisible(false);
         }
@@ -213,7 +214,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_comboxTemaActionPerformed
 
     private void btnAgreagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreagarActionPerformed
-        //System.out.println(comboxTema.getSelectedItem());
+     
         if (comboxTema.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "No hay un tema slecionado.");
         } else {

@@ -252,8 +252,7 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
             } else {
                 lblAddAdvertencia.setText("");
                 todosGral.add(lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()));
-                System.out.println(lstTemasGral.getLastVisibleIndex());
-                System.out.println(lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()));
+                
                 /*for (int i = 0; i < lstTemasGral.getLastVisibleIndex()+1; i++) {
                 if(lstTemasGral.getModel().getElementAt(i).is)
                         todosGral.add(lstTemasGral.getModel().getElementAt(i));
@@ -265,7 +264,7 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                     seleccionado[i] = "" + todosGral.get(i);
 
                 }
-                System.out.println(seleccionado);
+               
 
                 lstTemaElegido.setListData(seleccionado);
                 lstTemasGral.clearSelection();
@@ -294,7 +293,7 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                 for (Tematica tema : todosTemas) {
                     if (tema.getNombre().equals(nombreLista)) {
                         temas.add(tema);
-                        //System.out.println(tema.getNombre());
+                        
                     }
                 }
 

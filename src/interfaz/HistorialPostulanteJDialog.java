@@ -329,7 +329,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
         ArrayList<Tematica> conocimientos = postulante.get(i).getConocimiento();
         ArrayList<Integer> niveles = postulante.get(i).getNiveles();
-        System.out.println(conocimientos);
+ 
         String[] conocimientosLst = new String[conocimientos.size()];
         for (int j = 0; j < conocimientosLst.length; j++) {
             conocimientosLst[j] = conocimientos.get(j).getNombre() + " (" + niveles.get(j) + ")";
