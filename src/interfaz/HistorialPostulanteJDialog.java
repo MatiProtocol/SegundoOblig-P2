@@ -1,32 +1,29 @@
-
 package interfaz;
+
 import dominio.*;
 import java.util.*;
-
 
 public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
     private Sistema modelo;
     private Postulante postulan;
-    public HistorialPostulanteJDialog(java.awt.Frame parent, boolean modal,Sistema sistema) {
+
+    public HistorialPostulanteJDialog (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
-        modelo=sistema;
+        modelo = sistema;
         initComponents();
-        
+
         ArrayList<Postulante> postulante = new ArrayList<>();
         postOrdCedula(postulante);
         postulante = sistema.getPostulantes();
         String[] postulantes = new String[postulante.size()];
         for (int i = 0; i < postulantes.length; i++) {
-            postulantes[i] = postulante.get(i).getNombre() +" ("+ postulante.get(i).getCedula()+")";
+            postulantes[i] = postulante.get(i).getNombre() + " (" + postulante.get(i).getCedula() + ")";
         }
-        
+
         jListPostulantes.setListData(postulantes);
-        
 
     }
-    
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,7 +42,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        lstExperiencia = new javax.swing.JList<>();
         lblNombre = new javax.swing.JLabel();
         lblCedula = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
@@ -109,12 +106,12 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setText("Cedula:");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        lstExperiencia.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "-" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(lstExperiencia);
 
         lblNombre.setText("-");
 
@@ -321,7 +318,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     private void jListPostulantesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListPostulantesValueChanged
         ArrayList<Postulante> postulante = modelo.getPostulantes();
         int i = jListPostulantes.getAnchorSelectionIndex();
-        
+
         lblNombre.setText(postulante.get(i).getNombre());
         lblCedula.setText(postulante.get(i).getCedula());
         lblDireccion.setText(postulante.get(i).getDireccion());
@@ -329,8 +326,17 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         lblMail.setText(postulante.get(i).getMail());
         lblLink.setText(postulante.get(i).getLinkedIn());
         lblFormato.setText(postulante.get(i).getTipoTrabajo());
-        System.out.println(postulante.get(i).getTipoTrabajo());
-//        ArrayList<Experiencia> experiencia = new ArrayList<>();
+
+        ArrayList<Tematica> conocimientos = postulante.get(i).getConocimiento();
+        ArrayList<Integer> niveles = postulante.get(i).getNiveles();
+        System.out.println(conocimientos);
+        String[] conocimientosLst = new String[conocimientos.size()];
+        for (int j = 0; j < conocimientosLst.length; j++) {
+            conocimientosLst[j] = conocimientos.get(j).getNombre() + " (" + niveles.get(j) + ")";
+        }
+        
+        lstExperiencia.setListData(conocimientosLst);
+//ArrayList<Experiencia> experiencia = new ArrayList<>();
 //                experiencia = sistema.getPostulantes();
 //        String[] experiencia = new String[experiencia.size()];
 //        for (int i = 0; i < experiencia.length; i++) {
@@ -339,7 +345,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 //        jListPostulantes.setListData(postulantes);
 
     }//GEN-LAST:event_jListPostulantesValueChanged
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -356,7 +361,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jListPostulantes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -374,11 +378,12 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblMail;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JList<String> lstExperiencia;
     private javax.swing.JTable tblBusqueda;
     private javax.swing.JTextField txtfldBuscar;
     // End of variables declaration//GEN-END:variables
 
-    public ArrayList<Postulante> postOrdCedula(ArrayList<Postulante> unA){
+    public ArrayList<Postulante> postOrdCedula (ArrayList<Postulante> unA) {
         Collections.sort(unA);
         return unA;
     }

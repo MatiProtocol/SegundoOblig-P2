@@ -190,17 +190,19 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         if (lstTema.getLastVisibleIndex() == -1) {
             JOptionPane.showMessageDialog(this, "No hay atributos de experiencia añadidos.");
         } else {
-
-           //modeloPost.modeloPost.addConocimiento(lstTema.getSelectedValue());
-            for (int j = 0; j < lstTema.getLastVisibleIndex(); j++) {
-                ArrayList<Tematica> todasTematicas = modeloPost.getConocimiento();
+            ArrayList<Tematica> todasTematicas = modeloPost.getConocimiento();
+            //modeloPost.modeloPost.addConocimiento(lstTema.getSelectedValue());
+            //for (int j = 0; j < lstTema.getLastVisibleIndex(); j++) {
+            ArrayList<Tematica> elegidas = new ArrayList<>();
                 for (int i = 0; i < modeloPost.getConocimiento().size(); i++) {
-                    if (todasTematicas.get(i).equals(lstTema.getSelectedValue())) {
+                    if (todasTematicas.get(i).getNombre().equals(lstTema.getSelectedValue())) {
                         modeloPost.addConocimiento(todasTematicas.get(i));
-                        modeloPost.addNivel(spinnerNivel.getValue());
+                        modeloPost.addNivel((Integer) spinnerNivel.getValue());
                     }
                 }
-            }
+            //}
+            System.out.println(modeloPost.getConocimiento());
+
             this.setVisible(false);
         }
 
