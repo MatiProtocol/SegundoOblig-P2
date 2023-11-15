@@ -432,7 +432,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             modelo.setMail(mail);
             modelo.setTipoTrabajo(modalidad);//
             sistema.addPostulantes(modelo);
-            
+            System.out.println();
             this.setVisible(false);
         } else{
             JOptionPane.showMessageDialog(this,"Los datos no son correctos.");

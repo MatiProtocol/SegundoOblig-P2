@@ -186,13 +186,21 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-       
+
         if (lstTema.getLastVisibleIndex() == -1) {
             JOptionPane.showMessageDialog(this, "No hay atributos de experiencia añadidos.");
         } else {
-           
-            
-            //modeloPost.addConocimiento(lstTema.getSelectedValue());
+
+           //modeloPost.modeloPost.addConocimiento(lstTema.getSelectedValue());
+            for (int j = 0; j < lstTema.getLastVisibleIndex(); j++) {
+                ArrayList<Tematica> todasTematicas = modeloPost.getConocimiento();
+                for (int i = 0; i < modeloPost.getConocimiento().size(); i++) {
+                    if (todasTematicas.get(i).equals(lstTema.getSelectedValue())) {
+                        modeloPost.addConocimiento(todasTematicas.get(i));
+                        modeloPost.addNivel(spinnerNivel.getValue());
+                    }
+                }
+            }
             this.setVisible(false);
         }
 
@@ -243,7 +251,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         if (!lstTema.isSelectionEmpty()) {
             String temaSelect = lstTema.getSelectedValue();
             String nomTemaSel = temaSelect.substring(0, temaSelect.lastIndexOf(" "));
-          
+
             ArrayList<Tematica> listaCono = modeloPost.getConocimiento();
             ArrayList<Integer> niveles = modeloPost.getNiveles();
             boolean bandeira = false;
@@ -251,7 +259,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                 if (listaCono.get(i).getNombre().equals(nomTemaSel)) {
                     listaCono.remove(listaCono.get(i));
                     niveles.remove(niveles.get(i));
-                  
+
                     bandeira = true;
                 }
             }
@@ -261,8 +269,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
             niveles = modeloPost.getNiveles();
 
             String[] experiencias = new String[listaCono.size()];
-          
-            
+
             for (int i = 0; i < experiencias.length; i++) {
                 experiencias[i] = "" + listaCono.get(i).getNombre() + " (" + niveles.get(i) + ")";
             }
