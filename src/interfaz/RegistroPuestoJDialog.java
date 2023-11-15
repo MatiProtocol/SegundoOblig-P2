@@ -252,19 +252,17 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
             } else {
                 lblAddAdvertencia.setText("");
                 todosGral.add(lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()));
-                
+
                 /*for (int i = 0; i < lstTemasGral.getLastVisibleIndex()+1; i++) {
                 if(lstTemasGral.getModel().getElementAt(i).is)
                         todosGral.add(lstTemasGral.getModel().getElementAt(i));
                 
             }*/
-
                 String[] seleccionado = new String[todosGral.size()];
                 for (int i = 0; i < seleccionado.length; i++) {
                     seleccionado[i] = "" + todosGral.get(i);
 
                 }
-               
 
                 lstTemaElegido.setListData(seleccionado);
                 lstTemasGral.clearSelection();
@@ -293,10 +291,9 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                 for (Tematica tema : todosTemas) {
                     if (tema.getNombre().equals(nombreLista)) {
                         temas.add(tema);
-                        
+
                     }
                 }
-
             }
             this.puesto.setTemasRequeridos(temas);
             if (rBtnMixto.isSelected()) {
@@ -308,7 +305,7 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                     this.puesto.setTipo(rBtnMixto.getText());
                 }
             }
-            
+
             sistema.addPuesto(puesto);
             this.setVisible(false);
         }
