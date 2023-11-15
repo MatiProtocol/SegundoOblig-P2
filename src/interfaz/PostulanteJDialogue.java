@@ -424,6 +424,7 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
             ventanita.setVisible(true);
             if (modelo.getConocimiento().size() == 0) {
                 this.setVisible(false);
+                JOptionPane.showMessageDialog(this, "No se ha creado ningún postulante.");
             } else {
                 modelo.setNombre(nombre);
                 modelo.setCedula(cedula);
