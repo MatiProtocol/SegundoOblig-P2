@@ -7,7 +7,7 @@ package dominio;
 import javax.swing.table.*;
 import javax.swing.*;
 import java.awt.Component;
-
+import java.util.*;
 /**
  *
  * @author alumnoFI
@@ -20,6 +20,7 @@ public class CellRenderer extends DefaultTableCellRenderer {
         if (value instanceof String) {
             String string = (String) value;
             if (string.indexOf(' ') > -1) {
+                
                 setText(getHTML(string));
             }
         }
@@ -27,6 +28,9 @@ public class CellRenderer extends DefaultTableCellRenderer {
     }
     
     private String getHTML(String string) {
+        
+        //ArrayList<String> separacion = new Pintura(string);
+        
             StringBuilder sb = new StringBuilder();
             sb.append("<html>");
             int posicion = 0;
@@ -54,5 +58,5 @@ public class CellRenderer extends DefaultTableCellRenderer {
             sb.append("</html>");
             return sb.toString();
         }
-
+  
 }

@@ -9,16 +9,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 public class HistorialPostulanteJDialog extends javax.swing.JDialog {
-    
+
     TableRowSorter<DefaultTableModel> sorter;
     private Sistema sistema;
     private Postulante postulan;
 
-    public HistorialPostulanteJDialog(java.awt.Frame parent, boolean modal, Sistema sistema) {
+    public HistorialPostulanteJDialog (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
         this.sistema = sistema;
         initComponents();
-
+        this.setResizable(false);
         DefaultTableModel modelo = new DefaultTableModel();
 
         ArrayList<Postulante> postulante = new ArrayList<>();
@@ -30,7 +30,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         }
 
         jListPostulantes.setListData(postulantes);
-        creatTabla();
+        //creatTabla();
 
     }
 
@@ -222,20 +222,19 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jlblTitulo)
-                        .addGap(387, 387, 387))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 973, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 973, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(399, 399, 399)
+                .addComponent(jlblTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(14, 14, 14)
                 .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblPost, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,8 +300,16 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         if (txtBuscar.getText().isBlank() || sistema.getEntrevistas().size() == 0) {
             JOptionPane.showMessageDialog(this, "No hay nada para buscar.");
         } else {
-
-            /*tblBusqueda.setDefaultRenderer(Object.class, new CellRenderer());
+            
+            /*tblBusqueda.setModel(new DefaultTableModel(
+                    new Object[][]{
+                        {"", null, null, null}
+                    },
+                    new String[]{
+                        "Nro", "Evaluador", "Puntaje", "Comentarios"
+                    }
+            ));*/
+            tblBusqueda.setDefaultRenderer(Object.class, new CellRenderer());
 
             String buscar = txtBuscar.getText();
             String[] columnas = new String[]{"Nro", "Evaluador", "Puntaje", "Comentarios"};
@@ -310,31 +317,58 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
             ArrayList<Evaluador> allEvaluadores = sistema.getEvaluadores();
             ArrayList<Postulante> allPostulantes = sistema.getPostulantes();
             ArrayList<Entrevista> allEntrevistas = sistema.getEntrevistas();
-            
-            DefaultTableModel tableModelo = (DefaultTableModel) tblBusqueda.getModel();
-            tableModelo.setRowCount(0);
-            
-            Object[][] lineas = new Object[sistema.getEntrevistas().size()][4];
-            tableModelo.setColumnIdentifiers(columnas);
-            
-            for (int i = 0; i < sistema.getSizePostulantes(); i++) {
-                
-                for (int j = 0; j < allPostulantes.get(i).getEntrevistas().size(); j++) {
 
+            DefaultTableModel tableModelo = (DefaultTableModel) tblBusqueda.getModel();
+            tableModelo.setRowCount(1);
+
+            //tableModelo.removeRow(i);
+            Object[][] lineas = new Object[sistema.getEntrevistas().size()][4];
+            ArrayList<Object[]> verga = new ArrayList<Object[]>();
+
+            //tableModelo.setColumnIdentifiers(columnas);
+            System.out.println(buscar);
+            int cont = 0;
+            for (int i = 0; i < sistema.getSizePostulantes(); i++) {
+
+                for (int j = 0; j < allPostulantes.get(i).getEntrevistas().size(); j++) {
+                    
                     String desc = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
-                    if (-1 != desc.indexOf(buscar)) {
-                        lineas[i][0] = j + 1;
+                    if (desc.toLowerCase().contains(buscar.toLowerCase())) {
+                        /*lineas[i][0] = j + 1;
                         lineas[i][1] = allPostulantes.get(i).getEntrevistas().get(j).getEvaluador().getNombre();
                         lineas[i][2] = allPostulantes.get(i).getEntrevistas().get(j).getPuntaje();
                         lineas[i][3] = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
-                        tableModelo.addRow(lineas[i]);
+                        cont++;
+                         */
+                        Object[] nonbvre = new Object[4];
+                        nonbvre[0] = j + 1;
+                        nonbvre[1] = allPostulantes.get(i).getEntrevistas().get(j).getEvaluador().getNombre();
+                        nonbvre[2] = allPostulantes.get(i).getEntrevistas().get(j).getPuntaje();
+                        nonbvre[3] = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
+                        cont++;
+                        verga.add(nonbvre);
+                        System.out.println("Encontrado "+ allPostulantes.get(i).getEntrevistas().get(j).getDescripcion());
+                    }else{
+                        System.out.println("deletado "+ allPostulantes.get(i).getEntrevistas().get(j).getDescripcion());
                     }
-                    
+                    //tableModelo.addRow(lineas[i]);
                 }
-                
+
             }
 
-            txtBuscar.setText(" ");*/
+            Object[] cualqCosa = verga.toArray();
+            Object[][] matCosa = new Object[cualqCosa.length][4];
+
+            for (int i = 0; i < cualqCosa.length; i++) {
+                matCosa[i] = (Object[]) cualqCosa[i];
+
+            }
+
+
+            tableModelo.setDataVector(matCosa, columnas);
+
+            tblBusqueda.setModel(tableModelo);
+            txtBuscar.setText("");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -369,7 +403,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jListPostulantesValueChanged
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        filtrar();
+        //filtrar();
     }//GEN-LAST:event_txtBuscarKeyReleased
 
 
@@ -404,12 +438,13 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 
-    public ArrayList<Postulante> postOrdCedula(ArrayList<Postulante> unA) {
+    public ArrayList<Postulante> postOrdCedula (ArrayList<Postulante> unA) {
         Collections.sort(unA);
         return unA;
     }
+}
 
-    private void creatTabla() {
+/*    private void creatTabla() {
         String[] columnas = new String[]{"Nro", "Evaluador", "Puntaje", "Comentarios"};
         String[][] lineas = new String[sistema.getEntrevistas().size()][4];
         String buscar = txtBuscar.getText();
@@ -449,4 +484,4 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         }
     }
 
-}
+}*/
