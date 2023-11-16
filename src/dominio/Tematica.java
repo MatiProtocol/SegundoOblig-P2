@@ -1,3 +1,5 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
+
 package dominio;
 
 public class Tematica {
@@ -28,7 +30,7 @@ public class Tematica {
     }
 
     public Tematica() {
-        //ventana
+        
     }
 
     @Override

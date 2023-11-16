@@ -1,3 +1,4 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.Postulante;
@@ -392,11 +393,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigActionPerformed
-        //if (!(esMail(txtMail.getText())) || !(txtLinkedin.getText().contains("https://linkedin.com/in/")) ) {
+        
         if (chequeoGeneral()) {
-            //JOptionPane.showMessageDialog(this, "No es un mail válido");
-            //txtMail.requestFocusInWindow();
-            //txtLinkedin.requestFocusInWindow();
+            
             String nombre = txtNombre.getText();
             String cedula = txtCedula.getText();
             String direccion = txtDireccion.getText();
@@ -451,9 +450,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
 
     private void txtMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusLost
         if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {
-            //JOptionPane.showMessageDialog(this, "No es un mail válido.");
+          
             lblMailAdvertencia.setText("El mail es incorrecto.");
-            //txtMail.requestFocusInWindow();
+       
         } else {
             lblMailAdvertencia.setText("");
         }
@@ -538,9 +537,9 @@ public class PostulanteJDialogue extends javax.swing.JDialog {
 
     private void txtMailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyReleased
         if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {
-            //JOptionPane.showMessageDialog(this, "No es un mail válido.");
+        
             lblMailAdvertencia.setText("El mail es incorrecto.");
-            //txtMail.requestFocusInWindow();
+   
         } else {
             lblMailAdvertencia.setText("");
         }

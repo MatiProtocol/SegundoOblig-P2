@@ -1,3 +1,4 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
@@ -32,15 +33,15 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListPostulantes = new javax.swing.JList<>();
         jlblTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblPost = new javax.swing.JLabel();
+        lblNom = new javax.swing.JLabel();
         lblDireccion = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblDirec = new javax.swing.JLabel();
+        lblTelf = new javax.swing.JLabel();
+        lblM = new javax.swing.JLabel();
+        lblLinked = new javax.swing.JLabel();
+        lblFormat = new javax.swing.JLabel();
+        lblCed = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstExperiencia = new javax.swing.JList<>();
         lblNombre = new javax.swing.JLabel();
@@ -49,19 +50,14 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         lblMail = new javax.swing.JLabel();
         lblLink = new javax.swing.JLabel();
         lblFormato = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        lblExp = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel17 = new javax.swing.JLabel();
+        lblBuscar = new javax.swing.JLabel();
         txtfldBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblBusqueda = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        jSplitPane1 = new javax.swing.JSplitPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,31 +76,31 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         jlblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlblTitulo.setText("Historial de Postulantes");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setText("Postulantes:");
+        lblPost.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblPost.setText("Postulantes:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Nombre:");
+        lblNom.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblNom.setText("Nombre:");
 
         lblDireccion.setText("-");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Direccion:");
+        lblDirec.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDirec.setText("Direccion:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setText("Telefono:");
+        lblTelf.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTelf.setText("Telefono:");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Mail:");
+        lblM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblM.setText("Mail:");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Linkedin:");
+        lblLinked.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblLinked.setText("Linkedin:");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel8.setText("Formato:");
+        lblFormat.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblFormat.setText("Formato:");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel9.setText("Cedula:");
+        lblCed.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCed.setText("Cedula:");
 
         lstExperiencia.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "-" };
@@ -125,10 +121,10 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
         lblFormato.setText("-");
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setText("Experiencia:");
+        lblExp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblExp.setText("Experiencia:");
 
-        jLabel17.setText("Buscar:");
+        lblBuscar.setText("Buscar:");
 
         txtfldBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,32 +156,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         ));
         jScrollPane3.setViewportView(tblBusqueda);
 
-        jLabel3.setText("jLabel3");
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,23 +165,23 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblPost)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblTelf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblCed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(40, 40, 40))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblM, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblLinked, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblExp, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblTitulo)
@@ -234,7 +204,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(6, 6, 6)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtfldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(44, 44, 44)
@@ -251,8 +221,8 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                 .addComponent(jlblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblPost, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNom)
                     .addComponent(lblNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -261,37 +231,37 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
+                                    .addComponent(lblDirec)
                                     .addComponent(lblDireccion))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
+                                    .addComponent(lblTelf)
                                     .addComponent(lblTelefono))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
+                                    .addComponent(lblM)
                                     .addComponent(lblMail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
+                                    .addComponent(lblLinked)
                                     .addComponent(lblLink))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8)
+                                    .addComponent(lblFormat)
                                     .addComponent(lblFormato)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
+                                .addComponent(lblCed)
                                 .addComponent(lblCedula)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
+                            .addComponent(lblExp)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
+                    .addComponent(lblBuscar)
                     .addComponent(txtfldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
                     .addComponent(btnBorrar))
@@ -336,13 +306,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         }
         
         lstExperiencia.setListData(conocimientosLst);
-//ArrayList<Experiencia> experiencia = new ArrayList<>();
-//                experiencia = sistema.getPostulantes();
-//        String[] experiencia = new String[experiencia.size()];
-//        for (int i = 0; i < experiencia.length; i++) {
-//            postulantes[i] = postulante.get(i).getNombre() +" ("+ postulante.get(i).getCedula()+")";
-//        }
-//        jListPostulantes.setListData(postulantes);
+
 
     }//GEN-LAST:event_jListPostulantesValueChanged
 
@@ -350,34 +314,29 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jListPostulantes;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel jlblTitulo;
+    private javax.swing.JLabel lblBuscar;
+    private javax.swing.JLabel lblCed;
     private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblDirec;
     private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblExp;
+    private javax.swing.JLabel lblFormat;
     private javax.swing.JLabel lblFormato;
     private javax.swing.JLabel lblLink;
+    private javax.swing.JLabel lblLinked;
+    private javax.swing.JLabel lblM;
     private javax.swing.JLabel lblMail;
+    private javax.swing.JLabel lblNom;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPost;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTelf;
     private javax.swing.JList<String> lstExperiencia;
     private javax.swing.JTable tblBusqueda;
     private javax.swing.JTextField txtfldBuscar;

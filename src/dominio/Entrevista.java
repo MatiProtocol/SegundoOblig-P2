@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package dominio;
 
-/**
- *
- * @author matib
- */
+
 public class Entrevista {
     private static int indexEntrevista = 0;
     private Evaluador evaluador;
@@ -27,9 +25,7 @@ public class Entrevista {
         return indexEntrevista;
     }
 
-    /*public static void setIndexEntrevista () {
-        indexEntrevista  = indexEntrevista+1;
-    }*/
+  
 
     public Evaluador getEvaluador () {
         return evaluador;

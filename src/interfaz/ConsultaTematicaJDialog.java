@@ -3,18 +3,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
+
 import dominio.*;
+import java.util.*;
 
 public class ConsultaTematicaJDialog extends javax.swing.JDialog {
 
+    private Sistema sistema;
 
-    private Sistema modelo;
-    public ConsultaTematicaJDialog(java.awt.Frame parent, boolean modal, Sistema sistema) {
+    public ConsultaTematicaJDialog (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
-        modelo = sistema;
+        this.sistema = sistema;
         initComponents();
-        
+        this.setResizable(false);
+
+        ArrayList<Tematica> tema = new ArrayList<>();
+        tema = this.sistema.getTematicas();
+
+        String[] tematica = new String[tema.size()];
+        for (int i = 0; i < tematica.length; i++) {
+            tematica[i] = "" + tema.get(i).getNombre();
+        }
+        lstTemas.setListData(tematica);
+
     }
 
     /**
@@ -26,82 +39,143 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lstTemas = new javax.swing.JList<>();
+        lblSeleccionar = new javax.swing.JLabel();
+        lblCantMayor5 = new javax.swing.JLabel();
+        lblCantPuestos = new javax.swing.JLabel();
+        lblRespMayor5 = new javax.swing.JLabel();
+        lblRespCantTema = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Estadísticas según temática");
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitulo.setText("Estadísticas según temática");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        lstTemas.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        lstTemas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstTemasValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(lstTemas);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Seleccionar una tematica:");
+        lblSeleccionar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblSeleccionar.setText("Seleccionar una tematica:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setText("Cantidad de postulantes con nivel mayor a 5:");
+        lblCantMayor5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCantMayor5.setText("Cantidad de postulantes con nivel mayor a 5:");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel4.setText("Cantidad de puestos con la tematica seleccionada: ");
+        lblCantPuestos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblCantPuestos.setText("Cantidad de puestos con la tematica seleccionada: ");
+
+        lblRespMayor5.setText("jLabel5");
+
+        lblRespCantTema.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblTitulo)
+                .addGap(86, 86, 86))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jSeparator1)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(jLabel1)))
-                .addContainerGap(113, Short.MAX_VALUE))
+                    .addComponent(lblCantPuestos)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblCantMayor5)
+                        .addComponent(lblSeleccionar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRespMayor5, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(lblRespCantTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(64, 64, 64)
-                .addComponent(jLabel2)
+                .addComponent(lblTitulo)
+                .addGap(14, 14, 14)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel4)
-                        .addGap(12, 12, 12)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(lblSeleccionar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCantMayor5)
+                    .addComponent(lblRespMayor5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCantPuestos)
+                    .addComponent(lblRespCantTema))
+                .addGap(30, 30, 30))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lstTemasValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstTemasValueChanged
+        ArrayList<Tematica> temas = sistema.getTematicas();
+        ArrayList<Postulante> todosPost = sistema.getPostulantes();
+        ArrayList<Puesto> todosPuestos = sistema.getPuestos();
+        int index = lstTemas.getAnchorSelectionIndex();
+        int cantidadPost = 0;
+        int cantPorTema = 0;
+        for (int i = 0; i < temas.size(); i++) {
+            if (todosPost.size() == 0) {
+                lblRespMayor5.setText("Sin postulantes.");
+            } else {
+                for (int j = 0; j < todosPost.get(i).getConocimiento().size(); j++) {
+
+                    int nivelPost = todosPost.get(i).getNiveles().get(j);
+                    String tematicaPost = todosPost.get(i).getConocimiento().get(j).getNombre();
+
+                    if (temas.get(index).getNombre().equals(tematicaPost) && nivelPost > 5) {
+                        cantidadPost++;
+                    }
+                }
+            }
+            if (todosPuestos.size() == 0) {
+                lblRespCantTema.setText("Sin puestos.");
+            } else {
+                if (todosPuestos.get(i).getTemasRequeridos().contains(temas.get(index))) {
+                    cantPorTema++;
+                }
+            }
+
+        }
+        lblRespCantTema.setText(Integer.toString(cantPorTema));
+        lblRespMayor5.setText(Integer.toString(cantidadPost));
+    }//GEN-LAST:event_lstTemasValueChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblCantMayor5;
+    private javax.swing.JLabel lblCantPuestos;
+    private javax.swing.JLabel lblRespCantTema;
+    private javax.swing.JLabel lblRespMayor5;
+    private javax.swing.JLabel lblSeleccionar;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JList<String> lstTemas;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,3 +1,4 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
@@ -15,12 +16,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         this.modeloPost = modeloPost;
         this.setResizable(false);
         this.sistem = sistema;
-//        comboxTema.removeAllItems();
-//        
-//        for(int i = 0 ; i < sistem.getSizeTematicas(); i++){
-//            
-//            comboxTema.addItem(sistem.getTematicas().get(i).getNombre());
-//        }
+
         ordenarComBox();
     }
 
@@ -191,18 +187,14 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "No hay atributos de experiencia añadidos.");
         } else {
             ArrayList<Tematica> todasTematicas = modeloPost.getConocimiento();
-            //modeloPost.modeloPost.addConocimiento(lstTema.getSelectedValue());
-            //for (int j = 0; j < lstTema.getLastVisibleIndex(); j++) {
+
             ArrayList<Tematica> elegidas = new ArrayList<>();
-                for (int i = 0; i < modeloPost.getConocimiento().size(); i++) {
-                    if (todasTematicas.get(i).getNombre().equals(lstTema.getSelectedValue())) {
-                        modeloPost.addConocimiento(todasTematicas.get(i));
-                        modeloPost.addNivel((Integer) spinnerNivel.getValue());
-                    }
+            for (int i = 0; i < modeloPost.getConocimiento().size(); i++) {
+                if (todasTematicas.get(i).getNombre().equals(lstTema.getSelectedValue())) {
+                    modeloPost.addConocimiento(todasTematicas.get(i));
+                    modeloPost.addNivel((Integer) spinnerNivel.getValue());
                 }
-            //}
-            
-            
+            }
 
             this.setVisible(false);
         }
@@ -214,7 +206,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_comboxTemaActionPerformed
 
     private void btnAgreagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreagarActionPerformed
-     
+
         if (comboxTema.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "No hay un tema slecionado.");
         } else {
@@ -238,19 +230,12 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                 lstTema.setListData(experiencias);
             }
         }
-        //this.modeloPost.addNivel(nivel);
-        //this.modeloPost.addConocimiento(seleccionComBox);
-
-        /*for(int i = 0 ; i < sistem.getSizePostulantes(); i++){
-            jScrollPane2.add(seleccionComBox);
-        }*/
+        
 
     }//GEN-LAST:event_btnAgreagarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-//        String temaSelect = lstTema.getSelectedValue();
-//        String nomTemaSel = temaSelect.substring(0, temaSelect.lastIndexOf(" "));
         if (!lstTema.isSelectionEmpty()) {
             String temaSelect = lstTema.getSelectedValue();
             String nomTemaSel = temaSelect.substring(0, temaSelect.lastIndexOf(" "));
@@ -267,8 +252,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
                 }
             }
 
-            //int nivel = (int) spinnerNivel.getValue();
-            //ArrayList<Tematica> temas = modeloPost.getConocimiento();
+            
             niveles = modeloPost.getNiveles();
 
             String[] experiencias = new String[listaCono.size()];

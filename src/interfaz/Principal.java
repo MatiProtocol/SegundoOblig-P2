@@ -1,3 +1,4 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
@@ -253,8 +254,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTematicaActionPerformed
         TematicaJDialogue ventanita = new TematicaJDialogue(this, true, modelo);
         ventanita.setVisible(true);
-//        Tematica modeloFin = new Tematica();
-//        modeloFin = ventanita.devolverTem();
+//        
     }//GEN-LAST:event_btnTematicaActionPerformed
 
     private void btnPostularmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostularmeActionPerformed
@@ -264,8 +264,7 @@ public class Principal extends javax.swing.JFrame {
             PostulanteJDialogue vent = new PostulanteJDialogue(this, true, modelo);
             vent.setVisible(true);
         }
-//        Postulante modeloFin = new Postulante();
-//        modeloFin = vent.devolverPost();
+//        
     }//GEN-LAST:event_btnPostularmeActionPerformed
 
     private void btnBajaPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaPostActionPerformed

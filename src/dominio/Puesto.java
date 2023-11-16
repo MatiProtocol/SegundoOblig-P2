@@ -2,18 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package dominio;
 
 import java.util.*;
 
-/**
- *
- * @author matib
- */
+
 public class Puesto {
 
     private String nombre;
-    private String tipo; //remoto presencial o mxto de los radio botones
+    private String tipo; //remoto, presencial o mixto de los radio botones
     private ArrayList<Tematica> temasRequeridos;
 
     public Puesto () {
@@ -53,5 +51,9 @@ public class Puesto {
         this.temasRequeridos.add(unT);
     }
     
+    @Override
+    public String toString(){
+        return this.nombre;
+    }
   
 }

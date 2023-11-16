@@ -1,3 +1,4 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
@@ -154,7 +155,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         this.eval = new Evaluador();
-        //System.out.println(chequeo());
+       
         if (!chequeo()) {
             JOptionPane.showMessageDialog(this, "No fue posible crear al evaluador. Revisar datos ingresados.");
         } else {
@@ -163,7 +164,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
             String cedula = jTextFieldCed.getText();
             String dirrec = jTextFieldDir.getText();
             int ingreso = Integer.parseInt(jTextFieldIngreso.getText());
-            System.out.println(nomb + " " + cedula + " " + dirrec + " " + ingreso);
+            
 
             eval.setNombre(nomb);
             eval.setCedula(cedula);
@@ -225,25 +226,6 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
             }
         }
         return bien;
-
-        /*boolean todo = (!(jTextFieldCed.getText().isBlank()) || !(jTextFieldDir.getText().isBlank()) || !(jTextFieldNom.getText().isBlank()));
-        //boolean hecho = false;
-
-        Integer anoIng = 0;
-
-        try {
-            anoIng = Integer.valueOf(jLabelIngreso.getText());
-            //hecho = true;
-        } catch (NumberFormatException e) {
-            e.getMessage();
-            //JOptionPane.showMessageDialog(this, "El año ingresado es incorrecto.");
-        }
-
-        //if (anoIng > 2023 || anoIng <= 1965) {
-            todo = false;
-        //}
-        System.out.println(todo);
-        return todo;*/
     }
 
 }

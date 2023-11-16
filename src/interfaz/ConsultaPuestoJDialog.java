@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
@@ -11,6 +12,8 @@ import javax.swing.JOptionPane;
 public class ConsultaPuestoJDialog extends javax.swing.JDialog {
 
     private Sistema sistema;
+    private Puesto seleccionado;
+    private String[] postulExportar;
 
     public ConsultaPuestoJDialog (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
@@ -21,7 +24,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
 
         String[] todosPuestos = new String[puestos.size()];
         for (int i = 0; i < todosPuestos.length; i++) {
-            todosPuestos[i] = "" + puestos.get(i).getNombre();
+            todosPuestos[i] = "" + puestos.get(i);
         }
 
         lstPuestos.setListData(todosPuestos);
@@ -99,6 +102,11 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
         });
 
         btnExportar.setText("Exportar");
+        btnExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,51 +187,68 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
             ArrayList<Puesto> puestos = sistema.getPuestos();
             int nivel = (Integer) spnNivel.getValue();
             String formato = lstPuestos.getSelectedValue();
+
             int nivelPostulante = 0;
             for (int i = 0; i < puestos.size(); i++) {
                 if (formato.equals(puestos.get(i).getNombre())) {
                     formato = puestos.get(i).getTipo();
-
+                    this.seleccionado = puestos.get(i);
                 }
             }
 
             ArrayList<Postulante> todosPost = sistema.getPostulantes();
             ArrayList<Postulante> soloPost = new ArrayList<>();
-            /*for (int i = 0; i < todosPost.size(); i++) {
-                boolean bien = true;
-                if(formato.equals(todosPost.get(i).getTipoTrabajo())){
-                    soloPost.add(todosPost.get(i));
-                }
-            }*/
-
+            
+           
             for (int i = 0; i < todosPost.size(); i++) {
                 boolean chequeado = true;
                 if (todosPost.get(i).getEntrevistas().size() == 0) {
                     chequeado = false;
-                } else {
-                    if (chequeado && !formato.equals(todosPost.get(i).getTipoTrabajo())) {
-                        chequeado = false;
-                    } else {
-
-                        if (todosPost.get(i).getNiveles().get(i) < nivel) {
-                            chequeado = false;
-                        }
-                    }
-                    //}
-                    if (chequeado) {
-                        soloPost.add(todosPost.get(i));
+                }
+                if (!(formato.equals(todosPost.get(i).getTipoTrabajo()))) {
+                    chequeado = false;
+                }
+                int indexNivel = 0;
+                for (int j = 0; j < todosPost.get(i).getNiveles().size(); j++) {
+                    if (todosPost.get(i).getConocimiento().get(j).getNombre().equals(this.seleccionado.getTemasRequeridos().get(j).getNombre())) {
+                        indexNivel = j;
                     }
                 }
-            }
+                if (nivel > todosPost.get(i).getNiveles().get(indexNivel)) {
+                    chequeado = false;
+                }
+                
+                if (chequeado) {
+                    soloPost.add(todosPost.get(i));
+                }
 
+            }
+            
             //postOrdNivel(soloPost);
             String[] postCumplen = new String[soloPost.size()];
             for (int i = 0; i < postCumplen.length; i++) {
                 postCumplen[i] = "" + soloPost.get(i);
             }
             lstPostulantes.setListData(postCumplen);
+            this.postulExportar = postCumplen;
         }
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarActionPerformed
+        if (lstPostulantes.getLastVisibleIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "No hay postulantes para exportar.");
+        } else {
+            ArchivoGrabacion ag = new ArchivoGrabacion("Consulta.txt");
+            for(int i = 0; i<this.postulExportar.length; i++){
+                ag.grabarLinea(this.postulExportar[i]);
+                
+            }
+            ag.cerrar();
+            this.setVisible(false);
+        }
+
+
+    }//GEN-LAST:event_btnExportarActionPerformed
 
     /**
      * @param args the command line arguments

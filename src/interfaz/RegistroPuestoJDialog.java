@@ -1,3 +1,4 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
@@ -17,8 +18,7 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
         super(parent, modal);
         this.sistema = sistema;
         initComponents();
-        /*lstTemaElegido.setSize(99, 150);
-        lstTemasGral.setSize(99, 150);*/
+
         this.setResizable(false);
 
         ArrayList<Tematica> tema = new ArrayList<>();
@@ -176,19 +176,23 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                             .addComponent(txtFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblAddAdvertencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblListaTema)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(28, 28, 28)
-                                .addComponent(btnAgregarTema)
-                                .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblTElegido)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                        .addComponent(lblAddAdvertencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(62, 62, 62))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblListaTema)
+                        .addGap(45, 45, 45))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1)
+                        .addGap(28, 28, 28)))
+                .addComponent(btnAgregarTema)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTElegido)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,11 +257,6 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
                 lblAddAdvertencia.setText("");
                 todosGral.add(lstTemasGral.getModel().getElementAt(lstTemasGral.getAnchorSelectionIndex()));
 
-                /*for (int i = 0; i < lstTemasGral.getLastVisibleIndex()+1; i++) {
-                if(lstTemasGral.getModel().getElementAt(i).is)
-                        todosGral.add(lstTemasGral.getModel().getElementAt(i));
-                
-            }*/
                 String[] seleccionado = new String[todosGral.size()];
                 for (int i = 0; i < seleccionado.length; i++) {
                     seleccionado[i] = "" + todosGral.get(i);
@@ -281,7 +280,6 @@ public class RegistroPuestoJDialog extends javax.swing.JDialog {
             this.puesto = new Puesto();
             this.puesto.setNombre(txtFieldNombre.getText());
 
-            //String[] temas = lstTemaElegido.getModel().get;
             ArrayList<Tematica> temas = new ArrayList<>();
             ArrayList<Tematica> todosTemas = sistema.getTematicas();
 

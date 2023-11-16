@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author alumnoFI
- */
+
 public class BajaPostulanteJDialog extends javax.swing.JDialog {
 
     private Postulante modelo;
@@ -21,7 +19,7 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
     public BajaPostulanteJDialog (java.awt.Frame parent, boolean modal, Sistema unS) {
         super(parent, modal);
         sistema = unS;
-        //this.modelo = modelo;
+       
         this.sistema = unS;
         this.setResizable(false);
         initComponents();
@@ -154,8 +152,7 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
                 }
             }
 
-            //int nivel = (int) spinnerNivel.getValue();
-            //ArrayList<Tematica> temas = modeloPost.getConocimiento();
+            
             ArrayList<Postulante> postul = sistema.getPostulantes();
             ArrayList<String> cedulas = new ArrayList<>();
             for (int i = 0; i < postul.size(); i++) {

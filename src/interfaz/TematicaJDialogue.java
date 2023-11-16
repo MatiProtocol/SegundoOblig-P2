@@ -1,8 +1,8 @@
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
 import dominio.*;
 import javax.swing.JOptionPane;
-//import dominio.Tematica;
 
 public class TematicaJDialogue extends javax.swing.JDialog {
 
@@ -12,7 +12,7 @@ public class TematicaJDialogue extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setResizable(false);
-        
+
         modelo = sistema;
     }
 
@@ -164,27 +164,23 @@ public class TematicaJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegistrarmeActionPerformed
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
-        if(txtNombre.getText().isBlank()){
+        if (txtNombre.getText().isBlank()) {
             jLblAdvertenciaNomb.setText("Se deben ingresar al menos 1 caractér.");
-        }else{
+        } else {
             jLblAdvertenciaNomb.setText("");
         }
     }//GEN-LAST:event_txtNombreKeyReleased
 
     private void txtAreaDescripcionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAreaDescripcionKeyReleased
-        if(txtAreaDescripcion.getText().length() <= 4){
+        if (txtAreaDescripcion.getText().length() <= 4) {
             jLblAdvertenciaDesc.setText("Se deben ingresar al menos 5 caractéres.");
-        }else{
+        } else {
             jLblAdvertenciaDesc.setText("");
         }
     }//GEN-LAST:event_txtAreaDescripcionKeyReleased
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        /*if(txtNombre.getText().isBlank()){
-            jLblAdvertenciaNomb.setText("Se deben ingresar al menos 1 caractér.");
-        }else{
-            jLblAdvertenciaNomb.setText("");
-        }*/
+
     }//GEN-LAST:event_txtNombreKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

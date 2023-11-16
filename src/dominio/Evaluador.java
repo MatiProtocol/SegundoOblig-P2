@@ -2,12 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+//Matías Ohanian 305720 && Valentino Barreiro 308473 
 package dominio;
 
-/**
- *
- * @author alumnoFI
- */
+
 public class Evaluador {
     private String nombre;
     private String cedula;
