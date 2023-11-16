@@ -76,4 +76,8 @@ public class Sistema {
     public int getSizePostulantes () {
         return postulantes.size();
     }
+
+    public void addRow(Object[] object) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

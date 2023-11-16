@@ -72,6 +72,14 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
             }
         });
 
+        jTextFieldNom.setText("Kaligod");
+
+        jTextFieldCed.setText("123123123");
+
+        jTextFieldDir.setText("mi corazon");
+
+        jTextFieldIngreso.setText("1998");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

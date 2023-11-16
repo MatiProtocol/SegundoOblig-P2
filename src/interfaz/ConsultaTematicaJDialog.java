@@ -54,11 +54,6 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setText("Estadísticas según temática");
 
-        lstTemas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         lstTemas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstTemasValueChanged(evt);
@@ -74,10 +69,6 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
 
         lblCantPuestos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCantPuestos.setText("Cantidad de puestos con la tematica seleccionada: ");
-
-        lblRespMayor5.setText("jLabel5");
-
-        lblRespCantTema.setText("jLabel6");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

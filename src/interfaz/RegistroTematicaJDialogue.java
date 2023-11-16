@@ -4,11 +4,11 @@ package interfaz;
 import dominio.*;
 import javax.swing.JOptionPane;
 
-public class TematicaJDialogue extends javax.swing.JDialog {
+public class RegistroTematicaJDialogue extends javax.swing.JDialog {
 
     private Tematica tematica;
 
-    public TematicaJDialogue (java.awt.Frame parent, boolean modal, Sistema sistema) {
+    public RegistroTematicaJDialogue (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
         initComponents();
         this.setResizable(false);

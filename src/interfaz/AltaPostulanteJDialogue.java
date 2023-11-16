@@ -9,12 +9,12 @@ import java.util.*;
 import javax.print.attribute.AttributeSetUtilities;
 import javax.swing.*;
 
-public class PostulanteJDialogue extends javax.swing.JDialog {
+public class AltaPostulanteJDialogue extends javax.swing.JDialog {
 
     Postulante modelo = new Postulante();
     private Sistema sistema;
 
-    public PostulanteJDialogue (java.awt.Frame parent, boolean modal, Sistema sistema) {
+    public AltaPostulanteJDialogue (java.awt.Frame parent, boolean modal, Sistema sistema) {
         super(parent, modal);
         initComponents();
         this.setResizable(false);
