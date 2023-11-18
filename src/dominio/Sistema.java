@@ -1,11 +1,15 @@
 //Matías Ohanian 305720 && Valentino Barreiro 308473 
-
 package dominio;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
-
-public class Sistema {
+public class Sistema implements Serializable {
 
     private ArrayList<Evaluador> evaluadores;
     private ArrayList<Postulante> postulantes;
@@ -77,7 +81,20 @@ public class Sistema {
         return postulantes.size();
     }
 
-    public void addRow(Object[] object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void serealizarSist () {
+        try {
+            
+            
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(".\\Guardado"));
+            output.writeObject(this);
+            output.close();
+            
+        } catch (FileNotFoundException e) {
+            e.getMessage();
+            System.out.println("No se logró guardar los datos.");
+        } catch (IOException e) {
+            e.getMessage();
+            System.out.println("No se logró guardar los datos.");
+        }
     }
 }

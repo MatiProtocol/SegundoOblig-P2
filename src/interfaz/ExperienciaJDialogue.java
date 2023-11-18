@@ -66,6 +66,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         lblXP.setText("Experiencia:");
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.setToolTipText("Eliminar el tema seleccionado en la lista.");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -80,6 +81,7 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         });
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.setToolTipText("Registrar experiencia y conocimiento.");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -87,12 +89,14 @@ public class ExperienciaJDialogue extends javax.swing.JDialog {
         });
 
         btnAgreagar.setText("Agregar");
+        btnAgreagar.setToolTipText("Agregar el tema del combo a la lista inferior.");
         btnAgreagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgreagarActionPerformed(evt);
             }
         });
 
+        lstTema.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lstTema);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

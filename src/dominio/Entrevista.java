@@ -5,8 +5,10 @@
 //Matías Ohanian 305720 && Valentino Barreiro 308473 
 package dominio;
 
+import java.io.Serializable;
 
-public class Entrevista {
+public class Entrevista implements Serializable {
+
     private static int indexEntrevista = 0;
     private Evaluador evaluador;
     private Postulante postulante;
@@ -24,8 +26,6 @@ public class Entrevista {
     public int getIndexEntrevista () {
         return indexEntrevista;
     }
-
-  
 
     public Evaluador getEvaluador () {
         return evaluador;
@@ -60,6 +60,5 @@ public class Entrevista {
 
     public Entrevista () {
     }
-    
-    
+
 }

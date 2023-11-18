@@ -3,14 +3,20 @@ package interfaz;
 
 import dominio.*;
 import java.util.*;
-import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
+import javax.swing.*;
+import java.awt.*;
+import static java.awt.SystemColor.text;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
-    TableRowSorter<DefaultTableModel> sorter;
     private Sistema sistema;
     private Postulante postulan;
 
@@ -30,7 +36,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         }
 
         jListPostulantes.setListData(postulantes);
-        //creatTabla();
 
     }
 
@@ -52,12 +57,12 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         lblCed = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lstExperiencia = new javax.swing.JList<>();
-        lblNombre = new javax.swing.JLabel();
-        lblCedula = new javax.swing.JLabel();
-        lblTelefono = new javax.swing.JLabel();
-        lblMail = new javax.swing.JLabel();
-        lblLink = new javax.swing.JLabel();
-        lblFormato = new javax.swing.JLabel();
+        lblTxtNombre = new javax.swing.JLabel();
+        lblTxtCedula = new javax.swing.JLabel();
+        lblTxtTelefono = new javax.swing.JLabel();
+        lblTxtMail = new javax.swing.JLabel();
+        lblTxtLink = new javax.swing.JLabel();
+        lblTxtFormato = new javax.swing.JLabel();
         lblExp = new javax.swing.JLabel();
         lblBuscar = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -69,6 +74,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jListPostulantes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jListPostulantes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jListPostulantesValueChanged(evt);
@@ -107,17 +113,28 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
         jScrollPane2.setViewportView(lstExperiencia);
 
-        lblNombre.setText("-");
+        lblTxtNombre.setText("-");
 
-        lblCedula.setText("-");
+        lblTxtCedula.setText("-");
 
-        lblTelefono.setText("-");
+        lblTxtTelefono.setText("-");
 
-        lblMail.setText("-");
+        lblTxtMail.setText("-");
 
-        lblLink.setText("-");
+        lblTxtLink.setText("-");
+        lblTxtLink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTxtLinkMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblTxtLinkMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblTxtLinkMouseExited(evt);
+            }
+        });
 
-        lblFormato.setText("-");
+        lblTxtFormato.setText("-");
 
         lblExp.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblExp.setText("Experiencia:");
@@ -136,6 +153,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.setToolTipText("Buscar coincidencias en las descripciones.");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -143,6 +161,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.setToolTipText("Borrar tabla inferior.");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBorrarActionPerformed(evt);
@@ -157,6 +176,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                 "Nro", "Evaluador", "Puntaje", "Comentarios"
             }
         ));
+        tblBusqueda.setShowGrid(true);
         jScrollPane3.setViewportView(tblBusqueda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,42 +190,37 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPost)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(95, 95, 95)
+                        .addGap(98, 98, 98)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblCed, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGap(9, 9, 9))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblTelf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblLinked, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblExp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblMail, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblFormat)
-                                .addGap(524, 524, 524))))
+                                    .addComponent(lblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCed, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblTxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblTxtCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(9, 9, 9))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblTelf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblLinked, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblExp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblFormat))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblTxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTxtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTxtLink, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblTxtFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +236,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                                 .addComponent(btnBorrar)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 973, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
             .addGroup(layout.createSequentialGroup()
@@ -255,23 +270,23 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(lblTelf)
-                                            .addComponent(lblTelefono))
+                                            .addComponent(lblTxtTelefono))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(lblM)
-                                            .addComponent(lblMail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(lblTxtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(lblLinked)
-                                            .addComponent(lblLink))
+                                            .addComponent(lblTxtLink))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(lblFormat)
-                                            .addComponent(lblFormato)))))
+                                            .addComponent(lblTxtFormato)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNombre)
+                                .addComponent(lblTxtNombre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblCedula)))
+                                .addComponent(lblTxtCedula)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblExp)
@@ -300,15 +315,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         if (txtBuscar.getText().isBlank() || sistema.getEntrevistas().size() == 0) {
             JOptionPane.showMessageDialog(this, "No hay nada para buscar.");
         } else {
-            
-            /*tblBusqueda.setModel(new DefaultTableModel(
-                    new Object[][]{
-                        {"", null, null, null}
-                    },
-                    new String[]{
-                        "Nro", "Evaluador", "Puntaje", "Comentarios"
-                    }
-            ));*/
+
             tblBusqueda.setDefaultRenderer(Object.class, new CellRenderer());
 
             String buscar = txtBuscar.getText();
@@ -321,37 +328,30 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
             DefaultTableModel tableModelo = (DefaultTableModel) tblBusqueda.getModel();
             tableModelo.setRowCount(1);
 
-            //tableModelo.removeRow(i);
             Object[][] lineas = new Object[sistema.getEntrevistas().size()][4];
             ArrayList<Object[]> verga = new ArrayList<Object[]>();
 
-            //tableModelo.setColumnIdentifiers(columnas);
-            System.out.println(buscar);
+            
             int cont = 0;
             for (int i = 0; i < sistema.getSizePostulantes(); i++) {
 
                 for (int j = 0; j < allPostulantes.get(i).getEntrevistas().size(); j++) {
-                    
+
                     String desc = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
                     if (desc.toLowerCase().contains(buscar.toLowerCase())) {
-                        /*lineas[i][0] = j + 1;
-                        lineas[i][1] = allPostulantes.get(i).getEntrevistas().get(j).getEvaluador().getNombre();
-                        lineas[i][2] = allPostulantes.get(i).getEntrevistas().get(j).getPuntaje();
-                        lineas[i][3] = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
-                        cont++;
-                         */
+
                         Object[] nonbvre = new Object[4];
                         nonbvre[0] = j + 1;
-                        nonbvre[1] = allPostulantes.get(i).getEntrevistas().get(j).getEvaluador().getNombre();
+                        nonbvre[1] = allPostulantes.get(i).getEntrevistas().get(j).getEvaluador().getNombreCedula();
                         nonbvre[2] = allPostulantes.get(i).getEntrevistas().get(j).getPuntaje();
                         nonbvre[3] = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
                         cont++;
                         verga.add(nonbvre);
-                        System.out.println("Encontrado "+ allPostulantes.get(i).getEntrevistas().get(j).getDescripcion());
-                    }else{
-                        System.out.println("deletado "+ allPostulantes.get(i).getEntrevistas().get(j).getDescripcion());
+
+                    } else {
+
                     }
-                    //tableModelo.addRow(lineas[i]);
+
                 }
 
             }
@@ -364,7 +364,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
             }
 
-
             tableModelo.setDataVector(matCosa, columnas);
 
             tblBusqueda.setModel(tableModelo);
@@ -374,6 +373,8 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         tblBusqueda.clearSelection();
+        String[] columnas = new String[]{"Nro", "Evaluador", "Puntaje", "Comentarios"};
+        tblBusqueda.setModel(new DefaultTableModel(columnas, 1));
 
     }//GEN-LAST:event_btnBorrarActionPerformed
 
@@ -381,13 +382,16 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         ArrayList<Postulante> postulante = sistema.getPostulantes();
         int i = jListPostulantes.getAnchorSelectionIndex();
 
-        lblNombre.setText(postulante.get(i).getNombre());
-        lblCedula.setText(postulante.get(i).getCedula());
+        lblTxtNombre.setText(postulante.get(i).getNombre());
+        lblTxtCedula.setText(postulante.get(i).getCedula());
         lblDireccion.setText(postulante.get(i).getDireccion());
-        lblTelefono.setText(postulante.get(i).getTelefono());
-        lblMail.setText(postulante.get(i).getMail());
-        lblLink.setText(postulante.get(i).getLinkedIn());
-        lblFormato.setText(postulante.get(i).getTipoTrabajo());
+        lblTxtTelefono.setText(postulante.get(i).getTelefono());
+        lblTxtMail.setText(postulante.get(i).getMail());
+        lblTxtLink.setText(postulante.get(i).getLinkedIn());
+        lblTxtLink.setForeground(new Color(0, 0, 255));
+
+        //lblTxtLink = crearLinkedIn(postulante.get(i).getLinkedIn());
+        lblTxtFormato.setText(postulante.get(i).getTipoTrabajo());
 
         ArrayList<Tematica> conocimientos = postulante.get(i).getConocimiento();
         ArrayList<Integer> niveles = postulante.get(i).getNiveles();
@@ -403,8 +407,33 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jListPostulantesValueChanged
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        //filtrar();
+
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void lblTxtLinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTxtLinkMouseClicked
+        String link = lblTxtLink.getText();
+
+        try {
+            Desktop.getDesktop().browse(new URI(link));
+        } catch (URISyntaxException ex) {
+            ex.getMessage();
+            JOptionPane.showMessageDialog(this, "LinkedIn incorrecto.");
+        } catch (IOException ex) {
+            ex.getMessage();
+        }
+
+    }//GEN-LAST:event_lblTxtLinkMouseClicked
+
+    private void lblTxtLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTxtLinkMouseEntered
+        String link = lblTxtLink.getText();
+        this.getRootPane().setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this.lblTxtLink.setForeground(new Color(70,40,150));
+    }//GEN-LAST:event_lblTxtLinkMouseEntered
+
+    private void lblTxtLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTxtLinkMouseExited
+        this.lblTxtLink.setForeground(new Color(0,0,255));
+        this.getRootPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_lblTxtLinkMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -418,21 +447,21 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jlblTitulo;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCed;
-    private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblDirec;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblExp;
     private javax.swing.JLabel lblFormat;
-    private javax.swing.JLabel lblFormato;
-    private javax.swing.JLabel lblLink;
     private javax.swing.JLabel lblLinked;
     private javax.swing.JLabel lblM;
-    private javax.swing.JLabel lblMail;
     private javax.swing.JLabel lblNom;
-    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPost;
-    private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTelf;
+    private javax.swing.JLabel lblTxtCedula;
+    private javax.swing.JLabel lblTxtFormato;
+    private javax.swing.JLabel lblTxtLink;
+    private javax.swing.JLabel lblTxtMail;
+    private javax.swing.JLabel lblTxtNombre;
+    private javax.swing.JLabel lblTxtTelefono;
     private javax.swing.JList<String> lstExperiencia;
     private javax.swing.JTable tblBusqueda;
     private javax.swing.JTextField txtBuscar;
@@ -442,46 +471,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         Collections.sort(unA);
         return unA;
     }
+
+    
 }
-
-/*    private void creatTabla() {
-        String[] columnas = new String[]{"Nro", "Evaluador", "Puntaje", "Comentarios"};
-        String[][] lineas = new String[sistema.getEntrevistas().size()][4];
-        String buscar = txtBuscar.getText();
-        ArrayList<Evaluador> allEvaluadores = sistema.getEvaluadores();
-        ArrayList<Postulante> allPostulantes = sistema.getPostulantes();
-        ArrayList<Entrevista> allEntrevistas = sistema.getEntrevistas();
-        
-        for (int i = 0; i < sistema.getSizePostulantes(); i++) {
-
-            for (int j = 0; j < allPostulantes.get(i).getEntrevistas().size(); j++) {
-
-                String desc = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
-                if (-1 != desc.indexOf(buscar)) {
-                    lineas[i][0] = Integer.toString(j + 1);
-                    lineas[i][1] = allPostulantes.get(i).getEntrevistas().get(j).getEvaluador().getNombre();
-                    lineas[i][2] = Integer.toString(allPostulantes.get(i).getEntrevistas().get(j).getPuntaje());
-                    lineas[i][3] = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
-
-                }
-
-            }
-
-        }
-        
-        DefaultTableModel modelo = new DefaultTableModel(lineas, columnas);
-        System.out.println(modelo.getRowCount());
-        tblBusqueda.setModel(modelo);
-        tblBusqueda.setAutoCreateRowSorter(true);
-        sorter=new TableRowSorter<>(modelo);
-        tblBusqueda.setRowSorter(sorter);
-    }
-    private void filtrar(){
-        try{
-            sorter.setRowFilter(RowFilter.regexFilter(txtBuscar.getText()));
-        }catch(Exception e){
-            
-        }
-    }
-
-}*/

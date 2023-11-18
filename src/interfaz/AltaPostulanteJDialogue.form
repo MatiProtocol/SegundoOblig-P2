@@ -209,7 +209,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Leonel Pessi"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingrese su nombre."/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtCedula"/>
@@ -224,7 +223,6 @@
     <Component class="javax.swing.JTextField" name="txtCedula">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="12345678"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingresar c&#xe9;dula sin puntos ni gui&#xf3;n."/>
         <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -241,8 +239,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtDireccion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ViscaBarca"/>
-        <Property name="toolTipText" type="java.lang.String" value="Ingrese su direcci&#xf3;n."/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtTelefono"/>
         </Property>
@@ -255,8 +252,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtTelefono">
       <Properties>
-        <Property name="text" type="java.lang.String" value="123123099"/>
-        <Property name="toolTipText" type="java.lang.String" value="Ingrese su tel&#xe9;fono."/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtMail"/>
         </Property>
@@ -269,7 +265,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtMail">
       <Properties>
-        <Property name="text" type="java.lang.String" value="leomessi1_verdadero@gmail.com"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingrese un mail v&#xe1;lido."/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="txtLinkedin"/>
@@ -284,7 +279,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtLinkedin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="https://linkedin.com/in/"/>
         <Property name="toolTipText" type="java.lang.String" value="Ingrese un LinkedIn v&#xe1;lido."/>
         <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="rbtnRemoto"/>
@@ -309,7 +303,6 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGupo"/>
         </Property>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Remoto"/>
         <Property name="toolTipText" type="java.lang.String" value="Seleccionar si su formato de trabajo es remoto."/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -342,6 +335,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGupo"/>
         </Property>
+        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Mixto"/>
         <Property name="toolTipText" type="java.lang.String" value="Seleccionar si su formato de trabajo es mixto."/>
         <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
@@ -365,6 +359,7 @@
     <Component class="javax.swing.JButton" name="btnSig">
       <Properties>
         <Property name="text" type="java.lang.String" value="Siguiente"/>
+        <Property name="toolTipText" type="java.lang.String" value="Avanzar a la ventana de experiencias."/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[80, 27]"/>
         </Property>

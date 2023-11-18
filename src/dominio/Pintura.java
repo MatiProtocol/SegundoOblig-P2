@@ -4,9 +4,10 @@
  */
 package dominio;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Pintura {
+public class Pintura implements Serializable {
 
     public int contador = 0;
     public ArrayList<String> cosas = new ArrayList<>();

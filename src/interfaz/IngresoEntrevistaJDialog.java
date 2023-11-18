@@ -69,8 +69,10 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         jLabelTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelTitulo.setText("Ingresar entrevista");
 
+        jListEval.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListEval);
 
+        jListPost.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jListPost);
 
         jLabelEvals.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -94,6 +96,7 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         jLabelComent.setText("Comentario:");
 
         jbtnIngreso.setText("Ingresar");
+        jbtnIngreso.setToolTipText("Ingresar entrevista.");
         jbtnIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnIngresoActionPerformed(evt);
@@ -142,12 +145,9 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelPost)
-                                .addGap(96, 96, 96))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addComponent(jLabelPost)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +209,7 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
             Evaluador evalSelected;
             boolean hecho = false;
             for (int i = 0; i < sistema.getEvaluadores().size() && !hecho; i++) {
-                if (nombreEval.equals(sistema.getEvaluadores().get(i).getNombre())) {
+                if (nombreEval.equalsIgnoreCase(sistema.getEvaluadores().get(i).getNombre())) {
                     evalSelected = sistema.getEvaluadores().get(i);
                     entrevista.setEvaluador(evalSelected);
                     hecho = true;
@@ -221,7 +221,7 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
             Postulante postSelected = new Postulante();
             hecho = false;
             for (int i = 0; i < sistema.getSizePostulantes() && !hecho; i++) {
-                if (nombrePost.equals(sistema.getPostulantes().get(i).getNombre())) {
+                if (nombrePost.equalsIgnoreCase(sistema.getPostulantes().get(i).getNombre())) {
                     postSelected = sistema.getPostulantes().get(i);
                     entrevista.setPostulante(postSelected);
                     hecho = true;
@@ -274,6 +274,7 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
                 }
             }
         }
+        
         return flag;
     }
 

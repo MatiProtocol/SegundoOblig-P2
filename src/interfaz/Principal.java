@@ -46,12 +46,18 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Programa para la gestión de postulantes");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lblGestion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblGestion.setText("Gestión de Personal");
 
         btnTematica.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnTematica.setText("Registrar Temática");
+        btnTematica.setToolTipText("Registrar una temática.");
         btnTematica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTematicaActionPerformed(evt);
@@ -60,6 +66,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnPostularme.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPostularme.setText("Dar de Alta un Postulante");
+        btnPostularme.setToolTipText("Ingresar un postulante.");
         btnPostularme.setMaximumSize(new java.awt.Dimension(142, 27));
         btnPostularme.setMinimumSize(new java.awt.Dimension(142, 27));
         btnPostularme.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +77,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnBajaPost.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnBajaPost.setText("Dar de Baja un Postulante");
+        btnBajaPost.setToolTipText("Eliminar a un postulante ya registrado.");
         btnBajaPost.setMaximumSize(new java.awt.Dimension(142, 27));
         btnBajaPost.setMinimumSize(new java.awt.Dimension(142, 27));
         btnBajaPost.setPreferredSize(new java.awt.Dimension(99, 27));
@@ -81,6 +89,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnRegistrarEval.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrarEval.setText("Registrar Evaluador");
+        btnRegistrarEval.setToolTipText("Regstrar al evaluador.");
         btnRegistrarEval.setMinimumSize(new java.awt.Dimension(123, 27));
         btnRegistrarEval.setPreferredSize(new java.awt.Dimension(123, 27));
         btnRegistrarEval.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +100,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnIngresarEntr.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnIngresarEntr.setText("Ingresar una Entrevista");
+        btnIngresarEntr.setToolTipText("Ingresar una entrevista.");
         btnIngresarEntr.setMaximumSize(new java.awt.Dimension(148, 27));
         btnIngresarEntr.setMinimumSize(new java.awt.Dimension(148, 27));
         btnIngresarEntr.setPreferredSize(new java.awt.Dimension(148, 27));
@@ -102,6 +112,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnRegistrarPuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnRegistrarPuesto.setText("Registrar Puesto");
+        btnRegistrarPuesto.setToolTipText("Registrar un puesto de trabajo.");
         btnRegistrarPuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarPuestoActionPerformed(evt);
@@ -110,6 +121,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnConsultaPuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnConsultaPuesto.setText("Consultar por Puesto");
+        btnConsultaPuesto.setToolTipText("Consultar qué postulantes están capacitados para los puestos.");
         btnConsultaPuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultaPuestoActionPerformed(evt);
@@ -125,6 +137,7 @@ public class Principal extends javax.swing.JFrame {
 
         btnEstadisticaTemas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnEstadisticaTemas.setText("Estadísticas por Tematica");
+        btnEstadisticaTemas.setToolTipText("Ver estadísticas según las temáticas ingresadas.");
         btnEstadisticaTemas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEstadisticaTemasActionPerformed(evt);
@@ -144,6 +157,7 @@ public class Principal extends javax.swing.JFrame {
         lblEvaluador.setText("Evaluador");
 
         btnVolver.setText("Volver");
+        btnVolver.setToolTipText("Volver al menú principal.");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -286,7 +300,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadisticaTemasActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-
+        modelo.serealizarSist();
         Inicio ventan = new Inicio(modelo);
         ventan.setVisible(true);
         this.setVisible(false);
@@ -309,6 +323,10 @@ public class Principal extends javax.swing.JFrame {
         HistorialPostulanteJDialog vento = new HistorialPostulanteJDialog(this, true, modelo);
         vento.setVisible(true);
     }//GEN-LAST:event_btnHistoriaPostActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        modelo.serealizarSist();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -71,6 +71,7 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
         });
 
         jBtnEliminar.setText("Eliminar");
+        jBtnEliminar.setToolTipText("Eliminar al postulante seleccionado.");
         jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnEliminarActionPerformed(evt);
@@ -82,6 +83,7 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jListBaja.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListBaja);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,19 +141,22 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
 
     private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
         if (!jListBaja.isSelectionEmpty()) {
+            
+            
             String postSelect = jListBaja.getSelectedValue();
             String nomPostSel = postSelect.substring(8, postSelect.indexOf("."));
             
-            ArrayList<Postulante> listaPostul = sistema.getPostulantes();     //nomPostSel.getConocimiento();
+            ArrayList<Postulante> listaPostul = sistema.getPostulantes();     
             boolean bandeira = false;
             for (int i = 0; i < listaPostul.size() && !bandeira; i++) {
-                if (listaPostul.get(i).getNombre().equals(nomPostSel)) {
+                if (listaPostul.get(i).getNombre().equalsIgnoreCase(nomPostSel)) {
                     listaPostul.remove(listaPostul.get(i));
-                    System.out.println("bom dia del bandeira");
+                    
+                    
                     bandeira = true;
                 }
             }
-
+            
             
             ArrayList<Postulante> postul = sistema.getPostulantes();
             ArrayList<String> cedulas = new ArrayList<>();
@@ -165,6 +170,7 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
             }
 
             jListBaja.setListData(postulantes);
+            
         } else {
             JOptionPane.showMessageDialog(this, "No seleccionó ningún postulante.");
         }

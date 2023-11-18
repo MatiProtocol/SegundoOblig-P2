@@ -15,13 +15,13 @@ import java.util.*;
 public class CellRenderer extends DefaultTableCellRenderer {
 
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        Component tableCellRendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        if (value instanceof String) {
-            String string = (String) value;
+    public Component getTableCellRendererComponent(JTable table, Object comentario, boolean isSelected, boolean hasFocus, int row, int column) {
+        Component tableCellRendererComponent = super.getTableCellRendererComponent(table, comentario, isSelected, hasFocus, row, column);
+        if (comentario instanceof String) {
+            String string = (String) comentario;
             if (string.indexOf(' ') > -1) {
                 
-                setText(getHTML(string));
+                setText(string); //de este codigo sacado en clase, acá iría el llamado a getHTML, pero al no poder hacer la configuracion del color rojo, determinamos no utilizarlo.
             }
         }
         return tableCellRendererComponent;

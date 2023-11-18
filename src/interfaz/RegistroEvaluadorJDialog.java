@@ -40,6 +40,10 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
         jTextFieldIngreso = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        lblAdvertNomb = new javax.swing.JLabel();
+        lblAdvertCedula = new javax.swing.JLabel();
+        lblAdvertDirec = new javax.swing.JLabel();
+        lblAdvertRango = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,6 +63,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
         jLabelIngreso.setText("Año de Ingreso:");
 
         jButtonCancel.setText("Cancelar");
+        jButtonCancel.setToolTipText("");
         jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonCancelActionPerformed(evt);
@@ -66,19 +71,47 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
         });
 
         jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.setToolTipText("Registrar al evaluador.");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarActionPerformed(evt);
             }
         });
 
-        jTextFieldNom.setText("Kaligod");
+        jTextFieldNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNomActionPerformed(evt);
+            }
+        });
+        jTextFieldNom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldNomKeyReleased(evt);
+            }
+        });
 
-        jTextFieldCed.setText("123123123");
+        jTextFieldCed.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldCedKeyReleased(evt);
+            }
+        });
 
-        jTextFieldDir.setText("mi corazon");
+        jTextFieldDir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDirKeyReleased(evt);
+            }
+        });
 
-        jTextFieldIngreso.setText("1998");
+        lblAdvertNomb.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        lblAdvertNomb.setText("Campo obligatorio.");
+
+        lblAdvertCedula.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        lblAdvertCedula.setText("La cédula es incorrecta.");
+
+        lblAdvertDirec.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        lblAdvertDirec.setText("Dirección vacía.");
+
+        lblAdvertRango.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        lblAdvertRango.setText("Rango: 1960 - Act.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,7 +138,12 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
                             .addComponent(jTextFieldCed)
                             .addComponent(jTextFieldNom)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextFieldIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAdvertNomb, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAdvertCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAdvertDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAdvertRango, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
@@ -133,21 +171,29 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNom)
                     .addComponent(jTextFieldNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAdvertNomb)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCedula)
                     .addComponent(jTextFieldCed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAdvertCedula)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelDir)
                     .addComponent(jTextFieldDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAdvertDirec)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIngreso)
                     .addComponent(jTextFieldIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(1, 1, 1)
+                .addComponent(lblAdvertRango)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancel)
                     .addComponent(jButtonRegistrar))
@@ -163,7 +209,7 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         this.eval = new Evaluador();
-       
+
         if (!chequeo()) {
             JOptionPane.showMessageDialog(this, "No fue posible crear al evaluador. Revisar datos ingresados.");
         } else {
@@ -172,7 +218,6 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
             String cedula = jTextFieldCed.getText();
             String dirrec = jTextFieldDir.getText();
             int ingreso = Integer.parseInt(jTextFieldIngreso.getText());
-            
 
             eval.setNombre(nomb);
             eval.setCedula(cedula);
@@ -185,6 +230,35 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
+
+    private void jTextFieldNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNomActionPerformed
+
+    private void jTextFieldNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomKeyReleased
+        if (jTextFieldNom.getText().isBlank()) {
+            lblAdvertNomb.setText("Campo obligatorio.");
+        } else {
+            lblAdvertNomb.setText(" ");
+        }
+    }//GEN-LAST:event_jTextFieldNomKeyReleased
+
+    private void jTextFieldCedKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCedKeyReleased
+        if (jTextFieldCed.getText().isBlank() && !esCedula(jTextFieldCed.getText())) {
+            lblAdvertCedula.setText("La cédula es incorrecta.");
+        } else {
+            lblAdvertCedula.setText(" ");
+        }
+    }//GEN-LAST:event_jTextFieldCedKeyReleased
+
+    private void jTextFieldDirKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDirKeyReleased
+
+        if (jTextFieldDir.getText().isBlank()) {
+            lblAdvertDirec.setText("Dirección vacía.");
+        } else {
+            lblAdvertDirec.setText(" ");
+        }
+    }//GEN-LAST:event_jTextFieldDirKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -201,6 +275,10 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldDir;
     private javax.swing.JTextField jTextFieldIngreso;
     private javax.swing.JTextField jTextFieldNom;
+    private javax.swing.JLabel lblAdvertCedula;
+    private javax.swing.JLabel lblAdvertDirec;
+    private javax.swing.JLabel lblAdvertNomb;
+    private javax.swing.JLabel lblAdvertRango;
     // End of variables declaration//GEN-END:variables
     public boolean chequeo () {
         boolean bien = true;
@@ -232,6 +310,23 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
                     }
                 }
             }
+        }
+        for (int i = 0; i < sistema.getSizeEvaluador(); i++) {
+            if (jTextFieldCed.getText().equals(sistema.getEvaluadores().get(i).getCedula())) {
+                bien = false;
+            }
+        }
+        return bien;
+    }
+
+    public boolean esCedula (String unaC) {
+        boolean bien = true;
+        int cedula;
+        try {
+            cedula = Integer.parseInt(unaC);
+        } catch (NumberFormatException e) {
+            e.getMessage();
+            return false;
         }
         return bien;
     }

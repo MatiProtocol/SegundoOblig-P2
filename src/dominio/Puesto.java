@@ -5,10 +5,11 @@
 //Matías Ohanian 305720 && Valentino Barreiro 308473 
 package dominio;
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class Puesto {
+public class Puesto implements Serializable{
 
     private String nombre;
     private String tipo; //remoto, presencial o mixto de los radio botones

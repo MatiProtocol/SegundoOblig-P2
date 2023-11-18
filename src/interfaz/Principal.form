@@ -16,6 +16,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -163,6 +166,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar Tem&#xe1;tica"/>
+        <Property name="toolTipText" type="java.lang.String" value="Registrar una tem&#xe1;tica."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTematicaActionPerformed"/>
@@ -174,6 +178,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Dar de Alta un Postulante"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ingresar un postulante."/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[142, 27]"/>
         </Property>
@@ -191,6 +196,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Dar de Baja un Postulante"/>
+        <Property name="toolTipText" type="java.lang.String" value="Eliminar a un postulante ya registrado."/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[142, 27]"/>
         </Property>
@@ -211,6 +217,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar Evaluador"/>
+        <Property name="toolTipText" type="java.lang.String" value="Regstrar al evaluador."/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[123, 27]"/>
         </Property>
@@ -228,6 +235,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Ingresar una Entrevista"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ingresar una entrevista."/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[148, 27]"/>
         </Property>
@@ -248,6 +256,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar Puesto"/>
+        <Property name="toolTipText" type="java.lang.String" value="Registrar un puesto de trabajo."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarPuestoActionPerformed"/>
@@ -259,6 +268,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Consultar por Puesto"/>
+        <Property name="toolTipText" type="java.lang.String" value="Consultar qu&#xe9; postulantes est&#xe1;n capacitados para los puestos."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaPuestoActionPerformed"/>
@@ -278,6 +288,7 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Estad&#xed;sticas por Tematica"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ver estad&#xed;sticas seg&#xfa;n las tem&#xe1;ticas ingresadas."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstadisticaTemasActionPerformed"/>
@@ -322,6 +333,7 @@
     <Component class="javax.swing.JButton" name="btnVolver">
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
+        <Property name="toolTipText" type="java.lang.String" value="Volver al men&#xfa; principal."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverActionPerformed"/>

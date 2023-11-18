@@ -80,7 +80,6 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
         lblLinkedin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblLinkedin.setText("Linkedin:");
 
-        txtNombre.setText("Leonel Pessi");
         txtNombre.setToolTipText("Ingrese su nombre.");
         txtNombre.setNextFocusableComponent(txtCedula);
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -100,7 +99,6 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
         });
 
         txtCedula.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtCedula.setText("12345678");
         txtCedula.setToolTipText("Ingresar cédula sin puntos ni guión.");
         txtCedula.setCaretColor(new java.awt.Color(153, 153, 153));
         txtCedula.setNextFocusableComponent(txtDireccion);
@@ -120,8 +118,7 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtDireccion.setText("ViscaBarca");
-        txtDireccion.setToolTipText("Ingrese su dirección.");
+        txtDireccion.setToolTipText("");
         txtDireccion.setNextFocusableComponent(txtTelefono);
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -139,8 +136,7 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtTelefono.setText("123123099");
-        txtTelefono.setToolTipText("Ingrese su teléfono.");
+        txtTelefono.setToolTipText("");
         txtTelefono.setNextFocusableComponent(txtMail);
         txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -158,7 +154,6 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtMail.setText("leomessi1_verdadero@gmail.com");
         txtMail.setToolTipText("Ingrese un mail válido.");
         txtMail.setNextFocusableComponent(txtLinkedin);
         txtMail.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -182,7 +177,6 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtLinkedin.setText("https://linkedin.com/in/");
         txtLinkedin.setToolTipText("Ingrese un LinkedIn válido.");
         txtLinkedin.setNextFocusableComponent(rbtnRemoto);
         txtLinkedin.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -205,7 +199,6 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
         lblFormato.setText("Formato:");
 
         btnGupo.add(rbtnRemoto);
-        rbtnRemoto.setSelected(true);
         rbtnRemoto.setText("Remoto");
         rbtnRemoto.setToolTipText("Seleccionar si su formato de trabajo es remoto.");
         rbtnRemoto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -224,6 +217,7 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
         rbtnPresencial.setRequestFocusEnabled(false);
 
         btnGupo.add(rbtnMixto);
+        rbtnMixto.setSelected(true);
         rbtnMixto.setText("Mixto");
         rbtnMixto.setToolTipText("Seleccionar si su formato de trabajo es mixto.");
         rbtnMixto.setFocusTraversalPolicyProvider(true);
@@ -239,6 +233,7 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
         });
 
         btnSig.setText("Siguiente");
+        btnSig.setToolTipText("Avanzar a la ventana de experiencias.");
         btnSig.setMaximumSize(new java.awt.Dimension(80, 27));
         btnSig.setMinimumSize(new java.awt.Dimension(80, 27));
         btnSig.setNextFocusableComponent(txtNombre);
@@ -393,9 +388,9 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSigActionPerformed
-        
+
         if (chequeoGeneral()) {
-            
+
             String nombre = txtNombre.getText();
             String cedula = txtCedula.getText();
             String direccion = txtDireccion.getText();
@@ -450,9 +445,9 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
 
     private void txtMailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMailFocusLost
         if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {
-          
+
             lblMailAdvertencia.setText("El mail es incorrecto.");
-       
+
         } else {
             lblMailAdvertencia.setText("");
         }
@@ -537,9 +532,9 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
 
     private void txtMailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMailKeyReleased
         if (!(esMail(txtMail.getText())) || txtMail.getText().length() == 0) {
-        
+
             lblMailAdvertencia.setText("El mail es incorrecto.");
-   
+
         } else {
             lblMailAdvertencia.setText("");
         }
@@ -606,7 +601,13 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
         if (txtNombre.getText().length() == 0) {
             verificado = false;
         } else {
-            if ((!(esNumero(txtCedula.getText()))) || txtCedula.getText().length() != 8) {
+            String cedula = txtCedula.getText();
+            for (int i = 0; i < sistema.getSizePostulantes(); i++) {
+                if (sistema.getPostulantes().get(i).getCedula().equals(cedula)) {
+                    verificado = false;
+                }
+            }
+            if ((!(esNumero(cedula))) || cedula.length() != 8) {
                 verificado = false;
             } else {
                 if (txtDireccion.getText().length() == 0) {
@@ -632,9 +633,21 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
 
     public static boolean esMail (String unN) {
         boolean retorno = false;
-        if (unN.contains("@gmail.com")) {
-            retorno = true;
+
+        if (unN.contains("@")) {
+            String[] mailSplit = unN.split("@");
+
+            if ((mailSplit.length == 2 && mailSplit[0].length() > 0 && mailSplit[1].length() > 0 && mailSplit[1].indexOf(".") != -1)) {
+                String[] dominioSplit = mailSplit[1].split("\\.");
+
+                if (dominioSplit.length == 2 && dominioSplit[0].length() > 0 && dominioSplit[1].length() >= 1) {
+                    retorno = true;
+
+                }
+            }
+
         }
+
         return retorno;
     }
 

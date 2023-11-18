@@ -67,6 +67,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        lstPuestos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstPuestos);
 
         lblPuest.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -78,6 +79,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
         spnNivel.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
 
         btnConsultar.setText("Consultar");
+        btnConsultar.setToolTipText("Consultar por los postulantes habilitados para el puesto.");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarActionPerformed(evt);
@@ -92,6 +94,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        lstPostulantes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lstPostulantes);
 
         btnCancelar.setText("Cancelar");
@@ -102,6 +105,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
         });
 
         btnExportar.setText("Exportar");
+        btnExportar.setToolTipText("Crear un archivo de texto con los postulantes.");
         btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportarActionPerformed(evt);
@@ -112,10 +116,6 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
-                .addGap(118, 118, 118))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1)
@@ -130,18 +130,23 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
                 .addComponent(btnExportar)
                 .addGap(19, 19, 19))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblPuest)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNivel)
-                        .addGap(80, 80, 80)
-                        .addComponent(spnNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93)
-                        .addComponent(btnConsultar))
-                    .addComponent(lblPostu)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblPuest)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNivel)
+                                .addGap(80, 80, 80)
+                                .addComponent(spnNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(93, 93, 93)
+                                .addComponent(btnConsultar))
+                            .addComponent(lblPostu)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(lblTitulo)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -198,8 +203,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
 
             ArrayList<Postulante> todosPost = sistema.getPostulantes();
             ArrayList<Postulante> soloPost = new ArrayList<>();
-            
-           
+
             for (int i = 0; i < todosPost.size(); i++) {
                 boolean chequeado = true;
                 if (todosPost.get(i).getEntrevistas().size() == 0) {
@@ -210,20 +214,20 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
                 }
                 int indexNivel = 0;
                 for (int j = 0; j < todosPost.get(i).getNiveles().size(); j++) {
-                    if (todosPost.get(i).getConocimiento().get(j).getNombre().equals(this.seleccionado.getTemasRequeridos().get(j).getNombre())) {
+                    if (todosPost.get(i).getConocimiento().get(j).getNombre().equalsIgnoreCase(this.seleccionado.getTemasRequeridos().get(j).getNombre())) {
                         indexNivel = j;
                     }
                 }
                 if (nivel > todosPost.get(i).getNiveles().get(indexNivel)) {
                     chequeado = false;
                 }
-                
+
                 if (chequeado) {
                     soloPost.add(todosPost.get(i));
                 }
 
             }
-            
+
             //postOrdNivel(soloPost);
             String[] postCumplen = new String[soloPost.size()];
             for (int i = 0; i < postCumplen.length; i++) {
@@ -238,12 +242,17 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
         if (lstPostulantes.getLastVisibleIndex() == -1) {
             JOptionPane.showMessageDialog(this, "No hay postulantes para exportar.");
         } else {
+            ArchivoLectura al = new ArchivoLectura("Consulta.txt");
             ArchivoGrabacion ag = new ArchivoGrabacion("Consulta.txt");
-            for(int i = 0; i<this.postulExportar.length; i++){
+            /*while (al.hayMasLineas()) {
+                ag.grabarLinea("");
+            }*/
+
+            for (int i = 0; i < this.postulExportar.length; i++) {
                 ag.grabarLinea(this.postulExportar[i]);
-                
             }
             ag.cerrar();
+            al.cerrar();
             this.setVisible(false);
         }
 

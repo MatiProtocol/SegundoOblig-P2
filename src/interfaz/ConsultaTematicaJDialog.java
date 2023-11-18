@@ -54,6 +54,7 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTitulo.setText("Estadísticas según temática");
 
+        lstTemas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lstTemas.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstTemasValueChanged(evt);
@@ -70,33 +71,42 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
         lblCantPuestos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCantPuestos.setText("Cantidad de puestos con la tematica seleccionada: ");
 
+        lblRespMayor5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        lblRespCantTema.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
-                .addGap(86, 86, 86))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jSeparator1)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCantPuestos)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblCantMayor5)
-                        .addComponent(lblSeleccionar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRespMayor5, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(lblRespCantTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCantMayor5)
+                            .addComponent(lblCantPuestos))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblRespMayor5, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                            .addComponent(lblRespCantTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblSeleccionar)
+                        .addGap(133, 133, 133))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblTitulo)
+                        .addGap(88, 88, 88))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +116,7 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
                 .addGap(14, 14, 14)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSeleccionar)
+                .addComponent(lblSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
@@ -130,10 +140,11 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
         int index = lstTemas.getAnchorSelectionIndex();
         int cantidadPost = 0;
         int cantPorTema = 0;
-        for (int i = 0; i < temas.size(); i++) {
-            if (todosPost.size() == 0) {
-                lblRespMayor5.setText("Sin postulantes.");
-            } else {
+        if (todosPost.isEmpty()) {
+            lblRespMayor5.setText("Sin postulantes.");
+        } else {
+            for (int i = 0; i < todosPost.size(); i++) {
+
                 for (int j = 0; j < todosPost.get(i).getConocimiento().size(); j++) {
 
                     int nivelPost = todosPost.get(i).getNiveles().get(j);
@@ -141,20 +152,30 @@ public class ConsultaTematicaJDialog extends javax.swing.JDialog {
 
                     if (temas.get(index).getNombre().equals(tematicaPost) && nivelPost > 5) {
                         cantidadPost++;
+                    } else {
+                        lblRespMayor5.setText("Sin postulantes.");
                     }
                 }
             }
-            if (todosPuestos.size() == 0) {
-                lblRespCantTema.setText("Sin puestos.");
-            } else {
-                if (todosPuestos.get(i).getTemasRequeridos().contains(temas.get(index))) {
+        }
+        if (todosPuestos.isEmpty()) {
+            lblRespCantTema.setText("Sin puestos.");
+        } else {
+            for (int j = 0; j < todosPuestos.size(); j++) {
+                if (todosPuestos.get(j).getTemasRequeridos().contains(temas.get(index))) {
                     cantPorTema++;
+                } else {
+                    lblRespCantTema.setText("Sin puestos.");
                 }
             }
-
         }
-        lblRespCantTema.setText(Integer.toString(cantPorTema));
-        lblRespMayor5.setText(Integer.toString(cantidadPost));
+
+        if (cantPorTema > 0) {
+            lblRespCantTema.setText(cantPorTema + "");
+        }
+        if (cantidadPost > 0) {
+            lblRespMayor5.setText("" + cantidadPost);
+        }
     }//GEN-LAST:event_lstTemasValueChanged
 
 

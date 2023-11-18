@@ -2,8 +2,9 @@
 package dominio;
 
 import java.util.*;
+import java.io.*;
 
-public class Postulante implements Comparable<Postulante> {
+public class Postulante implements Comparable<Postulante>, Serializable{
 
     private String nombre;
     private String cedula;

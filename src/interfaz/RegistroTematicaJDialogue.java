@@ -42,7 +42,6 @@ public class RegistroTematicaJDialogue extends javax.swing.JDialog {
         lblDescripcion.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblDescripcion.setText("Descripción:");
 
-        txtNombre.setText("tema1");
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
@@ -59,7 +58,6 @@ public class RegistroTematicaJDialogue extends javax.swing.JDialog {
 
         txtAreaDescripcion.setColumns(20);
         txtAreaDescripcion.setRows(5);
-        txtAreaDescripcion.setText("nosea aaaaaa");
         txtAreaDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtAreaDescripcionKeyReleased(evt);
@@ -74,7 +72,8 @@ public class RegistroTematicaJDialogue extends javax.swing.JDialog {
             }
         });
 
-        btnRegistrarme.setText("Registrarme");
+        btnRegistrarme.setText("Registrar");
+        btnRegistrarme.setToolTipText("Registrar temática.");
         btnRegistrarme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarmeActionPerformed(evt);
@@ -82,7 +81,7 @@ public class RegistroTematicaJDialogue extends javax.swing.JDialog {
         });
 
         jLblAdvertenciaNomb.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        jLblAdvertenciaNomb.setText("Se deben ingresar al menos 1 caracter.");
+        jLblAdvertenciaNomb.setText("Se debe ingresar al menos 1 caracter.");
 
         jLblAdvertenciaDesc.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jLblAdvertenciaDesc.setText("Se deben ingresar al menos 5 caractéres.");
@@ -152,6 +151,11 @@ public class RegistroTematicaJDialogue extends javax.swing.JDialog {
         String nombre = txtNombre.getText();
         String descripcion = txtAreaDescripcion.getText();
         boolean check = (nombre.isBlank() || descripcion.isBlank()) || (nombre.length() < 1 || descripcion.length() <= 4);
+        for (int i = 0; i < modelo.getSizeTematicas(); i++) {
+            if(nombre.equalsIgnoreCase(modelo.getTematicas().get(i).getNombre())){
+                check = true;
+            }                
+        }
         if (check) {
             JOptionPane.showMessageDialog(this, "Datos ingresados incorrectos.");
         } else {
@@ -165,7 +169,7 @@ public class RegistroTematicaJDialogue extends javax.swing.JDialog {
 
     private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
         if (txtNombre.getText().isBlank()) {
-            jLblAdvertenciaNomb.setText("Se deben ingresar al menos 1 caractér.");
+            jLblAdvertenciaNomb.setText("Se debe ingresar al menos 1 caractér.");
         } else {
             jLblAdvertenciaNomb.setText("");
         }

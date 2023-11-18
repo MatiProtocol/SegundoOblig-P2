@@ -109,9 +109,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="tema1"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreKeyReleased"/>
@@ -129,7 +126,6 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="nosea aaaaaa"/>
           </Properties>
           <Events>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtAreaDescripcionKeyReleased"/>
@@ -147,7 +143,8 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnRegistrarme">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Registrarme"/>
+        <Property name="text" type="java.lang.String" value="Registrar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Registrar tem&#xe1;tica."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarmeActionPerformed"/>
@@ -158,7 +155,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="10" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Se deben ingresar al menos 1 caracter."/>
+        <Property name="text" type="java.lang.String" value="Se debe ingresar al menos 1 caracter."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLblAdvertenciaDesc">
