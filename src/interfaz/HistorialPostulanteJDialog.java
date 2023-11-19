@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class HistorialPostulanteJDialog extends javax.swing.JDialog {
@@ -315,9 +316,9 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         if (txtBuscar.getText().isBlank() || sistema.getEntrevistas().size() == 0) {
             JOptionPane.showMessageDialog(this, "No hay nada para buscar.");
         } else {
-
-            tblBusqueda.setDefaultRenderer(Object.class, new CellRenderer());
-
+            CellRenderer render = new CellRenderer();
+            tblBusqueda.setDefaultRenderer(Object.class, render);
+            render.setBusqueda(txtBuscar);
             String buscar = txtBuscar.getText();
             String[] columnas = new String[]{"Nro", "Evaluador", "Puntaje", "Comentarios"};
 
@@ -329,9 +330,8 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
             tableModelo.setRowCount(1);
 
             Object[][] lineas = new Object[sistema.getEntrevistas().size()][4];
-            ArrayList<Object[]> verga = new ArrayList<Object[]>();
+            ArrayList<Object[]> arrObjects = new ArrayList<Object[]>();
 
-            
             int cont = 0;
             for (int i = 0; i < sistema.getSizePostulantes(); i++) {
 
@@ -346,7 +346,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                         nonbvre[2] = allPostulantes.get(i).getEntrevistas().get(j).getPuntaje();
                         nonbvre[3] = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
                         cont++;
-                        verga.add(nonbvre);
+                        arrObjects.add(nonbvre);
 
                     } else {
 
@@ -356,11 +356,11 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
             }
 
-            Object[] cualqCosa = verga.toArray();
-            Object[][] matCosa = new Object[cualqCosa.length][4];
+            Object[] insertLst = arrObjects.toArray();
+            Object[][] matCosa = new Object[insertLst.length][4];
 
-            for (int i = 0; i < cualqCosa.length; i++) {
-                matCosa[i] = (Object[]) cualqCosa[i];
+            for (int i = 0; i < insertLst.length; i++) {
+                matCosa[i] = (Object[]) insertLst[i];
 
             }
 
@@ -427,11 +427,11 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     private void lblTxtLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTxtLinkMouseEntered
         String link = lblTxtLink.getText();
         this.getRootPane().setCursor(new Cursor(Cursor.HAND_CURSOR));
-        this.lblTxtLink.setForeground(new Color(70,40,150));
+        this.lblTxtLink.setForeground(new Color(70, 40, 150));
     }//GEN-LAST:event_lblTxtLinkMouseEntered
 
     private void lblTxtLinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTxtLinkMouseExited
-        this.lblTxtLink.setForeground(new Color(0,0,255));
+        this.lblTxtLink.setForeground(new Color(0, 0, 255));
         this.getRootPane().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_lblTxtLinkMouseExited
 
@@ -472,5 +472,57 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         return unA;
     }
 
-    
+    class CellRenderer extends DefaultTableCellRenderer {
+
+        private javax.swing.JTextField txtBuscar;
+
+        @Override
+        public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component tableCellRendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            if (value instanceof String) {
+                String comentario = (String) value;
+                System.out.println(comentario);
+                System.out.println(txtBuscar.getText() + "1");
+                if (comentario.indexOf('a') > -1) {
+
+                    setText(getHTML(comentario, "a")); //de este codigo sacado en clase, acá iría el llamado a getHTML, pero al no poder hacer la configuracion del color rojo, determinamos no utilizarlo.
+                }
+            }
+            return tableCellRendererComponent;
+        }
+
+        private String getHTML (String coment, String barraBusqueda) {
+
+            //ArrayList<String> separacion = new Pintura(comentario);
+            StringBuilder sb = new StringBuilder();
+            sb.append("<html>");
+            int posicion = 0;
+            while (posicion < coment.length()) {
+                int siguiente = coment.indexOf(barraBusqueda, posicion);
+                if (siguiente > -1) {
+                    int fin = coment.length();
+                    if (fin > -1) {
+                        siguiente++;
+                        sb.append(coment.substring(posicion, siguiente));
+                        sb.append("<span style=\"color: red;\">");
+                        sb.append(coment.substring(siguiente, fin));
+                        sb.append("</span>");
+                        posicion = fin;
+                    } else {
+                        posicion = coment.length();
+                    }
+                } else {
+                    posicion = coment.length();
+                }
+            }
+            sb.append(coment.substring(posicion, coment.length()));
+            sb.append("</html>");
+            return sb.toString();
+        }
+
+        public void setBusqueda (JTextField unJTxt) {
+            this.txtBuscar = unJTxt;
+        }
+
+    }
 }
