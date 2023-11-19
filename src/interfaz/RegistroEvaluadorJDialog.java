@@ -280,6 +280,8 @@ public class RegistroEvaluadorJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblAdvertNomb;
     private javax.swing.JLabel lblAdvertRango;
     // End of variables declaration//GEN-END:variables
+    
+    
     public boolean chequeo () {
         boolean bien = true;
         if (jTextFieldNom.getText().isBlank()) {

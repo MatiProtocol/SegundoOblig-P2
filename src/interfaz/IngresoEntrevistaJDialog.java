@@ -235,9 +235,6 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jbtnIngresoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelComent;
@@ -257,6 +254,8 @@ public class IngresoEntrevistaJDialog extends javax.swing.JDialog {
     private javax.swing.JButton jbtnCancelar;
     private javax.swing.JButton jbtnIngreso;
     // End of variables declaration//GEN-END:variables
+    
+    
     public boolean chequeo () {
         boolean flag = true;
         if (jTextAreaComent.getText().isBlank()) {

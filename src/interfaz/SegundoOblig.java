@@ -1,4 +1,3 @@
-
 //Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
@@ -16,8 +15,6 @@ public class SegundoOblig {
        Sistema sistema = new Sistema();
        Inicio v = new Inicio(sistema);
        v.setVisible(true);
-       
-        
-    }
-    
+               
+    }  
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 //Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
@@ -176,9 +172,6 @@ public class BajaPostulanteJDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBtnEliminarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtbCancelar;

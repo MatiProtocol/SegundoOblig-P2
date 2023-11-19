@@ -199,6 +199,7 @@ public class RegistroTematicaJDialogue extends javax.swing.JDialog {
     private javax.swing.JTextArea txtAreaDescripcion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+    
     private Sistema modelo;
 
     public Tematica devolverTem () {

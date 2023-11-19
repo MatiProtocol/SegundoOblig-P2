@@ -265,8 +265,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTematicaActionPerformed
         RegistroTematicaJDialogue ventanita = new RegistroTematicaJDialogue(this, true, modelo);
-        ventanita.setVisible(true);
-//        
+        ventanita.setVisible(true);       
     }//GEN-LAST:event_btnTematicaActionPerformed
 
     private void btnPostularmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostularmeActionPerformed
@@ -275,8 +274,7 @@ public class Principal extends javax.swing.JFrame {
         } else {
             AltaPostulanteJDialogue vent = new AltaPostulanteJDialogue(this, true, modelo);
             vent.setVisible(true);
-        }
-//        
+        }        
     }//GEN-LAST:event_btnPostularmeActionPerformed
 
     private void btnBajaPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaPostActionPerformed

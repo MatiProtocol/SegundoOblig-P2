@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 //Matías Ohanian 305720 && Valentino Barreiro 308473 
 package interfaz;
 
@@ -193,7 +189,6 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
             int nivel = (Integer) spnNivel.getValue();
             String formato = lstPuestos.getSelectedValue();
 
-            int nivelPostulante = 0;
             for (int i = 0; i < puestos.size(); i++) {
                 if (formato.equals(puestos.get(i).getNombre())) {
                     formato = puestos.get(i).getTipo();
@@ -259,9 +254,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnExportarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

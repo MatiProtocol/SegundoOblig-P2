@@ -425,7 +425,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_lblTxtLinkMouseClicked
 
     private void lblTxtLinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTxtLinkMouseEntered
-        String link = lblTxtLink.getText();
         this.getRootPane().setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.lblTxtLink.setForeground(new Color(70, 40, 150));
     }//GEN-LAST:event_lblTxtLinkMouseEntered
@@ -493,7 +492,6 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
         private String getHTML (String coment, String barraBusqueda) {
 
-            //ArrayList<String> separacion = new Pintura(comentario);
             StringBuilder sb = new StringBuilder();
             sb.append("<html>");
             int posicion = 0;
