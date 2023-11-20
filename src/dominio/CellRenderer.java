@@ -15,7 +15,7 @@ public class CellRenderer extends DefaultTableCellRenderer {
             System.out.println(comentario + "1");
             if (comentario.indexOf(' ') > -1) {
                 
-                setText(comentario); //de este codigo sacado en clase, acá iría el llamado a getHTML, pero al no poder hacer la configuracion del color rojo, determinamos no utilizarlo.
+                setText(getHTML(comentario)); //de este codigo sacado en clase, acá iría el llamado a getHTML, pero al no poder hacer la configuracion del color rojo, determinamos no utilizarlo.
             }
         }
         return tableCellRendererComponent;

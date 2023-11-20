@@ -239,9 +239,7 @@ public class ConsultaPuestoJDialog extends javax.swing.JDialog {
         } else {
             ArchivoLectura al = new ArchivoLectura("Consulta.txt");
             ArchivoGrabacion ag = new ArchivoGrabacion("Consulta.txt");
-            /*while (al.hayMasLineas()) {
-                ag.grabarLinea("");
-            }*/
+            
 
             for (int i = 0; i < this.postulExportar.length; i++) {
                 ag.grabarLinea(this.postulExportar[i]);

@@ -39,19 +39,5 @@ public class ArchivoLectura {
         in.close();
     }
 
-    //listar archivo
-    public void listar (String nombre, int n) {
-        ArchivoLectura al = new ArchivoLectura(nombre);
-
-        while (al.hayMasLineas()) {
-            for (int i = 0; i < n; i++) {
-                System.out.print(al.ultimaLineaLeida() + " ");
-            }
-
-            System.out.println("");
-        }
-
-        al.cerrar();
-
-    }
+    
 }

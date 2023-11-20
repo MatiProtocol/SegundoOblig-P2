@@ -113,7 +113,6 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtDireccion.setToolTipText("");
         txtDireccion.setNextFocusableComponent(txtTelefono);
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -131,7 +130,6 @@ public class AltaPostulanteJDialogue extends javax.swing.JDialog {
             }
         });
 
-        txtTelefono.setToolTipText("");
         txtTelefono.setNextFocusableComponent(txtMail);
         txtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
