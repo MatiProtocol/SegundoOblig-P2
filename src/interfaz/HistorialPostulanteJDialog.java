@@ -318,7 +318,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         } else {
             CellRenderer render = new CellRenderer();
             tblBusqueda.setDefaultRenderer(Object.class, render);
-            render.setBusqueda(txtBuscar);
+            //render.setBusqueda(txtBuscar);
             String buscar = txtBuscar.getText();
             String[] columnas = new String[]{"Nro", "Evaluador", "Puntaje", "Comentarios"};
 
@@ -471,7 +471,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         return unA;
     }
 
-    class CellRenderer extends DefaultTableCellRenderer {
+    /*class CellRenderer extends DefaultTableCellRenderer {
 
         private javax.swing.JTextField txtBuscar;
 
@@ -482,7 +482,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                 String comentario = (String) value;
                 System.out.println(comentario);
                 System.out.println(txtBuscar.getText() + "1");
-                if (comentario.indexOf('a') > -1) {
+                if (comentario.indexOf(' ') > -1) {
 
                     setText(getHTML(comentario, "a")); //de este codigo sacado en clase, acá iría el llamado a getHTML, pero al no poder hacer la configuracion del color rojo, determinamos no utilizarlo.
                 }
@@ -522,5 +522,5 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
             this.txtBuscar = unJTxt;
         }
 
-    }
+    }*/
 }

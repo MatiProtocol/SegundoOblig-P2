@@ -3,10 +3,9 @@ package interfaz;
 
 import dominio.Postulante;
 import dominio.*;
-import dominio.Verficador;
-import java.awt.*;
+
 import java.util.*;
-import javax.print.attribute.AttributeSetUtilities;
+
 import javax.swing.*;
 
 public class AltaPostulanteJDialogue extends javax.swing.JDialog {
