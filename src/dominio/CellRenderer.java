@@ -12,10 +12,11 @@ public class CellRenderer extends DefaultTableCellRenderer {
         Component tableCellRendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         if (value instanceof String) {
             String comentario = (String) value;
-            System.out.println(comentario + "1");
+            
             if (comentario.indexOf(' ') > -1) {
                 
-                setText(getHTML(comentario)); //de este codigo sacado en clase, acá iría el llamado a getHTML, pero al no poder hacer la configuracion del color rojo, determinamos no utilizarlo.
+                setText(comentario); //de este codigo sacado en clase, es donde nos basamos para realizar el color de los comentarios del historial. 
+//                Por mas de no utilizar el getHTML, lo dejamos porque nos sirvio de referencia.
             }
         }
         return tableCellRendererComponent;

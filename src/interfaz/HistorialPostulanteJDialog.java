@@ -112,6 +112,7 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
         lblCed.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblCed.setText("Cedula:");
 
+        lstExperiencia.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(lstExperiencia);
 
         lblTxtNombre.setText("-");
@@ -176,9 +177,28 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
             new String [] {
                 "Nro", "Evaluador", "Puntaje", "Comentarios"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblBusqueda.setShowGrid(true);
+        tblBusqueda.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tblBusqueda);
+        if (tblBusqueda.getColumnModel().getColumnCount() > 0) {
+            tblBusqueda.getColumnModel().getColumn(0).setResizable(false);
+            tblBusqueda.getColumnModel().getColumn(0).setPreferredWidth(1);
+            tblBusqueda.getColumnModel().getColumn(1).setResizable(false);
+            tblBusqueda.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tblBusqueda.getColumnModel().getColumn(2).setResizable(false);
+            tblBusqueda.getColumnModel().getColumn(2).setPreferredWidth(1);
+            tblBusqueda.getColumnModel().getColumn(3).setResizable(false);
+            tblBusqueda.getColumnModel().getColumn(3).setPreferredWidth(600);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -344,11 +364,21 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
                         nonbvre[0] = j + 1;
                         nonbvre[1] = allPostulantes.get(i).getEntrevistas().get(j).getEvaluador().getNombreCedula();
                         nonbvre[2] = allPostulantes.get(i).getEntrevistas().get(j).getPuntaje();
-                        nonbvre[3] = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion();
+                        String comentario = allPostulantes.get(i).getEntrevistas().get(j).getDescripcion() + " ";
+                        String[] aCambiar = comentario.split(buscar);
+                        StringBuilder builder = new StringBuilder();
+                        builder.append("<html>");
+                        for (int k = 0; k < aCambiar.length-1; k++) {
+                            builder.append(aCambiar[k]);
+                            builder.append("<span style=\"color: red;\">");
+                            builder.append(buscar);
+                            builder.append("</span>");
+                        }
+                        builder.append(aCambiar[aCambiar.length - 1]);
+                        builder.append("</html>");
+                        nonbvre[3] = builder.toString(); 
                         cont++;
                         arrObjects.add(nonbvre);
-
-                    } else {
 
                     }
 
@@ -358,15 +388,24 @@ public class HistorialPostulanteJDialog extends javax.swing.JDialog {
 
             Object[] insertLst = arrObjects.toArray();
             Object[][] matCosa = new Object[insertLst.length][4];
-
             for (int i = 0; i < insertLst.length; i++) {
                 matCosa[i] = (Object[]) insertLst[i];
 
             }
-
             tableModelo.setDataVector(matCosa, columnas);
-
             tblBusqueda.setModel(tableModelo);
+
+            if (tblBusqueda.getColumnModel().getColumnCount() > 0) {
+                tblBusqueda.getColumnModel().getColumn(0).setResizable(false);
+                tblBusqueda.getColumnModel().getColumn(0).setPreferredWidth(1);
+                tblBusqueda.getColumnModel().getColumn(1).setResizable(false);
+                tblBusqueda.getColumnModel().getColumn(1).setPreferredWidth(150);
+                tblBusqueda.getColumnModel().getColumn(2).setResizable(false);
+                tblBusqueda.getColumnModel().getColumn(2).setPreferredWidth(1);
+                tblBusqueda.getColumnModel().getColumn(3).setResizable(false);
+                tblBusqueda.getColumnModel().getColumn(3).setPreferredWidth(600);
+            }
+
             txtBuscar.setText("");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
